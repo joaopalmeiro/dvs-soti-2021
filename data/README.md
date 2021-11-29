@@ -1,0 +1,14 @@
+# Data
+
+## Notes
+
+- `data_2021_main_dvs-soti_v1.csv`: raw data.
+- [Polars](https://www.pola.rs/):
+  - Alternative to pandas. DataFrame library written in Rust with a [Python API](https://pola-rs.github.io/polars/py-polars/html/reference/).
+  - [Tutorial by calmcode](https://calmcode.io/polars/introduction.html):
+    - In pandas, you have to be aware of the order in which operations occur (efficiency). pandas is not designed to look at all operations to be performed before running them (pandas runs steps in sequence). On the other hand, Polars comes with query optimizations and the code can be run in parallel.
+    - Polars has a different (DataFrame) API than pandas. The API/syntax looks like a mix of pandas and PySpark.
+    - `df = pl.read_csv("data.csv", parse_dates=False)` (eager mode).
+    - `df = pl.scan_csv("data.csv")` + `df.fetch(5)`/`df.head(5).collect()` (lazy mode).
+    - `dataf` as an alternative to `df`.
+    - Polars also has a `.pipe()` method like pandas.
