@@ -1,10 +1,17 @@
 # Data
 
+## Development
+
+- `pipenv install --python 3.6`.
+- `pipenv shell`.
+- `jupyter retro`.
+
 ## Notes
 
 - `data_2021_main_dvs-soti_v1.csv`: raw data.
 - [Polars](https://www.pola.rs/):
   - Alternative to pandas. DataFrame library written in Rust with a [Python API](https://pola-rs.github.io/polars/py-polars/html/reference/).
+  - `pipenv install polars`.
   - [Documentation/Cookbook](https://pola-rs.github.io/polars-book/user-guide/index.html).
   - [Tutorial by calmcode](https://calmcode.io/polars/introduction.html):
     - In pandas, you have to be aware of the order in which operations occur (efficiency). pandas is not designed to look at all operations to be performed before running them (pandas runs steps in sequence). On the other hand, Polars comes with query optimizations and the code can be run in parallel.
@@ -14,3 +21,11 @@
     - `dataf` as an alternative to `df`.
     - Polars also has a `.pipe()` method like pandas.
     - Use the [`.over()` method](https://pola-rs.github.io/polars/py-polars/html/reference/api/polars.Expr.over.html) instead of `groupby`s, `agg`s, and `join`s. This method must follow an aggregating expression (e.g., `.count()`).
+- [RetroLab](https://github.com/jupyterlab/retrolab):
+  - [RetroLab — A JupyterLab distribution with a retro look and feel](https://blog.jupyter.org/retrolab-a-jupyterlab-distribution-with-a-retro-look-and-feel-8096b8b223d0) blog post by Jeremy Tuloup:
+    - Alternative JupyterLab distribution. It is similar to Jupyter Notebook.
+    - New notebooks are opened in new browser tabs by default.
+    - RetroLab has a Zen Mode (a kind of full-screen mode).
+    - RetroLab has a more compact layout for mobile devices.
+  - `pipenv install retrolab`.
+  - Start: `jupyter retro` or `jupyter retro --retro-logo`.
