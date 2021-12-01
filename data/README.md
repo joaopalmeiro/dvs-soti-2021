@@ -13,6 +13,7 @@
   - Alternative to pandas. DataFrame library written in Rust with a [Python API](https://pola-rs.github.io/polars/py-polars/html/reference/).
   - `pipenv install polars`.
   - [Documentation/Cookbook](https://pola-rs.github.io/polars-book/user-guide/index.html).
+  - [Optimizations](https://pola-rs.github.io/polars-book/user-guide/optimizations/intro.html). Predicate pushdown for rows and projection pushdown for columns. [`.collect()`](https://pola-rs.github.io/polars/py-polars/html/reference/api/polars.LazyFrame.collect.html).
   - [Tutorial by calmcode](https://calmcode.io/polars/introduction.html):
     - In pandas, you have to be aware of the order in which operations occur (efficiency). pandas is not designed to look at all operations to be performed before running them (pandas runs steps in sequence). On the other hand, Polars comes with query optimizations and the code can be run in parallel.
     - Polars has a different (DataFrame) API than pandas. The API/syntax looks like a mix of pandas and PySpark.
@@ -29,3 +30,6 @@
     - RetroLab has a more compact layout for mobile devices.
   - `pipenv install retrolab`.
   - Start: `jupyter retro` or `jupyter retro --retro-logo`.
+- Black:
+  - It supports Jupyter notebooks now ([PR](https://github.com/psf/black/pull/2357)).
+  - `pipenv install "black[jupyter]==21.11b1"`.
