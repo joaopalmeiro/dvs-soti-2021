@@ -128,5 +128,12 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# React/Vite
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+
 # Custom
 data/formatter.py
