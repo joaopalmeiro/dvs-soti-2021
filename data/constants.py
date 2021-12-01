@@ -1,7 +1,7 @@
 from typing import Dict
 
 RAW_DATA: str = "data_2021_main_dvs-soti_v1.csv"
-TOOL_COUNTS_DATA: str = "tools_counts.csv"
+TOOL_COUNTS_DATA: str = "tools_counts"
 
 TOOLS_COL_PREFIX: str = "ToolsForDV_"
 TOOLS_OTHER_COL: str = f"{TOOLS_COL_PREFIX}Other__"

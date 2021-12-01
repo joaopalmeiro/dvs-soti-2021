@@ -7,6 +7,8 @@ name = "pypi"
 retrolab = "*"
 polars = "*"
 black = {version = "==21.11b1", extras = ["jupyter"]}
+pyarrow = "*"
+pandas = "*"
 
 [dev-packages]
 
