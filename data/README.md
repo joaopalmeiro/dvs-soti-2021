@@ -30,7 +30,9 @@
     - RetroLab has a more compact layout for mobile devices.
   - `pipenv install retrolab`.
   - Start: `jupyter retro` or `jupyter retro --retro-logo`.
+  - Select lines and press `Control ⌃` + `-` to toggle line comments.
+  - [Available string methods](https://pola-rs.github.io/polars/py-polars/html/search.html?q=StringNameSpace).
 - Black:
   - It supports Jupyter notebooks now ([PR](https://github.com/psf/black/pull/2357)).
   - `pipenv install "black[jupyter]==21.11b1"`.
-  - `black prep_polars.ipynb`.
+  - `black prep_tools_counts_polars.ipynb`.
