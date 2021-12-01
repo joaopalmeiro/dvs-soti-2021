@@ -2,6 +2,12 @@
 
 > [Challenge](https://www.datavisualizationsociety.org/soti-challenge-2021) (Data Visualization Society)
 
+## Development
+
+- Install [pnpm](https://pnpm.io/installation) (if necessary).
+- `pnpm install`.
+- `pnpm dev`.
+
 ## Notes
 
 - [Vite](https://vitejs.dev/):
@@ -11,4 +17,4 @@
   - [React template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react).
   - `npx vite --help`.
   - JSON files can be directly imported (more info [here](https://vitejs.dev/guide/features.html#json)).
-  - `pnpm create vite dvs-soti-2021 -- --template react` or `pnpm create vite -- --template react`. [`pnpm install`](https://pnpm.io/cli/install) + `pnpm dev`.
+  - `pnpm create vite dvs-soti-2021 -- --template react` or `pnpm create vite -- --template react`. [`pnpm install`](https://pnpm.io/cli/install).
