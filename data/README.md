@@ -33,3 +33,4 @@
 - Black:
   - It supports Jupyter notebooks now ([PR](https://github.com/psf/black/pull/2357)).
   - `pipenv install "black[jupyter]==21.11b1"`.
+  - `black prep_polars.ipynb`.
