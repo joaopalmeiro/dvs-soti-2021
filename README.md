@@ -11,7 +11,7 @@
 ## Notes
 
 - [Vite](https://vitejs.dev/):
-  - [esbuild](https://esbuild.github.io/): faster JavaScript bundler.
+  - [esbuild](https://esbuild.github.io/): fast JavaScript bundler.
   - ESM: ECMAScript Modules.
   - Development server + build command powered by Rollup.
   - [React template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react).
