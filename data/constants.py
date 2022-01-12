@@ -1,7 +1,10 @@
+from pathlib import Path
 from typing import Dict
 
-RAW_DATA: str = "data_2021_main_dvs-soti_v1.csv"
+# RAW_DATA: str = "data_2021_main_dvs-soti_v1.csv"
+RAW_DATA: str = "data_2021_main_dvs-soti_v1.1.csv"
 TOOL_COUNTS_DATA: str = "tools_counts"
+FE_SRC_FOLDER: Path = Path("../") / "src"
 
 TOOLS_COL_PREFIX: str = "ToolsForDV_"
 TOOLS_OTHER_COL: str = f"{TOOLS_COL_PREFIX}Other__"

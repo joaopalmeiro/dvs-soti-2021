@@ -5,10 +5,11 @@
 - `pipenv install --python 3.6`.
 - `pipenv shell`.
 - `jupyter retro`.
+- `black prep_tools_counts_polars.ipynb`.
 
 ## Notes
 
-- `data_2021_main_dvs-soti_v1.csv`: raw data.
+- `data_2021_main_dvs-soti_v1.csv` and `data_2021_main_dvs-soti_v1.1.csv`: raw data.
 - [Polars](https://www.pola.rs/):
   - Alternative to pandas. DataFrame library written in Rust with a [Python API](https://pola-rs.github.io/polars/py-polars/html/reference/).
   - `pipenv install polars`.
@@ -37,3 +38,6 @@
   - It supports Jupyter notebooks now ([PR](https://github.com/psf/black/pull/2357)).
   - `pipenv install "black[jupyter]==21.11b1"`.
   - `black prep_tools_counts_polars.ipynb`.
+- [csv-diff](https://github.com/simonw/csv-diff) package:
+  - `pipenv install csv-diff --keep-outdated`.
+  - `pipenv run csv-diff data_2021_main_dvs-soti_v1.csv data_2021_main_dvs-soti_v1.1.csv --key=chronID`.
