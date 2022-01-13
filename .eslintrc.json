@@ -1,0 +1,68 @@
+{
+  "env": {
+    // https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    // https://eslint.org/docs/rules/
+    "eslint:recommended",
+    // https://github.com/import-js/eslint-plugin-import/tree/main#installation
+    // https://github.com/import-js/eslint-plugin-import/blob/v2.25.4/config/recommended.js
+    "plugin:import/recommended",
+    // https://github.com/yannickcr/eslint-plugin-react#recommended
+    // https://github.com/yannickcr/eslint-plugin-react/blob/v7.28.0/index.js#L123
+    "plugin:react/recommended",
+    // https://github.com/yannickcr/eslint-plugin-react#configuration
+    "plugin:react/jsx-runtime",
+    // https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks
+    // https://github.com/facebook/react/blob/v17.0.2/packages/eslint-plugin-react-hooks/src/index.js#L14
+    "plugin:react-hooks/recommended",
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#usage
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/v6.5.1/src/index.js#L43
+    "plugin:jsx-a11y/recommended",
+    // https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    // https://eslint.org/docs/user-guide/configuring/language-options#specifying-parser-options
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    // https://eslint.org/docs/rules/#suggestions
+    "eqeqeq": "error",
+    "no-console": "warn",
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
+    "import/order": [
+      "warn",
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "warnOnUnassignedImports": true
+      }
+    ]
+  },
+  "settings": {
+    // https://github.com/yannickcr/eslint-plugin-react#configuration
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      // https://github.com/import-js/eslint-plugin-import#settings
+      // https://github.com/import-js/eslint-plugin-import/issues/869#issuecomment-320267555
+      // https://www.npmjs.com/package/eslint-import-resolver-node
+      // https://github.com/import-js/eslint-plugin-import#resolvers
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  }
+}
