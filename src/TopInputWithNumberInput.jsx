@@ -1,7 +1,7 @@
 import { Button, Container, Grid, NumberInput, Select } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import { includes, map, values } from 'lodash';
-import { NumberCircleOne, NumberCircleTwo, NumberCircleThree, Percent } from 'phosphor-react';
+import { NumberCircleOne, NumberCircleThree, NumberCircleTwo, Percent } from 'phosphor-react';
 
 import GridTopInputWithNumberInput from './GridTopInputWithNumberInput';
 import data from './tools_counts.json';
@@ -40,6 +40,7 @@ function TopInputWithNumberInput() {
                                 searchable
                                 clearable
                                 data={allTools}
+                                // https://phosphoricons.com/
                                 icon={<NumberCircleOne weight="bold" />}
                                 {...form.getInputProps('firstTool')}
                             />
