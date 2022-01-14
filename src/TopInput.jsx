@@ -1,7 +1,8 @@
-import { Button, Select } from '@mantine/core';
+import { Button, Container, Grid, NumberInput, Select } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
-import { map, values, includes } from 'lodash';
+import { includes, map, values } from 'lodash';
 
+import GridTopInput from './GridTopInput';
 import data from './tools_counts.json';
 
 function TopInput() {
@@ -10,7 +11,10 @@ function TopInput() {
         initialValues: {
             firstTool: '',
             secondTool: '',
-            thirdTool: ''
+            thirdTool: '',
+            firstToolPercentage: 0,
+            secondToolPercentage: 0,
+            thirdToolPercentage: 0
         }
     });
 
@@ -21,39 +25,98 @@ function TopInput() {
     }));
 
     return (
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
-            <Select
-                aria-label="Your guess for the most used tool"
-                placeholder="Pick one"
-                nothingFound="Nothing found"
-                searchable
-                clearable
-                data={allTools}
-                {...form.getInputProps('firstTool')}
-            />
+        <Container size="md">
+            <form onSubmit={form.onSubmit((values) => console.log(values))}>
+                {/* https://mantine.dev/core/grid/#usage (flexbox) */}
+                {/* https://mantine.dev/core/grid/#change-columns-count */}
+                <GridTopInput>
+                    <Grid gutter="xs" justify="center" style={{ gridArea: 'first' }}>
+                        <Grid.Col span={6}>
+                            <Select
+                                aria-label="Your guess for the most used tool"
+                                placeholder="Pick one"
+                                nothingFound="Nothing found"
+                                searchable
+                                clearable
+                                data={allTools}
+                                {...form.getInputProps('firstTool')}
+                            />
+                        </Grid.Col>
+                        <Grid.Col span={4}>
+                            <NumberInput
+                                // https://mantine.dev/core/number-input/#custom-incrementdecrement-controls
+                                aria-label="Your guess for the percentage of the most used tool"
+                                max={100}
+                                min={0}
+                                step={1}
+                                // https://mantine.dev/core/number-input/#incrementdecrement-on-hold
+                                stepHoldDelay={500}
+                                stepHoldInterval={100}
+                                {...form.getInputProps('firstToolPercentage')}
+                            />
+                        </Grid.Col>
+                    </Grid>
 
-            <Select
-                aria-label="Your guess for the second most used tool"
-                placeholder="Pick one"
-                nothingFound="Nothing found"
-                searchable
-                clearable
-                data={allTools}
-                {...form.getInputProps('secondTool')}
-            />
+                    <Grid gutter="xs" justify="center" style={{ gridArea: 'second' }}>
+                        <Grid.Col span={6}>
+                            <Select
+                                aria-label="Your guess for the second most used tool"
+                                placeholder="Pick one"
+                                nothingFound="Nothing found"
+                                searchable
+                                clearable
+                                data={allTools}
+                                {...form.getInputProps('secondTool')}
+                            />
+                        </Grid.Col>
+                        <Grid.Col span={4}>
+                            <NumberInput
+                                // https://mantine.dev/core/number-input/#custom-incrementdecrement-controls
+                                aria-label="Your guess for the percentage of the second most used tool"
+                                max={100}
+                                min={0}
+                                step={1}
+                                // https://mantine.dev/core/number-input/#incrementdecrement-on-hold
+                                stepHoldDelay={500}
+                                stepHoldInterval={100}
+                                {...form.getInputProps('secondToolPercentage')}
+                            />
+                        </Grid.Col>
+                    </Grid>
 
-            <Select
-                aria-label="Your guess for the third most used tool"
-                placeholder="Pick one"
-                nothingFound="Nothing found"
-                searchable
-                clearable
-                data={allTools}
-                {...form.getInputProps('thirdTool')}
-            />
+                    <Grid gutter="xs" justify="center" style={{ gridArea: 'third' }}>
+                        <Grid.Col span={6}>
+                            <Select
+                                aria-label="Your guess for the third most used tool"
+                                placeholder="Pick one"
+                                nothingFound="Nothing found"
+                                searchable
+                                clearable
+                                data={allTools}
+                                {...form.getInputProps('thirdTool')}
+                            />
+                        </Grid.Col>
+                        <Grid.Col span={4}>
+                            <NumberInput
+                                // https://mantine.dev/core/number-input/#custom-incrementdecrement-controls
+                                aria-label="Your guess for the percentage of the third most used tool"
+                                max={100}
+                                min={0}
+                                step={1}
+                                // https://mantine.dev/core/number-input/#incrementdecrement-on-hold
+                                stepHoldDelay={500}
+                                stepHoldInterval={100}
+                                {...form.getInputProps('thirdToolPercentage')}
+                            />
+                        </Grid.Col>
+                    </Grid>
 
-            <Button type="submit">Submit</Button>
-        </form>
+                    <Button type="submit" style={{ gridArea: 'submit' }}>
+                        Submit
+                    </Button>
+                </GridTopInput>
+            </form>
+        </Container>
     );
 }
 
