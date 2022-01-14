@@ -11,6 +11,7 @@
     "@mantine/core": "^3.6.0",
     "@mantine/hooks": "^3.6.0",
     "lodash": "^4.17.21",
+    "phosphor-react": "^1.4.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },

@@ -33,3 +33,5 @@
 - `pnpm eslint --init`.
 - `pnpm eslint --print-config .eslintrc.json > .eslintrc.allconfig.json`.
 - `pnpm install @mantine/hooks @mantine/core`.
+- `pnpm install phosphor-react`.
+- `pnpm install -D eslint-plugin-lodash` ([repo](https://github.com/wix/eslint-plugin-lodash)).[Support ESLint 8.x](https://github.com/wix/eslint-plugin-lodash/issues/334) (open) issue.

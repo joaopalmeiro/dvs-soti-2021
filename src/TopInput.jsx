@@ -1,6 +1,7 @@
 import { Button, Container, Grid, NumberInput, Select } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import { includes, map, values } from 'lodash';
+import { NumberCircleOne, NumberCircleTwo, NumberCircleThree, Percent } from 'phosphor-react';
 
 import GridTopInput from './GridTopInput';
 import data from './tools_counts.json';
@@ -39,6 +40,7 @@ function TopInput() {
                                 searchable
                                 clearable
                                 data={allTools}
+                                icon={<NumberCircleOne weight="bold" />}
                                 {...form.getInputProps('firstTool')}
                             />
                         </Grid.Col>
@@ -52,6 +54,7 @@ function TopInput() {
                                 // https://mantine.dev/core/number-input/#incrementdecrement-on-hold
                                 stepHoldDelay={500}
                                 stepHoldInterval={100}
+                                icon={<Percent />}
                                 {...form.getInputProps('firstToolPercentage')}
                             />
                         </Grid.Col>
@@ -66,6 +69,7 @@ function TopInput() {
                                 searchable
                                 clearable
                                 data={allTools}
+                                icon={<NumberCircleTwo weight="regular" />}
                                 {...form.getInputProps('secondTool')}
                             />
                         </Grid.Col>
@@ -79,6 +83,7 @@ function TopInput() {
                                 // https://mantine.dev/core/number-input/#incrementdecrement-on-hold
                                 stepHoldDelay={500}
                                 stepHoldInterval={100}
+                                icon={<Percent />}
                                 {...form.getInputProps('secondToolPercentage')}
                             />
                         </Grid.Col>
@@ -93,6 +98,7 @@ function TopInput() {
                                 searchable
                                 clearable
                                 data={allTools}
+                                icon={<NumberCircleThree weight="light" />}
                                 {...form.getInputProps('thirdTool')}
                             />
                         </Grid.Col>
@@ -106,6 +112,7 @@ function TopInput() {
                                 // https://mantine.dev/core/number-input/#incrementdecrement-on-hold
                                 stepHoldDelay={500}
                                 stepHoldInterval={100}
+                                icon={<Percent />}
                                 {...form.getInputProps('thirdToolPercentage')}
                             />
                         </Grid.Col>
