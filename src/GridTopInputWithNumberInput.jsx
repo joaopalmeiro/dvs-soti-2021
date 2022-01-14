@@ -9,7 +9,7 @@ const template = `
 '. submit .'
 `;
 
-function GridArea({ children }) {
+function GridTopInputWithNumberInput({ children }) {
     return (
         <Box
             style={{
@@ -27,9 +27,9 @@ function GridArea({ children }) {
     );
 }
 
-GridArea.propTypes = {
+GridTopInputWithNumberInput.propTypes = {
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md#as-for-exceptions
     children: PropTypes.node
 };
 
-export default GridArea;
+export default GridTopInputWithNumberInput;

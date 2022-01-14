@@ -1,7 +1,7 @@
-import TopInput from './TopInput';
+import TopInputWithSlider from './TopInputWithSlider';
 
 function App() {
-    return <TopInput />;
+    return <TopInputWithSlider />;
 }
 
 export default App;

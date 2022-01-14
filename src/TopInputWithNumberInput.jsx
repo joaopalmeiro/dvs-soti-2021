@@ -3,10 +3,10 @@ import { useForm } from '@mantine/hooks';
 import { includes, map, values } from 'lodash';
 import { NumberCircleOne, NumberCircleTwo, NumberCircleThree, Percent } from 'phosphor-react';
 
-import GridTopInput from './GridTopInput';
+import GridTopInputWithNumberInput from './GridTopInputWithNumberInput';
 import data from './tools_counts.json';
 
-function TopInput() {
+function TopInputWithNumberInput() {
     // https://mantine.dev/hooks/use-form/
     const form = useForm({
         initialValues: {
@@ -30,7 +30,7 @@ function TopInput() {
             <form onSubmit={form.onSubmit((values) => console.log(values))}>
                 {/* https://mantine.dev/core/grid/#usage (flexbox) */}
                 {/* https://mantine.dev/core/grid/#change-columns-count */}
-                <GridTopInput>
+                <GridTopInputWithNumberInput>
                     <Grid gutter="xs" justify="center" style={{ gridArea: 'first' }}>
                         <Grid.Col span={6}>
                             <Select
@@ -121,10 +121,10 @@ function TopInput() {
                     <Button type="submit" style={{ gridArea: 'submit' }}>
                         Submit
                     </Button>
-                </GridTopInput>
+                </GridTopInputWithNumberInput>
             </form>
         </Container>
     );
 }
 
-export default TopInput;
+export default TopInputWithNumberInput;
