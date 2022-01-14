@@ -32,3 +32,4 @@
 - `pnpm install -D eslint-plugin-import`.
 - `pnpm eslint --init`.
 - `pnpm eslint --print-config .eslintrc.json > .eslintrc.allconfig.json`.
+- `pnpm install @mantine/hooks @mantine/core`.

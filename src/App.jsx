@@ -1,9 +1,9 @@
+import { useForm } from '@mantine/hooks';
+
+import TopInput from './TopInput';
+
 function App() {
-    return (
-        <div className="App">
-            <p>Hello, World!</p>
-        </div>
-    );
+    return <TopInput />;
 }
 
 export default App;
