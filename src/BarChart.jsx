@@ -17,12 +17,12 @@ const yAccessor = (d) => d.tool;
 function BarChart() {
     const numBars = data.length;
     const height = numBars * defaultBarHeight;
+    const dimensions = combineChartDimensions({ width: 500, height });
 
     const sortedData = sort(data, (a, b) => descending(countAccessor(a), countAccessor(b)));
     const yValues = map(sortedData, yAccessor);
-    const [draggingItems, setDraggingItems] = useState(sortedData);
 
-    const dimensions = combineChartDimensions({ width: 500, height });
+    const [draggingItems, setDraggingItems] = useState(sortedData);
 
     const xScale = scaleLinear().domain([0, 1]).range([0, dimensions.boundedWidth]).nice();
     const xAccessorScaled = (d) => xScale(xAccessor(d));
