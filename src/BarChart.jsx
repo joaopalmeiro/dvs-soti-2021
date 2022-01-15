@@ -67,14 +67,13 @@ function BarChart() {
 
                             setSortedData(newSortedData);
                         }}
-                        // onDragEnd={(e) => console.log('End', e)}
                         // https://github.com/airbnb/visx/pull/1368
                         restrict={{
                             // Move only on the Y-axis.
                             xMin: 0,
                             xMax: 0
                         }}
-                        snapToPointer={true}
+                        snapToPointer
                     >
                         {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => (
                             <rect
