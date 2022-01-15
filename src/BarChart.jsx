@@ -31,6 +31,7 @@ function BarChart() {
     const yAccessorScaled = (d) => yScale(yAccessor(d));
 
     // https://wattenberger.com/blog/react-and-d3
+    // https://github.com/airbnb/visx/blob/master/packages/visx-drag/src/util/raise.ts
     return (
         <svg width={dimensions.width} height={dimensions.height}>
             <Group top={dimensions.marginTop} left={dimensions.marginLeft}>
