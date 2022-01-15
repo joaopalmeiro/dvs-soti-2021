@@ -5,6 +5,7 @@ specifiers:
   '@mantine/core': ^3.6.0
   '@mantine/hooks': ^3.6.0
   '@visx/axis': ^2.4.0
+  '@visx/drag': ^2.5.0
   '@visx/group': ^2.1.0
   '@vitejs/plugin-react': ^1.0.0
   d3-array: ^3.1.1
@@ -28,6 +29,7 @@ dependencies:
   '@mantine/core': 3.6.0_4eef49243cafbe29e09beedd066b0ae1
   '@mantine/hooks': 3.6.0_react@17.0.2
   '@visx/axis': 2.4.0_react@17.0.2
+  '@visx/drag': 2.5.0_react@17.0.2
   '@visx/group': 2.1.0_react@17.0.2
   d3-array: 3.1.1
   d3-format: 3.1.0
@@ -692,6 +694,24 @@ packages:
     dependencies:
       '@types/d3-shape': 1.3.8
       d3-shape: 1.3.7
+    dev: false
+
+  /@visx/drag/2.5.0_react@17.0.2:
+    resolution: {integrity: sha512-8oVcL0G8ydLC6PS6EZ1Nl3YX19vB4TDG5dFF27dvAMP82NNCmgB9U29B6NegMXVFnj12nWBOoxnIDsUpf8bdQQ==}
+    peerDependencies:
+      react: ^16.8.0-0 || ^17.0.0-0
+    dependencies:
+      '@types/react': 17.0.38
+      '@visx/event': 2.1.2
+      prop-types: 15.8.1
+      react: 17.0.2
+    dev: false
+
+  /@visx/event/2.1.2:
+    resolution: {integrity: sha512-x3gAQ9DB4zDA6qqGpzlpGacGuOtmzFi/m5Zq7BJ0OJ7PjNfkIazCsznc9epCT/g9IIhwhs+UN/Ijww4YnFHqHw==}
+    dependencies:
+      '@types/react': 17.0.38
+      '@visx/point': 2.1.0
     dev: false
 
   /@visx/group/2.1.0_react@17.0.2:
