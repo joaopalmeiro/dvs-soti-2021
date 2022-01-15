@@ -1,6 +1,6 @@
 import { Drag, raise } from '@visx/drag';
 import { Group } from '@visx/group';
-import { map, sort, descending } from 'd3-array';
+import { map, sort, descending, ascending } from 'd3-array';
 import { scaleLinear, scaleBand } from 'd3-scale';
 import { useState } from 'react';
 
@@ -19,10 +19,10 @@ function BarChart() {
     const height = numBars * defaultBarHeight;
     const dimensions = combineChartDimensions({ width: 500, height });
 
-    const sortedData = sort(data, (a, b) => descending(countAccessor(a), countAccessor(b)));
-    const yValues = map(sortedData, yAccessor);
+    const initialSortedData = sort(data, (a, b) => descending(countAccessor(a), countAccessor(b)));
 
-    const [draggingItems, setDraggingItems] = useState(sortedData);
+    const [sortedData, setSortedData] = useState(initialSortedData);
+    const [draggingItems, setDraggingItems] = useState(initialSortedData);
 
     const xScale = scaleLinear().domain([0, 1]).range([0, dimensions.boundedWidth]).nice();
     const xAccessorScaled = (d) => xScale(xAccessor(d));
@@ -31,7 +31,7 @@ function BarChart() {
     // https://github.com/d3/d3-scale/tree/main#point-scales
     // https://github.com/d3/d3-scale/tree/main#band-scales
     const yScale = scaleBand()
-        .domain(yValues)
+        .domain(map(sortedData, yAccessor))
         .range([0, dimensions.boundedHeight])
         .paddingInner(0.05)
         .paddingOuter(0);
@@ -53,6 +53,19 @@ function BarChart() {
                         onDragMove={(e) => {
                             const yStartPosition = e.y; // How are you?
                             const yCurrentPosition = yStartPosition + e.dy;
+
+                            const newSortedData = sort(sortedData, (a, b) =>
+                                ascending(
+                                    yAccessor(a) === yAccessor(d)
+                                        ? yCurrentPosition
+                                        : yAccessorScaled(a),
+                                    yAccessor(b) === yAccessor(d)
+                                        ? yCurrentPosition
+                                        : yAccessorScaled(b)
+                                )
+                            );
+
+                            setSortedData(newSortedData);
                         }}
                         // onDragEnd={(e) => console.log('End', e)}
                         // https://github.com/airbnb/visx/pull/1368
@@ -70,11 +83,15 @@ function BarChart() {
                                 width={xAccessorScaled(d)}
                                 // https://www.d3-graph-gallery.com/graph/barplot_horizontal.html
                                 height={yScale.bandwidth()}
-                                x={0}
-                                y={yAccessorScaled(d)}
+                                // x={0}
+                                // y={yAccessorScaled(d)}
                                 fill={generateRandomColor()}
                                 // Drag
-                                transform={`translate(${dx}, ${dy})`}
+                                transform={
+                                    isDragging
+                                        ? `translate(${dx}, ${dy})`
+                                        : `translate(0, ${yAccessorScaled(d)})`
+                                }
                                 onMouseMove={dragMove}
                                 onMouseUp={dragEnd}
                                 onMouseDown={dragStart}
