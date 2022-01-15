@@ -7,6 +7,7 @@ specifiers:
   '@visx/axis': ^2.4.0
   '@visx/group': ^2.1.0
   '@vitejs/plugin-react': ^1.0.0
+  d3-array: ^3.1.1
   d3-format: ^3.1.0
   d3-scale: ^4.0.2
   eslint: ^8.6.0
@@ -28,6 +29,7 @@ dependencies:
   '@mantine/hooks': 3.6.0_react@17.0.2
   '@visx/axis': 2.4.0_react@17.0.2
   '@visx/group': 2.1.0_react@17.0.2
+  d3-array: 3.1.1
   d3-format: 3.1.0
   d3-scale: 4.0.2
   lodash: 4.17.21

@@ -40,4 +40,4 @@
   - [Themera](https://themera.vercel.app/).
   - [Palx](https://github.com/jxnblk/palx).
   - [Smart Swatch](https://smart-swatch.netlify.app/).
-- `pnpm install @visx/group @visx/axis d3-scale d3-format`.
+- `pnpm install @visx/group @visx/axis d3-scale d3-format d3-array`.
