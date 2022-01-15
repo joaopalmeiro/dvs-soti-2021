@@ -24,6 +24,9 @@ function BarChart() {
     const xScale = scaleLinear().domain([0, 1]).range([0, dimensions.boundedWidth]).nice();
     const xAccessorScaled = (d) => xScale(xAccessor(d));
 
+    // https://observablehq.com/@d3/d3-scalepoint
+    // https://github.com/d3/d3-scale/tree/main#point-scales
+    // https://github.com/d3/d3-scale/tree/main#band-scales
     const yScale = scalePoint().domain(yValues).range([0, dimensions.boundedHeight]);
     const yAccessorScaled = (d) => yScale(yAccessor(d));
 
@@ -33,9 +36,10 @@ function BarChart() {
             <Group top={dimensions.marginTop} left={dimensions.marginLeft}>
                 {sortedData.map((d) => (
                     <rect
-                        key={yAccessor(d)}
+                        key={`bar-${yAccessor(d)}`}
                         width={xAccessorScaled(d)}
                         height={defaultBarHeight}
+                        x={0}
                         y={yAccessorScaled(d)}
                         fill={getRandomColor()}
                     />
