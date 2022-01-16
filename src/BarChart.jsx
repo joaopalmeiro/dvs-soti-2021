@@ -1,4 +1,7 @@
-import { AxisTop } from '@visx/axis';
+import { useMantineTheme } from '@mantine/core';
+import { AxisTop, AxisBottom } from '@visx/axis';
+import { bottomTickLabelProps } from '@visx/axis/lib/axis/AxisBottom';
+import { topTickLabelProps } from '@visx/axis/lib/axis/AxisTop';
 import { Drag, raise } from '@visx/drag';
 import { Group } from '@visx/group';
 import { map, sort, descending, ascending } from 'd3-array';
@@ -7,7 +10,7 @@ import { scaleLinear, scaleBand } from 'd3-scale';
 import { useState } from 'react';
 
 import data from './tools_counts.json';
-import { combineChartDimensions } from './utils';
+import { combineChartDimensions, getFontStyleHeight } from './utils';
 
 const defaultBarHeight = 50; // px
 const defaultDomainLineWidth = 1; // px
@@ -32,13 +35,39 @@ const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
 };
 
 function BarChart() {
+    // https://mantine.dev/theming/functions/#accessing-theme-functions
+    const theme = useMantineTheme();
+    const tickLabelSharedProps = {
+        fontFamily: theme.fontFamily,
+        fill: theme.black,
+        fontSize: theme.fontSizes.xs
+    };
+    // console.log({ theme, tickLabelSharedProps });
+
+    // https://tzi.fr/js/convert-em-in-px/
+    // console.log(parseFloat(getComputedStyle(document.documentElement).fontSize));
+
+    const tickLabelTopProps = { ...topTickLabelProps(), ...tickLabelSharedProps, dy: '-0.5em' };
+    const tickLabelBottomProps = { ...bottomTickLabelProps(), ...tickLabelSharedProps };
+
+    const tickLabelHeight = getFontStyleHeight(
+        '0%',
+        `${tickLabelSharedProps.fontSize}px ${tickLabelSharedProps.fontFamily}`
+    );
+    const xAxisHeight =
+        tickLabelHeight +
+        defaultDomainLineWidth +
+        visxTickLength +
+        Math.abs(parseFloat(tickLabelTopProps.dy)) * tickLabelTopProps.fontSize;
+
     const numBars = data.length;
     const height = numBars * defaultBarHeight;
     const dimensions = combineChartDimensions({
         width: 500,
         height,
         marginLeft: 100,
-        marginTop: 50
+        marginTop: xAxisHeight - defaultDomainLineWidth / 2,
+        marginBottom: xAxisHeight
     });
 
     const initialSortedData = sort(data, (a, b) => descending(countAccessor(a), countAccessor(b)));
@@ -90,6 +119,20 @@ function BarChart() {
                     left={dimensions.marginLeft - defaultDomainLineWidth / 2}
                     strokeWidth={defaultDomainLineWidth}
                     tickFormat={(value) => xFormatter(value)}
+                    tickLabelProps={() => tickLabelTopProps}
+                />
+
+                <AxisBottom
+                    scale={xScale}
+                    top={dimensions.boundedHeight + defaultDomainLineWidth / 2}
+                    tickLength={visxTickLength}
+                    tickComponent={({ formattedValue, ...tickProps }) => (
+                        <text {...tickProps}>{formattedValue}</text>
+                    )}
+                    left={dimensions.marginLeft - defaultDomainLineWidth / 2}
+                    strokeWidth={defaultDomainLineWidth}
+                    tickFormat={(value) => xFormatter(value)}
+                    tickLabelProps={() => tickLabelBottomProps}
                 />
 
                 {/* https://airbnb.io/visx/docs/drag#Drag */}
@@ -155,7 +198,14 @@ function BarChart() {
                             >
                                 {/* Labels */}
                                 {/* https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */}
-                                <text style={{ userSelect: 'none' }}>{yAccessor(d)}</text>
+                                <text
+                                    fontFamily={tickLabelSharedProps.fontFamily}
+                                    fill={tickLabelSharedProps.fill}
+                                    fontSize={theme.fontSizes.sm}
+                                    style={{ userSelect: 'none' }}
+                                >
+                                    {yAccessor(d)}
+                                </text>
 
                                 {/* Bars */}
                                 <rect
@@ -166,7 +216,7 @@ function BarChart() {
                                     x={dimensions.marginLeft}
                                     // x={0}
                                     // y={yAccessorScaled(d)}
-                                    fill="black"
+                                    fill={theme.black}
                                     // transform={getBarTransform(
                                     //     isDragging,
                                     //     dx,
