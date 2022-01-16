@@ -20,7 +20,7 @@ const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
         return `translate(${dx}, ${dy + initialY})`;
     }
 
-    // Initial rendering + dragEnd
+    // Initial rendering + dragEnd (new final position)
     return `translate(0, ${currentY})`;
 };
 
