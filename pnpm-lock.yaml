@@ -7,6 +7,7 @@ specifiers:
   '@visx/axis': ^2.4.0
   '@visx/drag': ^2.5.0
   '@visx/group': ^2.1.0
+  '@visx/text': ^2.3.0
   '@vitejs/plugin-react': ^1.0.0
   d3-array: ^3.1.1
   d3-format: ^3.1.0
@@ -31,6 +32,7 @@ dependencies:
   '@visx/axis': 2.4.0_react@17.0.2
   '@visx/drag': 2.5.0_react@17.0.2
   '@visx/group': 2.1.0_react@17.0.2
+  '@visx/text': 2.3.0_react@17.0.2
   d3-array: 3.1.1
   d3-format: 3.1.0
   d3-scale: 4.0.2

@@ -4,6 +4,7 @@ import { bottomTickLabelProps } from '@visx/axis/lib/axis/AxisBottom';
 import { topTickLabelProps } from '@visx/axis/lib/axis/AxisTop';
 import { Drag, raise } from '@visx/drag';
 import { Group } from '@visx/group';
+import { getStringWidth } from '@visx/text';
 import { ascending, descending, map, sort } from 'd3-array';
 import { format } from 'd3-format';
 import { scaleBand, scaleLinear } from 'd3-scale';
@@ -61,6 +62,8 @@ function BarChart() {
         visxTickLength +
         Math.abs(parseFloat(tickLabelTopProps.dy)) * tickLabelTopProps.fontSize;
 
+    const marginRight = getStringWidth('100%', tickLabelTopProps) / 2;
+
     const numBars = data.length;
     const height = numBars * defaultBarHeight;
     const dimensions = combineChartDimensions({
@@ -68,7 +71,8 @@ function BarChart() {
         height,
         marginLeft: 100,
         marginTop: xAxisHeight - defaultDomainLineWidth / 2,
-        marginBottom: xAxisHeight
+        marginBottom: xAxisHeight,
+        marginRight
     });
 
     const initialSortedData = sort(data, (a, b) => descending(countAccessor(a), countAccessor(b)));
