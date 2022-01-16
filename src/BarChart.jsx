@@ -8,21 +8,28 @@ import { getStringWidth } from '@visx/text';
 import { ascending, descending, map, sort } from 'd3-array';
 import { format } from 'd3-format';
 import { scaleBand, scaleLinear } from 'd3-scale';
+import { isInteger } from 'lodash';
 import { useState } from 'react';
 
 import data from './tools_counts.json';
 import { combineChartDimensions, getFontStyleHeight } from './utils';
 
+// Constants
 const defaultBarHeight = 50; // px
 const defaultDomainLineWidth = 1; // px
 const visxTickLength = 5; // px
+const dyTickLabelTop = '-0.5em';
+const secondaryTickLabelFontSize = 10; // px
+
 const tickValues = [0, 0.25, 0.5, 0.75, 1];
+const totalCount = data[0].total_count;
 
 // Accessors
 const countAccessor = (d) => d.use_count;
 const xAccessor = (d) => countAccessor(d) / d.total_count;
 const yAccessor = (d) => d.tool;
 
+// Single-use helper functions
 const xFormatter = format('.0%');
 // const xFormatter = format('.2~%');
 
@@ -31,7 +38,6 @@ const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
         // dragStart + dragMove
         return `translate(${dx}, ${dy + initialY})`;
     }
-
     // Initial rendering + dragEnd (new final position)
     return `translate(0, ${currentY})`;
 };
@@ -46,23 +52,41 @@ function BarChart() {
     };
     // console.log({ theme, tickLabelSharedProps });
 
-    // https://tzi.fr/js/convert-em-in-px/
-    // console.log(parseFloat(getComputedStyle(document.documentElement).fontSize));
-
-    const tickLabelTopProps = { ...topTickLabelProps(), ...tickLabelSharedProps, dy: '-0.5em' };
+    const tickLabelTopProps = {
+        ...topTickLabelProps(),
+        ...tickLabelSharedProps,
+        dy: dyTickLabelTop
+    };
     const tickLabelBottomProps = { ...bottomTickLabelProps(), ...tickLabelSharedProps };
 
     const tickLabelHeight = getFontStyleHeight(
         '0%',
         `${tickLabelSharedProps.fontSize}px ${tickLabelSharedProps.fontFamily}`
     );
+
+    const dyTickLabelDiff = (parseFloat(dyTickLabelTop) * tickLabelTopProps.fontSize) / 2;
+    const dySecondaryTickLabel =
+        parseFloat(dyTickLabelTop) * tickLabelTopProps.fontSize - tickLabelHeight + dyTickLabelDiff;
+    const secondaryTickLabelHeight = getFontStyleHeight(
+        totalCount,
+        `${secondaryTickLabelFontSize}px ${tickLabelSharedProps.fontFamily}`
+    );
+
     const xAxisHeight =
         tickLabelHeight +
         defaultDomainLineWidth +
         visxTickLength +
         Math.abs(parseFloat(tickLabelTopProps.dy)) * tickLabelTopProps.fontSize;
+    const marginTop =
+        xAxisHeight - defaultDomainLineWidth / 2 + secondaryTickLabelHeight - dyTickLabelDiff;
 
-    const marginRight = getStringWidth('100%', tickLabelTopProps) / 2;
+    const rightmostLabelStringWidth = getStringWidth('100%', tickLabelTopProps);
+    const rightmostSecondaryLabelStringWidth = getStringWidth(totalCount, {
+        ...tickLabelTopProps,
+        dy: dySecondaryTickLabel,
+        fontSize: secondaryTickLabelFontSize
+    });
+    const marginRight = Math.max(rightmostLabelStringWidth, rightmostSecondaryLabelStringWidth) / 2;
 
     const numBars = data.length;
     const height = numBars * defaultBarHeight;
@@ -70,7 +94,7 @@ function BarChart() {
         width: 500,
         height,
         marginLeft: 100,
-        marginTop: xAxisHeight - defaultDomainLineWidth / 2,
+        marginTop,
         marginBottom: xAxisHeight,
         marginRight
     });
@@ -110,7 +134,7 @@ function BarChart() {
                     x1={dimensions.marginLeft - defaultDomainLineWidth / 2}
                     x2={dimensions.marginLeft - defaultDomainLineWidth / 2}
                     y2={dimensions.boundedHeight}
-                    stroke="black"
+                    stroke={theme.black}
                     strokeWidth={defaultDomainLineWidth}
                 />
 
@@ -118,12 +142,31 @@ function BarChart() {
                     scale={xScale}
                     top={-defaultDomainLineWidth / 2}
                     tickLength={visxTickLength}
-                    tickComponent={({ formattedValue, ...tickProps }) => (
-                        <text {...tickProps}>{formattedValue}</text>
-                    )}
+                    tickComponent={({ formattedValue, ...tickProps }) => {
+                        const numberParticipants = formattedValue * totalCount;
+
+                        return (
+                            <>
+                                {/* https://en.wikipedia.org/wiki/Approximation */}
+                                {numberParticipants > 0 && (
+                                    <text
+                                        {...tickProps}
+                                        fontSize={secondaryTickLabelFontSize}
+                                        dy={dySecondaryTickLabel}
+                                        fill={theme.colors.gray[5]}
+                                    >
+                                        {!isInteger(numberParticipants) && '≈'}
+                                        {Math.round(numberParticipants)}
+                                    </text>
+                                )}
+                                <text {...tickProps}>{xFormatter(formattedValue)}</text>
+                            </>
+                        );
+                    }}
                     left={dimensions.marginLeft - defaultDomainLineWidth / 2}
                     strokeWidth={defaultDomainLineWidth}
-                    tickFormat={(value) => xFormatter(value)}
+                    // tickFormat={(value) => xFormatter(value)}
+                    tickFormat={(value) => format('.2f')(value)}
                     tickLabelProps={() => tickLabelTopProps}
                     tickValues={tickValues}
                 />
@@ -200,7 +243,7 @@ function BarChart() {
                                 // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/pointer-events
                                 // https://stackoverflow.com/a/49739738
                                 // https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/</Drag>
-                                // Tested on Google Chrome and it works.
+                                // It works on Google Chrome.
                                 pointerEvents="bounding-box"
                             >
                                 {/* Labels */}
