@@ -36,6 +36,7 @@
   "rules": {
     // https://eslint.org/docs/rules/#suggestions
     "eqeqeq": "error",
+    "no-else-return": "error",
     "no-console": "warn",
     // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
     "import/order": [
