@@ -27,7 +27,7 @@ const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
 function BarChart() {
     const numBars = data.length;
     const height = numBars * defaultBarHeight;
-    const dimensions = combineChartDimensions({ width: 500, height });
+    const dimensions = combineChartDimensions({ width: 500, height, marginLeft: 100 });
 
     const initialSortedData = sort(data, (a, b) => descending(countAccessor(a), countAccessor(b)));
 
@@ -51,8 +51,15 @@ function BarChart() {
     // https://wattenberger.com/blog/react-and-d3
     // https://github.com/airbnb/visx/blob/master/packages/visx-drag/src/util/raise.ts
     return (
-        <svg width={dimensions.width} height={dimensions.height}>
-            <Group top={dimensions.marginTop} left={dimensions.marginLeft}>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={dimensions.width}
+            height={dimensions.height}
+            overflow="hidden"
+            // overflow="visible"
+        >
+            {/* <Group top={dimensions.marginTop} left={dimensions.marginLeft}> */}
+            <Group top={dimensions.marginTop}>
                 {/* https://airbnb.io/visx/docs/drag#Drag */}
                 {/* https://airbnb.io/visx/drag-i */}
                 {draggingItems.map((d, i) => (
@@ -93,14 +100,7 @@ function BarChart() {
                     >
                         {/* https://github.com/airbnb/visx/tree/v2.5.0/packages/visx-drag/src */}
                         {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => (
-                            <rect
-                                key={`bar-${yAccessor(d)}`}
-                                width={xAccessorScaled(d)}
-                                // https://www.d3-graph-gallery.com/graph/barplot_horizontal.html
-                                height={yScale.bandwidth()}
-                                // x={0}
-                                // y={yAccessorScaled(d)}
-                                fill="black"
+                            <g
                                 transform={getBarTransform(
                                     isDragging,
                                     dx,
@@ -115,7 +115,37 @@ function BarChart() {
                                 onTouchMove={dragMove}
                                 onTouchEnd={dragEnd}
                                 cursor={isDragging ? 'grabbing' : 'grab'}
-                            />
+                                // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/pointer-events
+                                // https://stackoverflow.com/a/49739738
+                                // It works on Google Chrome.
+                                pointerEvents="bounding-box"
+                            >
+                                <text>{yAccessor(d)}</text>
+                                <rect
+                                    key={`bar-${yAccessor(d)}`}
+                                    width={xAccessorScaled(d)}
+                                    // https://www.d3-graph-gallery.com/graph/barplot_horizontal.html
+                                    height={yScale.bandwidth()}
+                                    x={dimensions.marginLeft}
+                                    // x={0}
+                                    // y={yAccessorScaled(d)}
+                                    fill="black"
+                                    // transform={getBarTransform(
+                                    //     isDragging,
+                                    //     dx,
+                                    //     dy,
+                                    //     yAccessorScaled(d),
+                                    //     initialPositionOnScale
+                                    // )}
+                                    // onMouseMove={dragMove}
+                                    // onMouseUp={dragEnd}
+                                    // onMouseDown={dragStart}
+                                    // onTouchStart={dragStart}
+                                    // onTouchMove={dragMove}
+                                    // onTouchEnd={dragEnd}
+                                    // cursor={isDragging ? 'grabbing' : 'grab'}
+                                />
+                            </g>
                         )}
                     </Drag>
                 ))}
