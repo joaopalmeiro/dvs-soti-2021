@@ -2,6 +2,7 @@ import { AxisTop } from '@visx/axis';
 import { Drag, raise } from '@visx/drag';
 import { Group } from '@visx/group';
 import { map, sort, descending, ascending } from 'd3-array';
+import { format } from 'd3-format';
 import { scaleLinear, scaleBand } from 'd3-scale';
 import { useState } from 'react';
 
@@ -16,6 +17,9 @@ const visxTickLength = 5; // px
 const countAccessor = (d) => d.use_count;
 const xAccessor = (d) => countAccessor(d) / d.total_count;
 const yAccessor = (d) => d.tool;
+
+const xFormatter = format('.0%');
+// const xFormatter = format('.2~%');
 
 const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
     if (isDragging) {
@@ -85,6 +89,7 @@ function BarChart() {
                     )}
                     left={dimensions.marginLeft - defaultDomainLineWidth / 2}
                     strokeWidth={defaultDomainLineWidth}
+                    tickFormat={(value) => xFormatter(value)}
                 />
 
                 {/* https://airbnb.io/visx/docs/drag#Drag */}

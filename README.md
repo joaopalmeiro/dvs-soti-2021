@@ -44,3 +44,4 @@
 - `pnpm install @visx/drag`.
 - Packages:
   - [react-indiana-drag-scroll](https://github.com/norserium/react-indiana-drag-scroll).
+  - [Capsize](https://seek-oss.github.io/capsize/).
