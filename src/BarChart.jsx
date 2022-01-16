@@ -8,6 +8,7 @@ import data from './tools_counts.json';
 import { combineChartDimensions } from './utils';
 
 const defaultBarHeight = 50; // px
+const defaultDomainLineWidth = 1; // px
 
 // Accessors
 const countAccessor = (d) => d.use_count;
@@ -60,6 +61,14 @@ function BarChart() {
         >
             {/* <Group top={dimensions.marginTop} left={dimensions.marginLeft}> */}
             <Group top={dimensions.marginTop}>
+                <line
+                    x1={dimensions.marginLeft - defaultDomainLineWidth / 2}
+                    x2={dimensions.marginLeft - defaultDomainLineWidth / 2}
+                    y2={dimensions.boundedHeight}
+                    stroke="black"
+                    strokeWidth={defaultDomainLineWidth}
+                />
+
                 {/* https://airbnb.io/visx/docs/drag#Drag */}
                 {/* https://airbnb.io/visx/drag-i */}
                 {draggingItems.map((d, i) => (
@@ -117,10 +126,15 @@ function BarChart() {
                                 cursor={isDragging ? 'grabbing' : 'grab'}
                                 // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/pointer-events
                                 // https://stackoverflow.com/a/49739738
-                                // It works on Google Chrome.
+                                // https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/</Drag>
+                                // Tested on Google Chrome and it works.
                                 pointerEvents="bounding-box"
                             >
-                                <text>{yAccessor(d)}</text>
+                                {/* Labels */}
+                                {/* https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */}
+                                <text style={{ userSelect: 'none' }}>{yAccessor(d)}</text>
+
+                                {/* Bars */}
                                 <rect
                                     key={`bar-${yAccessor(d)}`}
                                     width={xAccessorScaled(d)}
