@@ -94,7 +94,6 @@ function BarChart() {
                         {/* https://github.com/airbnb/visx/tree/v2.5.0/packages/visx-drag/src */}
                         {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => (
                             <rect
-                                // Bar
                                 key={`bar-${yAccessor(d)}`}
                                 width={xAccessorScaled(d)}
                                 // https://www.d3-graph-gallery.com/graph/barplot_horizontal.html
@@ -102,7 +101,6 @@ function BarChart() {
                                 // x={0}
                                 // y={yAccessorScaled(d)}
                                 fill="black"
-                                // Drag
                                 transform={getBarTransform(
                                     isDragging,
                                     dx,
@@ -116,7 +114,6 @@ function BarChart() {
                                 onTouchStart={dragStart}
                                 onTouchMove={dragMove}
                                 onTouchEnd={dragEnd}
-                                // https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
                                 cursor={isDragging ? 'grabbing' : 'grab'}
                             />
                         )}
