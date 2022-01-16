@@ -1,12 +1,12 @@
 import { useMantineTheme } from '@mantine/core';
-import { AxisTop, AxisBottom } from '@visx/axis';
+import { AxisBottom, AxisTop } from '@visx/axis';
 import { bottomTickLabelProps } from '@visx/axis/lib/axis/AxisBottom';
 import { topTickLabelProps } from '@visx/axis/lib/axis/AxisTop';
 import { Drag, raise } from '@visx/drag';
 import { Group } from '@visx/group';
-import { map, sort, descending, ascending } from 'd3-array';
+import { ascending, descending, map, sort } from 'd3-array';
 import { format } from 'd3-format';
-import { scaleLinear, scaleBand } from 'd3-scale';
+import { scaleBand, scaleLinear } from 'd3-scale';
 import { useState } from 'react';
 
 import data from './tools_counts.json';
@@ -15,6 +15,7 @@ import { combineChartDimensions, getFontStyleHeight } from './utils';
 const defaultBarHeight = 50; // px
 const defaultDomainLineWidth = 1; // px
 const visxTickLength = 5; // px
+const tickValues = [0, 0.25, 0.5, 0.75, 1];
 
 // Accessors
 const countAccessor = (d) => d.use_count;
@@ -120,6 +121,7 @@ function BarChart() {
                     strokeWidth={defaultDomainLineWidth}
                     tickFormat={(value) => xFormatter(value)}
                     tickLabelProps={() => tickLabelTopProps}
+                    tickValues={tickValues}
                 />
 
                 <AxisBottom
@@ -133,6 +135,7 @@ function BarChart() {
                     strokeWidth={defaultDomainLineWidth}
                     tickFormat={(value) => xFormatter(value)}
                     tickLabelProps={() => tickLabelBottomProps}
+                    tickValues={tickValues}
                 />
 
                 {/* https://airbnb.io/visx/docs/drag#Drag */}
