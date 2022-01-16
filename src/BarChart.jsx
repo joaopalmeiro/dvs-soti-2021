@@ -1,3 +1,4 @@
+import { AxisTop } from '@visx/axis';
 import { Drag, raise } from '@visx/drag';
 import { Group } from '@visx/group';
 import { map, sort, descending, ascending } from 'd3-array';
@@ -9,6 +10,7 @@ import { combineChartDimensions } from './utils';
 
 const defaultBarHeight = 50; // px
 const defaultDomainLineWidth = 1; // px
+const visxTickLength = 5; // px
 
 // Accessors
 const countAccessor = (d) => d.use_count;
@@ -28,7 +30,12 @@ const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
 function BarChart() {
     const numBars = data.length;
     const height = numBars * defaultBarHeight;
-    const dimensions = combineChartDimensions({ width: 500, height, marginLeft: 100 });
+    const dimensions = combineChartDimensions({
+        width: 500,
+        height,
+        marginLeft: 100,
+        marginTop: 50
+    });
 
     const initialSortedData = sort(data, (a, b) => descending(countAccessor(a), countAccessor(b)));
 
@@ -66,6 +73,17 @@ function BarChart() {
                     x2={dimensions.marginLeft - defaultDomainLineWidth / 2}
                     y2={dimensions.boundedHeight}
                     stroke="black"
+                    strokeWidth={defaultDomainLineWidth}
+                />
+
+                <AxisTop
+                    scale={xScale}
+                    top={-defaultDomainLineWidth / 2}
+                    tickLength={visxTickLength}
+                    tickComponent={({ formattedValue, ...tickProps }) => (
+                        <text {...tickProps}>{formattedValue}</text>
+                    )}
+                    left={dimensions.marginLeft - defaultDomainLineWidth / 2}
                     strokeWidth={defaultDomainLineWidth}
                 />
 
