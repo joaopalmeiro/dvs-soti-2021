@@ -1,3 +1,5 @@
+import { getStringWidth } from '@visx/text';
+
 // Source: Fullstack D3 and Data Visualization by Amelia Wattenberger (https://wattenberger.com/)
 export const combineChartDimensions = (dimensions) => {
     // Amelia's default values.
@@ -77,4 +79,20 @@ export const getFontStyleHeight = (text, style) => {
     } catch (e) {
         return null;
     }
+};
+
+export const truncateLabel = (label, props, maxWidth) => {
+    // https://github.com/d-e-v-s-k/cuttr-js#options
+    // https://stackoverflow.com/a/27723738
+    const ending = '...';
+
+    let baseStringWidth = getStringWidth(label, props);
+    let newLabel = label;
+
+    while (baseStringWidth > maxWidth) {
+        newLabel = newLabel.slice(0, -1);
+        baseStringWidth = getStringWidth(`${newLabel}${ending}`, props);
+    }
+
+    return label === newLabel ? label : `${newLabel}${ending}`;
 };

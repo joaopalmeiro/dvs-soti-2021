@@ -13,7 +13,7 @@ import { drop, isInteger } from 'lodash';
 import { useState } from 'react';
 
 import data from './tools_counts.json';
-import { combineChartDimensions, getFontStyleHeight } from './utils';
+import { combineChartDimensions, getFontStyleHeight, truncateLabel } from './utils';
 
 // Constants
 const defaultBarHeight = 50; // px
@@ -282,7 +282,11 @@ function BarChart() {
                                     textAnchor="end"
                                     dy={defaultBarHeight / 2}
                                 >
-                                    {yAccessor(d)}
+                                    {truncateLabel(
+                                        yAccessor(d),
+                                        tickLabelLeftProps,
+                                        tickLabelLeftProps.dx
+                                    )}
                                 </text>
 
                                 {/* Bars */}
