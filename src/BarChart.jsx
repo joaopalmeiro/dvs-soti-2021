@@ -9,7 +9,8 @@ import { getStringWidth } from '@visx/text';
 import { ascending, descending, map, sort } from 'd3-array';
 import { format } from 'd3-format';
 import { scaleBand, scaleLinear } from 'd3-scale';
-import { drop, isInteger } from 'lodash';
+import { drop, isInteger, pick } from 'lodash';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import data from './tools_counts.json';
@@ -43,7 +44,7 @@ const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
     return `translate(0, ${currentY})`;
 };
 
-function BarChart() {
+function BarChart({ form }) {
     // https://mantine.dev/theming/functions/#accessing-theme-functions
     const theme = useMantineTheme();
     const tickLabelSharedProps = {
@@ -53,6 +54,10 @@ function BarChart() {
         style: { userSelect: 'none' }
     };
     // console.log({ theme, tickLabelSharedProps });
+
+    const highlightTools = Object.values(
+        pick(form.values, ['firstTool', 'secondTool', 'thirdTool'])
+    );
 
     const tickLabelTopProps = {
         ...topTickLabelProps(),
@@ -323,5 +328,18 @@ function BarChart() {
         </svg>
     );
 }
+
+BarChart.propTypes = {
+    form: PropTypes.shape({
+        values: PropTypes.exact({
+            firstTool: PropTypes.string,
+            secondTool: PropTypes.string,
+            thirdTool: PropTypes.string,
+            firstToolPercentage: PropTypes.number,
+            secondToolPercentage: PropTypes.number,
+            thirdToolPercentage: PropTypes.number
+        }).isRequired
+    })
+};
 
 export default BarChart;

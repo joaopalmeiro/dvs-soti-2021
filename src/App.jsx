@@ -1,4 +1,5 @@
 import { Container } from '@mantine/core';
+import { useForm } from '@mantine/hooks';
 
 import BarChart from './BarChart';
 import TopInputWithSlider from './TopInputWithSlider';
@@ -6,6 +7,17 @@ import TopInputWithSlider from './TopInputWithSlider';
 function App() {
     // https://tzi.fr/js/convert-em-in-px/
     // console.log(parseFloat(getComputedStyle(document.documentElement).fontSize));
+
+    const form = useForm({
+        initialValues: {
+            firstTool: '',
+            secondTool: '',
+            thirdTool: '',
+            firstToolPercentage: 0,
+            secondToolPercentage: 0,
+            thirdToolPercentage: 0
+        }
+    });
 
     return (
         // https://mantine.dev/core/center/
@@ -18,8 +30,8 @@ function App() {
                 gap: theme.spacing.xl
             })}
         >
-            <TopInputWithSlider />
-            <BarChart />
+            <TopInputWithSlider form={form} />
+            <BarChart form={form} />
         </Container>
     );
 }

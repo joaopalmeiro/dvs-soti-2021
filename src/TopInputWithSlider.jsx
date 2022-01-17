@@ -1,7 +1,7 @@
 import { Button, Group, Select, Slider } from '@mantine/core';
-import { useForm } from '@mantine/hooks';
 import { includes, map, values } from 'lodash';
 import { NumberCircleOne, NumberCircleThree, NumberCircleTwo } from 'phosphor-react';
+import PropTypes from 'prop-types';
 
 import GridTopInputWithSlider from './GridTopInputWithSlider';
 import data from './tools_counts.json';
@@ -16,18 +16,7 @@ const sliderCustomStyle = {
     markLabel: { userSelect: 'none' }
 };
 
-function TopInputWithSlider() {
-    const form = useForm({
-        initialValues: {
-            firstTool: '',
-            secondTool: '',
-            thirdTool: '',
-            firstToolPercentage: 0,
-            secondToolPercentage: 0,
-            thirdToolPercentage: 0
-        }
-    });
-
+function TopInputWithSlider({ form }) {
     const allTools = map(data, (datum) => ({
         value: datum.tool,
         label: datum.tool,
@@ -101,5 +90,20 @@ function TopInputWithSlider() {
         </form>
     );
 }
+
+TopInputWithSlider.propTypes = {
+    form: PropTypes.shape({
+        getInputProps: PropTypes.func.isRequired,
+        onSubmit: PropTypes.func.isRequired,
+        values: PropTypes.exact({
+            firstTool: PropTypes.string,
+            secondTool: PropTypes.string,
+            thirdTool: PropTypes.string,
+            firstToolPercentage: PropTypes.number,
+            secondToolPercentage: PropTypes.number,
+            thirdToolPercentage: PropTypes.number
+        }).isRequired
+    })
+};
 
 export default TopInputWithSlider;
