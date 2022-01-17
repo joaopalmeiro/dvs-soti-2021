@@ -1,0 +1,101 @@
+{
+  "ArcGIS": {
+    "website": ""
+  },
+  "D3.js": {
+    "website": ""
+  },
+  "Angular": {
+    "website": ""
+  },
+  "Datawrapper": {
+    "website": ""
+  },
+  "Excel": {
+    "website": ""
+  },
+  "Flourish": {
+    "website": ""
+  },
+  "ggplot2": {
+    "website": ""
+  },
+  "Gephi": {
+    "website": ""
+  },
+  "Google Data Studio": {
+    "website": ""
+  },
+  "Highcharts": {
+    "website": ""
+  },
+  "Illustrator": {
+    "website": ""
+  },
+  "Java": {
+    "website": ""
+  },
+  "Leaflet": {
+    "website": ""
+  },
+  "Mapbox": {
+    "website": ""
+  },
+  "kepler.gl": {
+    "website": ""
+  },
+  "Observable": {
+    "website": ""
+  },
+  "Plotly": {
+    "website": ""
+  },
+  "Power BI": {
+    "website": ""
+  },
+  "PowerPoint": {
+    "website": ""
+  },
+  "Python": {
+    "website": ""
+  },
+  "QGIS": {
+    "website": ""
+  },
+  "Qlik": {
+    "website": ""
+  },
+  "R": {
+    "website": ""
+  },
+  "React": {
+    "website": ""
+  },
+  "Tableau": {
+    "website": ""
+  },
+  "Vega": {
+    "website": ""
+  },
+  "Vue": {
+    "website": ""
+  },
+  "Web Components": {
+    "website": ""
+  },
+  "WebGL": {
+    "website": ""
+  },
+  "Pen & paper": {
+    "website": ""
+  },
+  "Physical materials (other than pen and paper)": {
+    "website": ""
+  },
+  "Canvas": {
+    "website": ""
+  },
+  "P5/Processing": {
+    "website": ""
+  }
+}
