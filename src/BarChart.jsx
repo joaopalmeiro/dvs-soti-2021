@@ -128,6 +128,7 @@ function BarChart() {
             height={dimensions.height}
             overflow="hidden"
             // overflow="visible"
+            style={{ alignSelf: 'center' }}
         >
             {/* <Group top={dimensions.marginTop} left={dimensions.marginLeft}> */}
             <Group top={dimensions.marginTop}>
