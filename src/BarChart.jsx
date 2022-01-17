@@ -13,7 +13,7 @@ import { drop, isInteger } from 'lodash';
 import { useState } from 'react';
 
 import data from './tools_counts.json';
-import { combineChartDimensions, getFontStyleHeight, truncateLabel } from './utils';
+import { combineChartDimensions, getFontStyleHeight, truncateLabels } from './utils';
 
 // Constants
 const defaultBarHeight = 50; // px
@@ -122,12 +122,16 @@ function BarChart() {
     // https://observablehq.com/@d3/d3-scalepoint
     // https://github.com/d3/d3-scale/tree/main#point-scales
     // https://github.com/d3/d3-scale/tree/main#band-scales
+    const originalYValues = map(sortedData, yAccessor);
     const yScale = scaleBand()
-        .domain(map(sortedData, yAccessor))
+        .domain(originalYValues)
         .range([0, dimensions.boundedHeight])
         .paddingInner(0.05)
         .paddingOuter(0);
     const yAccessorScaled = (d) => yScale(yAccessor(d));
+
+    // https://dmitripavlutin.com/react-usememo-hook/
+    const yAxisLabels = truncateLabels(originalYValues, tickLabelLeftProps, tickLabelLeftProps.dx);
 
     // https://wattenberger.com/blog/react-and-d3
     // https://github.com/airbnb/visx/blob/master/packages/visx-drag/src/util/raise.ts
@@ -282,11 +286,7 @@ function BarChart() {
                                     textAnchor="end"
                                     dy={defaultBarHeight / 2}
                                 >
-                                    {truncateLabel(
-                                        yAccessor(d),
-                                        tickLabelLeftProps,
-                                        tickLabelLeftProps.dx
-                                    )}
+                                    {yAxisLabels[yAccessor(d)]}
                                 </text>
 
                                 {/* Bars */}

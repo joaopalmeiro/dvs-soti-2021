@@ -96,3 +96,9 @@ export const truncateLabel = (label, props, maxWidth) => {
 
     return label === newLabel ? label : `${newLabel}${ending}`;
 };
+
+export const truncateLabels = (labels, props, maxWidth) =>
+    Object.assign(
+        {},
+        ...labels.map((label) => ({ [label]: truncateLabel(label, props, maxWidth) }))
+    );
