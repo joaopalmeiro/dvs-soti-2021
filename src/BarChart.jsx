@@ -49,7 +49,8 @@ function BarChart() {
     const tickLabelSharedProps = {
         fontFamily: theme.fontFamily,
         fill: theme.black,
-        fontSize: theme.fontSizes.xs
+        fontSize: theme.fontSizes.xs,
+        style: { userSelect: 'none' }
     };
     // console.log({ theme, tickLabelSharedProps });
 
