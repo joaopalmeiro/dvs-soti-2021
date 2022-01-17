@@ -273,7 +273,8 @@ function BarChart() {
                                     textAnchor="end"
                                     dx={
                                         dimensions.marginLeft +
-                                        theme.fontSizes.sm * parseFloat('-0.25em')
+                                        // theme.fontSizes.sm * parseFloat('-0.25em')
+                                        theme.fontSizes.sm * parseFloat('-0.5em')
                                     }
                                     dy={defaultBarHeight / 2}
                                 >
