@@ -1,101 +1,101 @@
 {
   "ArcGIS": {
-    "website": ""
+    "website": "https://www.esri.com/en-us/arcgis/about-arcgis/overview"
   },
   "D3.js": {
-    "website": ""
+    "website": "https://d3js.org/"
   },
   "Angular": {
-    "website": ""
+    "website": "https://angular.io/"
   },
   "Datawrapper": {
-    "website": ""
+    "website": "https://www.datawrapper.de/"
   },
   "Excel": {
-    "website": ""
+    "website": "https://www.microsoft.com/en-us/microsoft-365/excel"
   },
   "Flourish": {
-    "website": ""
+    "website": "https://flourish.studio/"
   },
   "ggplot2": {
-    "website": ""
+    "website": "https://ggplot2.tidyverse.org/"
   },
   "Gephi": {
-    "website": ""
+    "website": "https://gephi.org/"
   },
   "Google Data Studio": {
-    "website": ""
+    "website": "https://datastudio.google.com/"
   },
   "Highcharts": {
-    "website": ""
+    "website": "https://www.highcharts.com/"
   },
   "Illustrator": {
-    "website": ""
+    "website": "https://www.adobe.com/products/illustrator.html"
   },
   "Java": {
-    "website": ""
+    "website": "https://www.oracle.com/java/"
   },
   "Leaflet": {
-    "website": ""
+    "website": "https://leafletjs.com/"
   },
   "Mapbox": {
-    "website": ""
+    "website": "https://www.mapbox.com/"
   },
   "kepler.gl": {
-    "website": ""
+    "website": "https://kepler.gl/"
   },
   "Observable": {
-    "website": ""
+    "website": "https://observablehq.com/"
   },
   "Plotly": {
-    "website": ""
+    "website": "https://plotly.com/"
   },
   "Power BI": {
-    "website": ""
+    "website": "https://powerbi.microsoft.com/"
   },
   "PowerPoint": {
-    "website": ""
+    "website": "https://www.microsoft.com/en-us/microsoft-365/powerpoint"
   },
   "Python": {
-    "website": ""
+    "website": "https://www.python.org/"
   },
   "QGIS": {
-    "website": ""
+    "website": "https://qgis.org/"
   },
   "Qlik": {
-    "website": ""
+    "website": "https://www.qlik.com/"
   },
   "R": {
-    "website": ""
+    "website": "https://www.r-project.org/"
   },
   "React": {
-    "website": ""
+    "website": "https://reactjs.org/"
   },
   "Tableau": {
-    "website": ""
+    "website": "https://www.tableau.com/"
   },
   "Vega": {
-    "website": ""
+    "website": "https://vega.github.io/vega/"
   },
   "Vue": {
-    "website": ""
+    "website": "https://vuejs.org/"
   },
   "Web Components": {
-    "website": ""
+    "website": "https://developer.mozilla.org/en-US/docs/Web/Web_Components"
   },
   "WebGL": {
-    "website": ""
+    "website": "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API"
   },
   "Pen & paper": {
-    "website": ""
+    "website": null
   },
   "Physical materials (other than pen and paper)": {
-    "website": ""
+    "website": null
   },
   "Canvas": {
-    "website": ""
+    "website": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
   },
   "P5/Processing": {
-    "website": ""
+    "website": "https://processing.org/"
   }
 }
