@@ -11,6 +11,10 @@ const sliderMarks = [
     { value: 50, label: '50%' },
     { value: 75, label: '75%' }
 ];
+// https://mantine.dev/core/slider/
+const sliderCustomStyle = {
+    markLabel: { userSelect: 'none' }
+};
 
 function TopInputWithSlider() {
     const form = useForm({
@@ -48,6 +52,7 @@ function TopInputWithSlider() {
                         marks={sliderMarks}
                         value={form.getInputProps('firstToolPercentage').value}
                         onChange={form.getInputProps('firstToolPercentage').onChange}
+                        styles={sliderCustomStyle}
                     />
                 </Group>
 
@@ -66,6 +71,7 @@ function TopInputWithSlider() {
                         marks={sliderMarks}
                         value={form.getInputProps('secondToolPercentage').value}
                         onChange={form.getInputProps('secondToolPercentage').onChange}
+                        styles={sliderCustomStyle}
                     />
                 </Group>
 
@@ -84,6 +90,7 @@ function TopInputWithSlider() {
                         marks={sliderMarks}
                         value={form.getInputProps('thirdToolPercentage').value}
                         onChange={form.getInputProps('thirdToolPercentage').onChange}
+                        styles={sliderCustomStyle}
                     />
                 </Group>
 
