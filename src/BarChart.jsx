@@ -138,6 +138,7 @@ function BarChart() {
                     stroke={theme.black}
                     strokeWidth={defaultDomainLineWidth}
                     // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linecap
+                    // https://github.com/airbnb/visx/blob/v2.5.0/packages/visx-axis/src/axis/Ticks.tsx#L45
                     strokeLinecap="square"
                 />
 
@@ -263,11 +264,18 @@ function BarChart() {
                             >
                                 {/* Labels */}
                                 {/* https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */}
+                                {/* https://github.com/airbnb/visx/blob/v2.5.0/packages/visx-axis/src/axis/AxisLeft.tsx */}
                                 <text
                                     fontFamily={tickLabelSharedProps.fontFamily}
                                     fill={tickLabelSharedProps.fill}
                                     fontSize={theme.fontSizes.sm}
                                     style={{ userSelect: 'none' }}
+                                    textAnchor="end"
+                                    dx={
+                                        dimensions.marginLeft +
+                                        theme.fontSizes.sm * parseFloat('-0.25em')
+                                    }
+                                    dy={defaultBarHeight / 2}
                                 >
                                     {yAccessor(d)}
                                 </text>
