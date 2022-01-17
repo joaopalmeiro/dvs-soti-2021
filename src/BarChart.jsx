@@ -9,7 +9,7 @@ import { getStringWidth } from '@visx/text';
 import { ascending, descending, map, sort } from 'd3-array';
 import { format } from 'd3-format';
 import { scaleBand, scaleLinear } from 'd3-scale';
-import { drop, isInteger, pick } from 'lodash';
+import { drop, includes, isInteger, pick, values } from 'lodash';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -55,9 +55,8 @@ function BarChart({ form }) {
     };
     // console.log({ theme, tickLabelSharedProps });
 
-    const highlightTools = Object.values(
-        pick(form.values, ['firstTool', 'secondTool', 'thirdTool'])
-    );
+    const highlightTools = values(pick(form.values, ['firstTool', 'secondTool', 'thirdTool']));
+    // console.log(highlightTools);
 
     const tickLabelTopProps = {
         ...topTickLabelProps(),
@@ -291,6 +290,11 @@ function BarChart({ form }) {
                                     style={{ userSelect: 'none' }}
                                     textAnchor="end"
                                     dy={defaultBarHeight / 2}
+                                    textDecoration={
+                                        includes(highlightTools, yAccessor(d))
+                                            ? 'underline'
+                                            : 'unset'
+                                    }
                                 >
                                     {yAxisLabels[yAccessor(d)]}
                                 </text>
