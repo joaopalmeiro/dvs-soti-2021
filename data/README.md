@@ -24,6 +24,7 @@
     - Polars also has a `.pipe()` method like pandas.
     - Use the [`.over()` method](https://pola-rs.github.io/polars/py-polars/html/reference/api/polars.Expr.over.html) instead of `groupby`s, `agg`s, and `join`s. This method must follow an aggregating expression (e.g., `.count()`).
   - To use the `.to_pandas()` method, install [PyArrow](https://arrow.apache.org/docs/python/index.html) and pandas.
+  - `pipenv update polars`.
 - [RetroLab](https://github.com/jupyterlab/retrolab):
   - [RetroLab — A JupyterLab distribution with a retro look and feel](https://blog.jupyter.org/retrolab-a-jupyterlab-distribution-with-a-retro-look-and-feel-8096b8b223d0) blog post by Jeremy Tuloup:
     - Alternative JupyterLab distribution. It is similar to Jupyter Notebook.

@@ -1,34 +1,34 @@
-tool,use_count,not_use_count,total_count
-ArcGIS,147,2018,2165
-D3.js,414,1751,2165
-Angular,20,2145,2165
-Datawrapper,171,1994,2165
-Excel,1078,1087,2165
-Flourish,198,1967,2165
-ggplot2,435,1730,2165
-Gephi,71,2094,2165
-Google Data Studio,176,1989,2165
-Highcharts,58,2107,2165
-Illustrator,426,1739,2165
-Java,29,2136,2165
-Leaflet,134,2031,2165
-Mapbox,167,1998,2165
-kepler.gl,24,2141,2165
-Observable,157,2008,2165
-Plotly,223,1942,2165
-Power BI,460,1705,2165
-PowerPoint,681,1484,2165
-Python,530,1635,2165
-QGIS,193,1972,2165
-Qlik,61,2104,2165
-R,561,1604,2165
-React,145,2020,2165
-Tableau,852,1313,2165
-Vega,48,2117,2165
-Vue,51,2114,2165
-Web Components,79,2086,2165
-WebGL,65,2100,2165
-Pen & paper,522,1643,2165
-Physical materials (other than pen and paper),69,2096,2165
-Canvas,121,2044,2165
-P5/Processing,55,2110,2165
+tool,use_count,not_use_count,total_count,ranking
+ArcGIS,147,2018,2165,18
+D3.js,414,1751,2165,10
+Angular,20,2145,2165,33
+Datawrapper,171,1994,2165,15
+Excel,1078,1087,2165,1
+Flourish,198,1967,2165,12
+ggplot2,435,1730,2165,8
+Gephi,71,2094,2165,23
+Google Data Studio,176,1989,2165,14
+Highcharts,58,2107,2165,27
+Illustrator,426,1739,2165,9
+Java,29,2136,2165,31
+Leaflet,134,2031,2165,20
+Mapbox,167,1998,2165,16
+kepler.gl,24,2141,2165,32
+Observable,157,2008,2165,17
+Plotly,223,1942,2165,11
+Power BI,460,1705,2165,7
+PowerPoint,681,1484,2165,3
+Python,530,1635,2165,5
+QGIS,193,1972,2165,13
+Qlik,61,2104,2165,26
+R,561,1604,2165,4
+React,145,2020,2165,19
+Tableau,852,1313,2165,2
+Vega,48,2117,2165,30
+Vue,51,2114,2165,29
+Web Components,79,2086,2165,22
+WebGL,65,2100,2165,25
+Pen & paper,522,1643,2165,6
+Physical materials (other than pen and paper),69,2096,2165,24
+Canvas,121,2044,2165,21
+P5/Processing,55,2110,2165,28

@@ -14,6 +14,7 @@ TOOL_COL: str = "tool"
 USE_COL: str = "use_count"
 NOT_USE_COL: str = "not_use_count"
 TOTAL_COUNT_COL: str = "total_count"
+RANK_COL: str = "ranking"
 
 TOOLS_MAP: Dict[str, str] = {
     "D3": "D3.js",

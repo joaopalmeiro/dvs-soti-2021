@@ -3,198 +3,231 @@
     "tool":"ArcGIS",
     "use_count":147,
     "not_use_count":2018,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":18
   },
   {
     "tool":"D3.js",
     "use_count":414,
     "not_use_count":1751,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":10
   },
   {
     "tool":"Angular",
     "use_count":20,
     "not_use_count":2145,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":33
   },
   {
     "tool":"Datawrapper",
     "use_count":171,
     "not_use_count":1994,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":15
   },
   {
     "tool":"Excel",
     "use_count":1078,
     "not_use_count":1087,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":1
   },
   {
     "tool":"Flourish",
     "use_count":198,
     "not_use_count":1967,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":12
   },
   {
     "tool":"ggplot2",
     "use_count":435,
     "not_use_count":1730,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":8
   },
   {
     "tool":"Gephi",
     "use_count":71,
     "not_use_count":2094,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":23
   },
   {
     "tool":"Google Data Studio",
     "use_count":176,
     "not_use_count":1989,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":14
   },
   {
     "tool":"Highcharts",
     "use_count":58,
     "not_use_count":2107,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":27
   },
   {
     "tool":"Illustrator",
     "use_count":426,
     "not_use_count":1739,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":9
   },
   {
     "tool":"Java",
     "use_count":29,
     "not_use_count":2136,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":31
   },
   {
     "tool":"Leaflet",
     "use_count":134,
     "not_use_count":2031,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":20
   },
   {
     "tool":"Mapbox",
     "use_count":167,
     "not_use_count":1998,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":16
   },
   {
     "tool":"kepler.gl",
     "use_count":24,
     "not_use_count":2141,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":32
   },
   {
     "tool":"Observable",
     "use_count":157,
     "not_use_count":2008,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":17
   },
   {
     "tool":"Plotly",
     "use_count":223,
     "not_use_count":1942,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":11
   },
   {
     "tool":"Power BI",
     "use_count":460,
     "not_use_count":1705,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":7
   },
   {
     "tool":"PowerPoint",
     "use_count":681,
     "not_use_count":1484,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":3
   },
   {
     "tool":"Python",
     "use_count":530,
     "not_use_count":1635,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":5
   },
   {
     "tool":"QGIS",
     "use_count":193,
     "not_use_count":1972,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":13
   },
   {
     "tool":"Qlik",
     "use_count":61,
     "not_use_count":2104,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":26
   },
   {
     "tool":"R",
     "use_count":561,
     "not_use_count":1604,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":4
   },
   {
     "tool":"React",
     "use_count":145,
     "not_use_count":2020,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":19
   },
   {
     "tool":"Tableau",
     "use_count":852,
     "not_use_count":1313,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":2
   },
   {
     "tool":"Vega",
     "use_count":48,
     "not_use_count":2117,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":30
   },
   {
     "tool":"Vue",
     "use_count":51,
     "not_use_count":2114,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":29
   },
   {
     "tool":"Web Components",
     "use_count":79,
     "not_use_count":2086,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":22
   },
   {
     "tool":"WebGL",
     "use_count":65,
     "not_use_count":2100,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":25
   },
   {
     "tool":"Pen & paper",
     "use_count":522,
     "not_use_count":1643,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":6
   },
   {
     "tool":"Physical materials (other than pen and paper)",
     "use_count":69,
     "not_use_count":2096,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":24
   },
   {
     "tool":"Canvas",
     "use_count":121,
     "not_use_count":2044,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":21
   },
   {
     "tool":"P5\/Processing",
     "use_count":55,
     "not_use_count":2110,
-    "total_count":2165
+    "total_count":2165,
+    "ranking":28
   }
 ]
