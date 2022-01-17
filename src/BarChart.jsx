@@ -137,6 +137,8 @@ function BarChart() {
                     y2={dimensions.boundedHeight}
                     stroke={theme.black}
                     strokeWidth={defaultDomainLineWidth}
+                    // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linecap
+                    strokeLinecap="square"
                 />
 
                 <AxisTop
