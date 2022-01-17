@@ -100,6 +100,16 @@ function BarChart() {
         marginRight
     });
 
+    const tickLabelLeftProps = {
+        fontFamily: tickLabelSharedProps.fontFamily,
+        fill: tickLabelSharedProps.fill,
+        fontSize: theme.fontSizes.sm,
+        dx:
+            dimensions.marginLeft +
+            // theme.fontSizes.sm * parseFloat('-0.25em')
+            theme.fontSizes.sm * parseFloat('-0.5em')
+    };
+
     const initialSortedData = sort(data, (a, b) => descending(countAccessor(a), countAccessor(b)));
 
     const [sortedData, setSortedData] = useState(initialSortedData);
@@ -267,16 +277,9 @@ function BarChart() {
                                 {/* https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */}
                                 {/* https://github.com/airbnb/visx/blob/v2.5.0/packages/visx-axis/src/axis/AxisLeft.tsx */}
                                 <text
-                                    fontFamily={tickLabelSharedProps.fontFamily}
-                                    fill={tickLabelSharedProps.fill}
-                                    fontSize={theme.fontSizes.sm}
+                                    {...tickLabelLeftProps}
                                     style={{ userSelect: 'none' }}
                                     textAnchor="end"
-                                    dx={
-                                        dimensions.marginLeft +
-                                        // theme.fontSizes.sm * parseFloat('-0.25em')
-                                        theme.fontSizes.sm * parseFloat('-0.5em')
-                                    }
                                     dy={defaultBarHeight / 2}
                                 >
                                     {yAccessor(d)}
