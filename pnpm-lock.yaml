@@ -6,6 +6,7 @@ specifiers:
   '@mantine/hooks': ^3.6.0
   '@visx/axis': ^2.4.0
   '@visx/drag': ^2.5.0
+  '@visx/grid': ^2.4.0
   '@visx/group': ^2.1.0
   '@visx/text': ^2.3.0
   '@vitejs/plugin-react': ^1.0.0
@@ -31,6 +32,7 @@ dependencies:
   '@mantine/hooks': 3.6.0_react@17.0.2
   '@visx/axis': 2.4.0_react@17.0.2
   '@visx/drag': 2.5.0_react@17.0.2
+  '@visx/grid': 2.4.0_react@17.0.2
   '@visx/group': 2.1.0_react@17.0.2
   '@visx/text': 2.3.0_react@17.0.2
   d3-array: 3.1.1
@@ -714,6 +716,22 @@ packages:
     dependencies:
       '@types/react': 17.0.38
       '@visx/point': 2.1.0
+    dev: false
+
+  /@visx/grid/2.4.0_react@17.0.2:
+    resolution: {integrity: sha512-1tk8XaLeFRQA8BKy/+oP7aqsE99GKzyEYA1w4waga2VI0bDZiSnuZix6cy5PTusZxt9ZzjTmPGkC2RXq9+I5XA==}
+    peerDependencies:
+      react: ^16.0.0-0 || ^17.0.0-0
+    dependencies:
+      '@types/react': 17.0.38
+      '@visx/curve': 2.1.0
+      '@visx/group': 2.1.0_react@17.0.2
+      '@visx/point': 2.1.0
+      '@visx/scale': 2.2.2
+      '@visx/shape': 2.4.0_react@17.0.2
+      classnames: 2.3.1
+      prop-types: 15.8.1
+      react: 17.0.2
     dev: false
 
   /@visx/group/2.1.0_react@17.0.2:

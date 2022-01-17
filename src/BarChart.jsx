@@ -3,12 +3,13 @@ import { AxisBottom, AxisTop } from '@visx/axis';
 import { bottomTickLabelProps } from '@visx/axis/lib/axis/AxisBottom';
 import { topTickLabelProps } from '@visx/axis/lib/axis/AxisTop';
 import { Drag, raise } from '@visx/drag';
+import { GridColumns } from '@visx/grid';
 import { Group } from '@visx/group';
 import { getStringWidth } from '@visx/text';
 import { ascending, descending, map, sort } from 'd3-array';
 import { format } from 'd3-format';
 import { scaleBand, scaleLinear } from 'd3-scale';
-import { isInteger } from 'lodash';
+import { drop, isInteger } from 'lodash';
 import { useState } from 'react';
 
 import data from './tools_counts.json';
@@ -169,6 +170,8 @@ function BarChart() {
                     tickFormat={(value) => format('.2f')(value)}
                     tickLabelProps={() => tickLabelTopProps}
                     tickValues={tickValues}
+                    stroke={theme.black}
+                    tickStroke={theme.black}
                 />
 
                 <AxisBottom
@@ -183,6 +186,16 @@ function BarChart() {
                     tickFormat={(value) => xFormatter(value)}
                     tickLabelProps={() => tickLabelBottomProps}
                     tickValues={tickValues}
+                    stroke={theme.black}
+                    tickStroke={theme.black}
+                />
+
+                <GridColumns
+                    scale={xScale}
+                    height={dimensions.boundedHeight}
+                    left={dimensions.marginLeft - defaultDomainLineWidth / 2}
+                    tickValues={drop(tickValues)}
+                    stroke={theme.colors.gray[3]}
                 />
 
                 {/* https://airbnb.io/visx/docs/drag#Drag */}

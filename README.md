@@ -43,6 +43,7 @@
 - `pnpm install @visx/group @visx/axis d3-scale d3-format d3-array`.
 - `pnpm install @visx/drag`.
 - `pnpm install @visx/text`.
+- `pnpm install @visx/grid`.
 - Packages:
   - [react-indiana-drag-scroll](https://github.com/norserium/react-indiana-drag-scroll).
   - [Capsize](https://seek-oss.github.io/capsize/).
