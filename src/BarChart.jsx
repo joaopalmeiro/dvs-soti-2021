@@ -367,6 +367,18 @@ function BarChart({ form }) {
                     -dimensions.boundedWidth + (currentTool ? xAccessorScaled(currentTool) : 0)
                 ]}
                 arrow={true}
+                allowHTML={true}
+                // https://popper.js.org/docs/v2/modifiers/arrow/#padding
+                popperOptions={{
+                    modifiers: [
+                        {
+                            name: 'arrow',
+                            options: {
+                                padding: ({ popper }) => popper.height / 4
+                            }
+                        }
+                    ]
+                }}
             />
         </>
     );
