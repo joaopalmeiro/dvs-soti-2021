@@ -1,4 +1,5 @@
 import { getStringWidth } from '@visx/text';
+import { format } from 'd3-format';
 
 // Source: Fullstack D3 and Data Visualization by Amelia Wattenberger (https://wattenberger.com/)
 export const combineChartDimensions = (dimensions) => {
@@ -102,3 +103,6 @@ export const truncateLabels = (labels, props, maxWidth) =>
         {},
         ...labels.map((label) => ({ [label]: truncateLabel(label, props, maxWidth) }))
     );
+
+export const xFormatter = format('.0%');
+export const xTooltipFormatter = format('.2~%');

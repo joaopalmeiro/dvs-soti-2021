@@ -10,14 +10,20 @@ import { getStringWidth } from '@visx/text';
 import { ascending, descending, map, sort } from 'd3-array';
 import { format } from 'd3-format';
 import { scaleBand, scaleLinear } from 'd3-scale';
-import { drop, includes, isInteger, pick, values, isNull } from 'lodash';
+import { drop, includes, isInteger, isNull, pick, values } from 'lodash';
 import PropTypes from 'prop-types';
-import { useState, useRef } from 'react';
-import 'tippy.js/dist/tippy.css';
+import { useRef, useState } from 'react';
+import 'tippy.js/dist/tippy.css'; // https://unpkg.com/browse/tippy.js@6.3.7/dist/tippy.css
 
 import classes from './BarChart.module.css';
 import data from './tools_counts.json';
-import { combineChartDimensions, getFontStyleHeight, truncateLabels } from './utils';
+import {
+    combineChartDimensions,
+    getFontStyleHeight,
+    truncateLabels,
+    xFormatter,
+    xTooltipFormatter
+} from './utils';
 
 // Constants
 const defaultBarHeight = 50; // px
@@ -33,11 +39,9 @@ const totalCount = data[0].total_count;
 const countAccessor = (d) => d.use_count;
 const xAccessor = (d) => countAccessor(d) / d.total_count;
 const yAccessor = (d) => d.tool;
+const rankAccessor = (d) => d.ranking;
 
 // Single-use helper functions
-const xFormatter = format('.0%');
-// const xFormatter = format('.2~%');
-
 const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
     if (isDragging) {
         // dragStart + dragMove
@@ -45,6 +49,14 @@ const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
     }
     // Initial rendering + dragEnd (new final position)
     return `translate(0, ${currentY})`;
+};
+
+const getTooltipContent = (d, labels) => {
+    const prefix = labels[yAccessor(d)] !== yAccessor(d) ? `${yAccessor(d)}: ` : '';
+    const value = xTooltipFormatter(xAccessor(d));
+    const ranking = rankAccessor(d);
+
+    return `${prefix}${value} (#${ranking})`;
 };
 
 function BarChart({ form }) {
@@ -355,7 +367,7 @@ function BarChart({ form }) {
             </svg>
 
             <Tippy
-                content={currentTool && yAccessor(currentTool)}
+                content={currentTool && getTooltipContent(currentTool, yAxisLabels)}
                 visible={visible}
                 reference={svgEl}
                 placement="right-start"
@@ -367,7 +379,7 @@ function BarChart({ form }) {
                     -dimensions.boundedWidth + (currentTool ? xAccessorScaled(currentTool) : 0)
                 ]}
                 arrow={true}
-                allowHTML={true}
+                allowHTML={false}
                 // https://popper.js.org/docs/v2/modifiers/arrow/#padding
                 popperOptions={{
                     modifiers: [
