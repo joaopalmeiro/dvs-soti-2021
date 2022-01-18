@@ -48,3 +48,5 @@
 - Packages:
   - [react-indiana-drag-scroll](https://github.com/norserium/react-indiana-drag-scroll).
   - [Capsize](https://seek-oss.github.io/capsize/).
+  - [Floating UI](https://github.com/floating-ui/floating-ui) (ex-Popper).
+  - [Tippy.js for React](https://github.com/atomiks/tippyjs-react).

@@ -281,6 +281,7 @@ function BarChart({ form }) {
                                 // https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/</Drag>
                                 // It works on Google Chrome.
                                 pointerEvents="bounding-box"
+                                // id={yAccessor(d)}
                             >
                                 {/* Labels */}
                                 {/* https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */}
