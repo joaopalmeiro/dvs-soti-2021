@@ -4,6 +4,7 @@ specifiers:
   '@joaopalmeiro/prettier-config': ^0.1.1
   '@mantine/core': ^3.6.0
   '@mantine/hooks': ^3.6.0
+  '@tippyjs/react': ^4.2.6
   '@visx/axis': ^2.4.0
   '@visx/drag': ^2.5.0
   '@visx/grid': ^2.4.0
@@ -25,11 +26,13 @@ specifiers:
   prettier: ^2.5.1
   react: ^17.0.0
   react-dom: ^17.0.0
+  tippy.js: ^6.3.7
   vite: ^2.6.4
 
 dependencies:
   '@mantine/core': 3.6.0_4eef49243cafbe29e09beedd066b0ae1
   '@mantine/hooks': 3.6.0_react@17.0.2
+  '@tippyjs/react': 4.2.6_react-dom@17.0.2+react@17.0.2
   '@visx/axis': 2.4.0_react@17.0.2
   '@visx/drag': 2.5.0_react@17.0.2
   '@visx/grid': 2.4.0_react@17.0.2
@@ -42,6 +45,7 @@ dependencies:
   phosphor-react: 1.4.0_react@17.0.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  tippy.js: 6.3.7
 
 devDependencies:
   '@joaopalmeiro/prettier-config': 0.1.1_prettier@2.5.1
@@ -622,6 +626,17 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.0
     dev: true
+
+  /@tippyjs/react/4.2.6_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-91RicDR+H7oDSyPycI13q3b7o4O60wa2oRbjlz2fyRLmHImc4vyDwuUP8NtZaN0VARJY5hybvDYrFzhY9+Lbyw==}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      tippy.js: 6.3.7
+    dev: false
 
   /@types/d3-color/1.4.2:
     resolution: {integrity: sha512-fYtiVLBYy7VQX+Kx7wU/uOIkGQn8aAEY8oWMoyja3N4dLd8Yf6XgSIR/4yWvMuveNOH5VShnqCgRqqh/UNanBA==}
@@ -2478,6 +2493,12 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
+
+  /tippy.js/6.3.7:
+    resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
+    dependencies:
+      '@popperjs/core': 2.11.2
+    dev: false
 
   /to-fast-properties/2.0.0:
     resolution: {integrity: sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=}

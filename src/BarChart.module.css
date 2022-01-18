@@ -1,0 +1,11 @@
+.outline:focus-visible {
+    /* https://css-tricks.com/the-focus-visible-trick/ */
+    /* Keyboard */
+    outline: unset;
+}
+
+.outline:focus:not(:focus-visible) {
+    /* https://css-tricks.com/the-focus-visible-trick/ */
+    /* Mouse or touch */
+    outline: unset;
+}

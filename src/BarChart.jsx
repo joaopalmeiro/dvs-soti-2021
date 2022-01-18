@@ -1,4 +1,5 @@
 import { useMantineTheme } from '@mantine/core';
+import Tippy from '@tippyjs/react';
 import { AxisBottom, AxisTop } from '@visx/axis';
 import { bottomTickLabelProps } from '@visx/axis/lib/axis/AxisBottom';
 import { topTickLabelProps } from '@visx/axis/lib/axis/AxisTop';
@@ -9,10 +10,12 @@ import { getStringWidth } from '@visx/text';
 import { ascending, descending, map, sort } from 'd3-array';
 import { format } from 'd3-format';
 import { scaleBand, scaleLinear } from 'd3-scale';
-import { drop, includes, isInteger, pick, values } from 'lodash';
+import { drop, includes, isInteger, pick, values, isNull } from 'lodash';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import 'tippy.js/dist/tippy.css';
 
+import classes from './BarChart.module.css';
 import data from './tools_counts.json';
 import { combineChartDimensions, getFontStyleHeight, truncateLabels } from './utils';
 
@@ -45,6 +48,13 @@ const getBarTransform = (isDragging, dx, dy, currentY, initialY) => {
 };
 
 function BarChart({ form }) {
+    // Tooltip
+    const svgEl = useRef(null);
+    const [visible, setVisible] = useState(false);
+    const show = () => setVisible(true);
+    const hide = () => setVisible(false);
+    const [currentTool, setCurrentTool] = useState(null);
+
     // https://mantine.dev/theming/functions/#accessing-theme-functions
     const theme = useMantineTheme();
     const tickLabelSharedProps = {
@@ -141,196 +151,224 @@ function BarChart({ form }) {
     // https://wattenberger.com/blog/react-and-d3
     // https://github.com/airbnb/visx/blob/master/packages/visx-drag/src/util/raise.ts
     return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={dimensions.width}
-            height={dimensions.height}
-            overflow="hidden"
-            // overflow="visible"
-            style={{ alignSelf: 'center' }}
-        >
-            {/* <Group top={dimensions.marginTop} left={dimensions.marginLeft}> */}
-            <Group top={dimensions.marginTop}>
-                <line
-                    x1={dimensions.marginLeft - defaultDomainLineWidth / 2}
-                    x2={dimensions.marginLeft - defaultDomainLineWidth / 2}
-                    y2={dimensions.boundedHeight}
-                    stroke={theme.black}
-                    strokeWidth={defaultDomainLineWidth}
-                    // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linecap
-                    // https://github.com/airbnb/visx/blob/v2.5.0/packages/visx-axis/src/axis/Ticks.tsx#L45
-                    strokeLinecap="square"
-                />
+        <>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={dimensions.width}
+                height={dimensions.height}
+                overflow="hidden"
+                // overflow="visible"
+                style={{ alignSelf: 'center' }}
+                ref={svgEl}
+            >
+                {/* <Group top={dimensions.marginTop} left={dimensions.marginLeft}> */}
+                <Group top={dimensions.marginTop}>
+                    <line
+                        x1={dimensions.marginLeft - defaultDomainLineWidth / 2}
+                        x2={dimensions.marginLeft - defaultDomainLineWidth / 2}
+                        y2={dimensions.boundedHeight}
+                        stroke={theme.black}
+                        strokeWidth={defaultDomainLineWidth}
+                        // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linecap
+                        // https://github.com/airbnb/visx/blob/v2.5.0/packages/visx-axis/src/axis/Ticks.tsx#L45
+                        strokeLinecap="square"
+                    />
 
-                <AxisTop
-                    scale={xScale}
-                    top={-defaultDomainLineWidth / 2}
-                    tickLength={visxTickLength}
-                    tickComponent={({ formattedValue, ...tickProps }) => {
-                        const numberParticipants = formattedValue * totalCount;
+                    <AxisTop
+                        scale={xScale}
+                        top={-defaultDomainLineWidth / 2}
+                        tickLength={visxTickLength}
+                        tickComponent={({ formattedValue, ...tickProps }) => {
+                            const numberParticipants = formattedValue * totalCount;
 
-                        return (
-                            <>
-                                {/* https://en.wikipedia.org/wiki/Approximation */}
-                                {numberParticipants > 0 && (
-                                    <text
-                                        {...tickProps}
-                                        fontSize={secondaryTickLabelFontSize}
-                                        dy={dySecondaryTickLabel}
-                                        fill={theme.colors.gray[5]}
-                                    >
-                                        {!isInteger(numberParticipants) && '≈'}
-                                        {Math.round(numberParticipants)}
-                                    </text>
-                                )}
-                                <text {...tickProps}>{xFormatter(formattedValue)}</text>
-                            </>
-                        );
-                    }}
-                    left={dimensions.marginLeft - defaultDomainLineWidth / 2}
-                    strokeWidth={defaultDomainLineWidth}
-                    // tickFormat={(value) => xFormatter(value)}
-                    tickFormat={(value) => format('.2f')(value)}
-                    tickLabelProps={() => tickLabelTopProps}
-                    tickValues={tickValues}
-                    stroke={theme.black}
-                    tickStroke={theme.black}
-                />
-
-                <AxisBottom
-                    scale={xScale}
-                    top={dimensions.boundedHeight + defaultDomainLineWidth / 2}
-                    tickLength={visxTickLength}
-                    tickComponent={({ formattedValue, ...tickProps }) => (
-                        <text {...tickProps}>{formattedValue}</text>
-                    )}
-                    left={dimensions.marginLeft - defaultDomainLineWidth / 2}
-                    strokeWidth={defaultDomainLineWidth}
-                    tickFormat={(value) => xFormatter(value)}
-                    tickLabelProps={() => tickLabelBottomProps}
-                    tickValues={tickValues}
-                    stroke={theme.black}
-                    tickStroke={theme.black}
-                />
-
-                <GridColumns
-                    scale={xScale}
-                    height={dimensions.boundedHeight}
-                    left={dimensions.marginLeft - defaultDomainLineWidth / 2}
-                    tickValues={drop(tickValues)}
-                    stroke={theme.colors.gray[3]}
-                />
-
-                {/* https://airbnb.io/visx/docs/drag#Drag */}
-                {/* https://airbnb.io/visx/drag-i */}
-                {draggingItems.map((d, i) => (
-                    <Drag
-                        key={`drag-${yAccessor(d)}`}
-                        width={dimensions.width}
-                        height={dimensions.height}
-                        onDragStart={() => {
-                            setDraggingItems(raise(draggingItems, i));
-                            setInitialPositionOnScale(yAccessorScaled(d));
-                        }}
-                        onDragMove={(e) => {
-                            // const yStartPosition = e.y; // How are you?
-                            const yCurrentPosition = initialPositionOnScale + e.dy;
-
-                            const newSortedData = sort(sortedData, (a, b) =>
-                                ascending(
-                                    yAccessor(a) === yAccessor(d)
-                                        ? yCurrentPosition
-                                        : yAccessorScaled(a),
-                                    yAccessor(b) === yAccessor(d)
-                                        ? yCurrentPosition
-                                        : yAccessorScaled(b)
-                                )
+                            return (
+                                <>
+                                    {/* https://en.wikipedia.org/wiki/Approximation */}
+                                    {numberParticipants > 0 && (
+                                        <text
+                                            {...tickProps}
+                                            fontSize={secondaryTickLabelFontSize}
+                                            dy={dySecondaryTickLabel}
+                                            fill={theme.colors.gray[5]}
+                                        >
+                                            {!isInteger(numberParticipants) && '≈'}
+                                            {Math.round(numberParticipants)}
+                                        </text>
+                                    )}
+                                    <text {...tickProps}>{xFormatter(formattedValue)}</text>
+                                </>
                             );
-
-                            setSortedData(newSortedData);
                         }}
-                        onDragEnd={() => setInitialPositionOnScale(null)}
-                        // https://github.com/airbnb/visx/pull/1368
-                        restrict={{
-                            // Move only on the Y-axis.
-                            xMin: 0,
-                            xMax: 0
-                        }}
-                        snapToPointer={true}
-                        resetOnStart={true}
-                    >
-                        {/* https://github.com/airbnb/visx/tree/v2.5.0/packages/visx-drag/src */}
-                        {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => (
-                            <g
-                                transform={getBarTransform(
-                                    isDragging,
-                                    dx,
-                                    dy,
-                                    yAccessorScaled(d),
-                                    initialPositionOnScale
-                                )}
-                                onMouseMove={dragMove}
-                                onMouseUp={dragEnd}
-                                onMouseDown={dragStart}
-                                onTouchStart={dragStart}
-                                onTouchMove={dragMove}
-                                onTouchEnd={dragEnd}
-                                cursor={isDragging ? 'grabbing' : 'grab'}
-                                // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/pointer-events
-                                // https://stackoverflow.com/a/49739738
-                                // https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/</Drag>
-                                // It works on Google Chrome.
-                                pointerEvents="bounding-box"
-                                // id={yAccessor(d)}
-                            >
-                                {/* Labels */}
-                                {/* https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */}
-                                {/* https://github.com/airbnb/visx/blob/v2.5.0/packages/visx-axis/src/axis/AxisLeft.tsx */}
-                                <text
-                                    {...tickLabelLeftProps}
-                                    style={{ userSelect: 'none' }}
-                                    textAnchor="end"
-                                    dy={defaultBarHeight / 2}
-                                    textDecoration={
-                                        includes(highlightTools, yAccessor(d))
-                                            ? 'underline'
-                                            : 'unset'
-                                    }
-                                >
-                                    {yAxisLabels[yAccessor(d)]}
-                                </text>
+                        left={dimensions.marginLeft - defaultDomainLineWidth / 2}
+                        strokeWidth={defaultDomainLineWidth}
+                        // tickFormat={(value) => xFormatter(value)}
+                        tickFormat={(value) => format('.2f')(value)}
+                        tickLabelProps={() => tickLabelTopProps}
+                        tickValues={tickValues}
+                        stroke={theme.black}
+                        tickStroke={theme.black}
+                    />
 
-                                {/* Bars */}
-                                <rect
-                                    key={`bar-${yAccessor(d)}`}
-                                    width={xAccessorScaled(d)}
-                                    // https://www.d3-graph-gallery.com/graph/barplot_horizontal.html
-                                    height={yScale.bandwidth()}
-                                    x={dimensions.marginLeft}
-                                    // x={0}
-                                    // y={yAccessorScaled(d)}
-                                    fill={theme.black}
-                                    // transform={getBarTransform(
-                                    //     isDragging,
-                                    //     dx,
-                                    //     dy,
-                                    //     yAccessorScaled(d),
-                                    //     initialPositionOnScale
-                                    // )}
-                                    // onMouseMove={dragMove}
-                                    // onMouseUp={dragEnd}
-                                    // onMouseDown={dragStart}
-                                    // onTouchStart={dragStart}
-                                    // onTouchMove={dragMove}
-                                    // onTouchEnd={dragEnd}
-                                    // cursor={isDragging ? 'grabbing' : 'grab'}
-                                />
-                            </g>
+                    <AxisBottom
+                        scale={xScale}
+                        top={dimensions.boundedHeight + defaultDomainLineWidth / 2}
+                        tickLength={visxTickLength}
+                        tickComponent={({ formattedValue, ...tickProps }) => (
+                            <text {...tickProps}>{formattedValue}</text>
                         )}
-                    </Drag>
-                ))}
-            </Group>
-        </svg>
+                        left={dimensions.marginLeft - defaultDomainLineWidth / 2}
+                        strokeWidth={defaultDomainLineWidth}
+                        tickFormat={(value) => xFormatter(value)}
+                        tickLabelProps={() => tickLabelBottomProps}
+                        tickValues={tickValues}
+                        stroke={theme.black}
+                        tickStroke={theme.black}
+                    />
+
+                    <GridColumns
+                        scale={xScale}
+                        height={dimensions.boundedHeight}
+                        left={dimensions.marginLeft - defaultDomainLineWidth / 2}
+                        tickValues={drop(tickValues)}
+                        stroke={theme.colors.gray[3]}
+                    />
+
+                    {/* https://airbnb.io/visx/docs/drag#Drag */}
+                    {/* https://airbnb.io/visx/drag-i */}
+                    {draggingItems.map((d, i) => (
+                        <Drag
+                            key={`drag-${yAccessor(d)}`}
+                            width={dimensions.width}
+                            height={dimensions.height}
+                            onDragStart={() => {
+                                hide();
+                                setDraggingItems(raise(draggingItems, i));
+                                setInitialPositionOnScale(yAccessorScaled(d));
+                            }}
+                            onDragMove={(e) => {
+                                // const yStartPosition = e.y; // How are you?
+                                const yCurrentPosition = initialPositionOnScale + e.dy;
+
+                                const newSortedData = sort(sortedData, (a, b) =>
+                                    ascending(
+                                        yAccessor(a) === yAccessor(d)
+                                            ? yCurrentPosition
+                                            : yAccessorScaled(a),
+                                        yAccessor(b) === yAccessor(d)
+                                            ? yCurrentPosition
+                                            : yAccessorScaled(b)
+                                    )
+                                );
+
+                                setSortedData(newSortedData);
+                            }}
+                            onDragEnd={() => setInitialPositionOnScale(null)}
+                            // https://github.com/airbnb/visx/pull/1368
+                            restrict={{
+                                // Move only on the Y-axis.
+                                xMin: 0,
+                                xMax: 0
+                            }}
+                            snapToPointer={true}
+                            resetOnStart={true}
+                        >
+                            {/* https://github.com/airbnb/visx/tree/v2.5.0/packages/visx-drag/src */}
+                            {({ dragStart, dragEnd, dragMove, isDragging, dx, dy }) => (
+                                <g
+                                    transform={getBarTransform(
+                                        isDragging,
+                                        dx,
+                                        dy,
+                                        yAccessorScaled(d),
+                                        initialPositionOnScale
+                                    )}
+                                    onMouseMove={dragMove}
+                                    onMouseUp={dragEnd}
+                                    onMouseDown={dragStart}
+                                    onTouchStart={dragStart}
+                                    onTouchMove={dragMove}
+                                    onTouchEnd={dragEnd}
+                                    cursor={isDragging ? 'grabbing' : 'grab'}
+                                    // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/pointer-events
+                                    // https://stackoverflow.com/a/49739738
+                                    // https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/</Drag>
+                                    // It works on Google Chrome.
+                                    pointerEvents="bounding-box"
+                                    // id={yAccessor(d)}
+                                    className={classes.outline}
+                                    onMouseEnter={() => {
+                                        if (isNull(initialPositionOnScale)) {
+                                            setCurrentTool(d);
+                                            show();
+                                        }
+                                    }}
+                                    onMouseLeave={hide}
+                                >
+                                    {/* Labels */}
+                                    {/* https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */}
+                                    {/* https://github.com/airbnb/visx/blob/v2.5.0/packages/visx-axis/src/axis/AxisLeft.tsx */}
+                                    <text
+                                        {...tickLabelLeftProps}
+                                        style={{ userSelect: 'none' }}
+                                        textAnchor="end"
+                                        dy={defaultBarHeight / 2}
+                                        // dy={yScale.bandwidth() / 2}
+                                        textDecoration={
+                                            includes(highlightTools, yAccessor(d))
+                                                ? 'underline'
+                                                : 'unset'
+                                        }
+                                    >
+                                        {yAxisLabels[yAccessor(d)]}
+                                    </text>
+
+                                    {/* Bars */}
+                                    <rect
+                                        key={`bar-${yAccessor(d)}`}
+                                        width={xAccessorScaled(d)}
+                                        // https://www.d3-graph-gallery.com/graph/barplot_horizontal.html
+                                        height={yScale.bandwidth()}
+                                        x={dimensions.marginLeft}
+                                        // x={0}
+                                        // y={yAccessorScaled(d)}
+                                        fill={theme.black}
+                                        // transform={getBarTransform(
+                                        //     isDragging,
+                                        //     dx,
+                                        //     dy,
+                                        //     yAccessorScaled(d),
+                                        //     initialPositionOnScale
+                                        // )}
+                                        // onMouseMove={dragMove}
+                                        // onMouseUp={dragEnd}
+                                        // onMouseDown={dragStart}
+                                        // onTouchStart={dragStart}
+                                        // onTouchMove={dragMove}
+                                        // onTouchEnd={dragEnd}
+                                        // cursor={isDragging ? 'grabbing' : 'grab'}
+                                    />
+                                </g>
+                            )}
+                        </Drag>
+                    ))}
+                </Group>
+            </svg>
+
+            <Tippy
+                content={currentTool && yAccessor(currentTool)}
+                visible={visible}
+                reference={svgEl}
+                placement="right-start"
+                // https://popper.js.org/docs/v2/modifiers/offset/
+                offset={[
+                    yScale.bandwidth() / 2 +
+                        dimensions.marginTop / 2 +
+                        (currentTool ? yAccessorScaled(currentTool) : 0),
+                    -dimensions.boundedWidth + (currentTool ? xAccessorScaled(currentTool) : 0)
+                ]}
+                arrow={true}
+            />
+        </>
     );
 }
 
