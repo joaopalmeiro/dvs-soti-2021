@@ -306,7 +306,7 @@ function BarChart({ form }) {
                                     // https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/</Drag>
                                     // It works on Google Chrome.
                                     pointerEvents="bounding-box"
-                                    // id={yAccessor(d)}
+                                    id={`${yAccessor(d)}@${xTooltipFormatter(xAccessor(d))}`} // "Data-driven ID"
                                     className={classes.outline}
                                     onMouseEnter={() => {
                                         if (isNull(initialPositionOnScale)) {

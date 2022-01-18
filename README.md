@@ -50,4 +50,4 @@
   - [Capsize](https://seek-oss.github.io/capsize/).
   - [Floating UI](https://github.com/floating-ui/floating-ui) (ex-Popper).
   - [Tippy.js for React](https://github.com/atomiks/tippyjs-react).
-  - [kbar](https://github.com/timc1/kbar).
+  - [kbar](https://github.com/timc1/kbar). [Documentation](https://kbar.vercel.app/docs/getting-started).
