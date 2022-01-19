@@ -2,6 +2,7 @@ import { Container } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 
 import BarChart from './BarChart';
+import Footer from './Footer';
 import TopInputWithSlider from './TopInputWithSlider';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         >
             <TopInputWithSlider form={form} />
             <BarChart form={form} />
+            <Footer />
         </Container>
     );
 }
