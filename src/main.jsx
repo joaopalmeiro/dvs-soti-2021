@@ -92,9 +92,16 @@ function RenderResults() {
     const { results } = useMatches();
     const theme = useMantineTheme();
 
+    // https://github.com/timc1/kbar/blob/v0.1.0-beta.27/example/src/index.scss#L52
+    // const lineHeight = 1.6;
+
+    // https://github.com/timc1/kbar/blob/v0.1.0-beta.27/src/KBarResults.tsx
+    // https://react-virtual.tanstack.com/
     return (
         <KBarResults
             items={results}
+            // https://github.com/timc1/kbar/blob/v0.1.0-beta.27/src/KBarResults.tsx#L131
+            // maxHeight="400px"
             onRender={({ item, active }) =>
                 // For the `section` title.
                 typeof item === 'string' ? (
@@ -161,6 +168,7 @@ function MainApp() {
     return (
         // https://kbar.vercel.app/docs/getting-started
         // https://reach.tech/portal/
+        // https://github.com/timc1/kbar/blob/v0.1.0-beta.27/src/types.ts
         <KBarProvider actions={actions}>
             <KBarPortal>
                 {/* https://github.com/timc1/kbar/blob/v0.1.0-beta.26/src/KBarPositioner.tsx */}
