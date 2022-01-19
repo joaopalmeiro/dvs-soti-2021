@@ -52,3 +52,4 @@
   - [Tippy.js for React](https://github.com/atomiks/tippyjs-react).
   - [kbar](https://github.com/timc1/kbar). [Documentation](https://kbar.vercel.app/docs/getting-started).
 - `pnpm up kbar`.
+- [`pnpm.overrides` documentation](https://pnpm.io/package_json#pnpmoverrides).
