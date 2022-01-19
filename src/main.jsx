@@ -58,6 +58,7 @@ const metadataActions = toPairs(metadata)
         perform: () => window.open(d[1].website, '_blank')
     }));
 
+// Alternative: https://github.com/timc1/kbar/blob/v0.1.0-beta.27/src/utils.ts#L54
 const actions = [
     {
         id: 'dataVisualizationSocietyAction',
