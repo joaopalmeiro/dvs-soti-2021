@@ -70,6 +70,7 @@ const actions = [
     {
         id: 'gitHubAction',
         name: 'GitHub',
+        subtitle: 'Repo',
         shortcut: ['g'],
         section: 'Navigation',
         perform: () => window.open('https://github.com/joaopalmeiro/dvs-soti-2021', '_blank'),
@@ -95,7 +96,7 @@ function RenderResults() {
         <KBarResults
             items={results}
             onRender={({ item, active }) =>
-                // For the `section`.
+                // For the `section` title.
                 typeof item === 'string' ? (
                     <div
                         style={{
@@ -130,9 +131,7 @@ function RenderResults() {
                         >
                             {item.icon && item.icon}
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                <div>
-                                    <span>{item.name}</span>
-                                </div>
+                                <span>{item.name}</span>
                                 {item.subtitle && (
                                     <span style={{ fontSize: 12 }}>{item.subtitle}</span>
                                 )}
@@ -173,12 +172,17 @@ function MainApp() {
                     }}
                 >
                     <KBarAnimator style={animatorStyle}>
+                        {/* https://github.com/timc1/kbar/blob/v0.1.0-beta.26/src/KBarSearch.tsx */}
+                        {/* https://github.com/timc1/kbar/blob/v0.1.0-beta.26/src/useMatches.tsx */}
+                        {/* https://www.npmjs.com/package/match-sorter */}
                         <KBarSearch
                             style={{
                                 ...searchStyle,
                                 fontFamily: theme.fontFamily,
                                 lineHeight: theme.lineHeight
                             }}
+                            // defaultPlaceholder="Type a hyperlink command or search…"
+                            placeholder="Type a hyperlink command or search…"
                         />
                         <RenderResults />
                     </KBarAnimator>
