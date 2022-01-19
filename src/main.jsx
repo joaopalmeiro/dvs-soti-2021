@@ -21,9 +21,9 @@ import metadata from './tools_metadata.json';
 // - https://github.com/timc1/kbar/blob/v0.1.0-beta.26/example/src/index.scss
 // - https://github.com/timc1/kbar/blob/v0.1.0-beta.26/example/src/App.tsx
 // - https://kbar.vercel.app/
-// - https://piccalil.li/blog/a-modern-css-reset/
 const searchStyle = {
-    padding: '12px 16px',
+    // padding: '12px 16px',
+    padding: '16px 16px',
     fontSize: '16px',
     width: '100%',
     outline: 'none',
