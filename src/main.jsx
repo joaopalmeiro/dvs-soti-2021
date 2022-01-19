@@ -81,7 +81,7 @@ const actions = [
         name: 'Twitter',
         shortcut: ['t'],
         section: 'Navigation',
-        perform: () => window.open('https://twitter.com/timcchang', '_blank'),
+        perform: () => window.open('https://twitter.com/joaompalmeiro', '_blank'),
         // https://github.com/timc1/kbar/blob/v0.1.0-beta.26/example/src/App.tsx#L275
         icon: <TwitterLogo size={24} />
     },
