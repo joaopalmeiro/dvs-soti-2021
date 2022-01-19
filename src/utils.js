@@ -106,3 +106,5 @@ export const truncateLabels = (labels, props, maxWidth) =>
 
 export const xFormatter = format('.0%');
 export const xTooltipFormatter = format('.2~%');
+
+export const COLORS = { dvsTurquoise: '#2db1a4', dvsMustard: '#dcb22a', dvsPlum: '#9f5f9c' };
