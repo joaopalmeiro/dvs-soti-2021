@@ -10,7 +10,7 @@ import {
 } from 'kbar';
 import { camelCase, toPairs } from 'lodash';
 import { CircleWavy, GithubLogo, TwitterLogo } from 'phosphor-react';
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
@@ -50,22 +50,25 @@ const groupNameStyle = {
     opacity: 0.5
 };
 
+const sections = ['Navigation', 'Digital Tools'];
+
 const metadataActions = toPairs(naturalSortObject(metadata))
     .filter((d) => d[1].website)
     .map((d) => ({
         id: `${camelCase(d[0])}Action`,
         name: d[0],
-        section: 'Digital Tools',
+        section: sections[1],
         perform: () => window.open(d[1].website, '_blank')
     }));
 
+// https://github.com/timc1/kbar/blob/v0.1.0-beta.27/src/action/ActionImpl.ts#L19
 // Alternative: https://github.com/timc1/kbar/blob/v0.1.0-beta.27/src/utils.ts#L54
 const actions = [
     {
         id: 'dataVisualizationSocietyAction',
         name: 'Data Visualization Society',
         shortcut: ['d'],
-        section: 'Navigation',
+        section: sections[0],
         perform: () => window.open('https://www.datavisualizationsociety.org/', '_blank'),
         icon: <CircleWavy size={24} />
     },
@@ -74,7 +77,7 @@ const actions = [
         name: 'GitHub',
         subtitle: 'Repo',
         shortcut: ['g'],
-        section: 'Navigation',
+        section: sections[0],
         perform: () => window.open('https://github.com/joaopalmeiro/dvs-soti-2021', '_blank'),
         icon: <GithubLogo size={24} />
     },
@@ -82,7 +85,7 @@ const actions = [
         id: 'twitterAction',
         name: 'Twitter',
         shortcut: ['t'],
-        section: 'Navigation',
+        section: sections[0],
         perform: () => window.open('https://twitter.com/joaompalmeiro', '_blank'),
         // https://github.com/timc1/kbar/blob/v0.1.0-beta.26/example/src/App.tsx#L275
         icon: <TwitterLogo size={24} />
@@ -94,6 +97,15 @@ function RenderResults() {
     const { results } = useMatches();
     const theme = useMantineTheme();
 
+    // Workaround (part I)
+    // When searching with a certain letter, for example `t` or `a` (vs. `v` or `s`), the number
+    // of results corresponds to the number of original items. Some options appear badly
+    // positioned until some scroll happens, for example, adopting the expected positions
+    // then (something that happens again if we clear the previous search). Therefore,
+    // this workaround only re-renders the list of items if it is different from the
+    // original, regardless of the order.
+    const [firstResults] = useState(results);
+
     // https://github.com/timc1/kbar/blob/v0.1.0-beta.27/example/src/index.scss#L52
     // const lineHeight = 1.6;
 
@@ -101,7 +113,11 @@ function RenderResults() {
     // https://react-virtual.tanstack.com/
     return (
         <KBarResults
-            items={results}
+            // https://github.com/kentcdodds/match-sorter/issues/39
+            // https://github.com/timc1/kbar/blob/v0.1.0-beta.27/src/useMatches.tsx#L95
+            // Workaround (part II)
+            // items={results}
+            items={results.length === actions.length + sections.length ? firstResults : results}
             // https://github.com/timc1/kbar/blob/v0.1.0-beta.27/src/KBarResults.tsx#L131
             // maxHeight="400px"
             onRender={({ item, active }) =>
