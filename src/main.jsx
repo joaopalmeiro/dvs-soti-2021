@@ -1,4 +1,4 @@
-import { useMantineTheme, Kbd } from '@mantine/core';
+import { Kbd, useMantineTheme } from '@mantine/core';
 import {
     KBarAnimator,
     KBarPortal,
@@ -9,7 +9,7 @@ import {
     useMatches
 } from 'kbar';
 import { camelCase, toPairs } from 'lodash';
-import { TwitterLogo } from 'phosphor-react';
+import { CircleWavy, GithubLogo, TwitterLogo } from 'phosphor-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -54,11 +54,27 @@ const metadataActions = toPairs(metadata)
     .map((d) => ({
         id: `${camelCase(d[0])}Action`,
         name: d[0],
-        section: 'Tools',
+        section: 'Digital Tools',
         perform: () => window.open(d[1].website, '_blank')
     }));
 
 const actions = [
+    {
+        id: 'dataVisualizationSocietyAction',
+        name: 'Data Visualization Society',
+        shortcut: ['d'],
+        section: 'Navigation',
+        perform: () => window.open('https://www.datavisualizationsociety.org/', '_blank'),
+        icon: <CircleWavy size={24} />
+    },
+    {
+        id: 'gitHubAction',
+        name: 'GitHub',
+        shortcut: ['g'],
+        section: 'Navigation',
+        perform: () => window.open('https://github.com/joaopalmeiro/dvs-soti-2021', '_blank'),
+        icon: <GithubLogo size={24} />
+    },
     {
         id: 'twitterAction',
         name: 'Twitter',
@@ -79,6 +95,7 @@ function RenderResults() {
         <KBarResults
             items={results}
             onRender={({ item, active }) =>
+                // For the `section`.
                 typeof item === 'string' ? (
                     <div
                         style={{
