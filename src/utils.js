@@ -108,3 +108,21 @@ export const xFormatter = format('.0%');
 export const xTooltipFormatter = format('.2~%');
 
 export const COLORS = { dvsTurquoise: '#2db1a4', dvsMustard: '#dcb22a', dvsPlum: '#9f5f9c' };
+
+export const naturalSort = (values) =>
+    values.sort(new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare);
+
+// https://stackoverflow.com/a/31102605
+export const sortObject = (unordered) =>
+    Object.keys(unordered)
+        .sort()
+        .reduce((obj, key) => {
+            obj[key] = unordered[key];
+            return obj;
+        }, {});
+
+export const naturalSortObject = (unordered) =>
+    naturalSort(Object.keys(unordered)).reduce((obj, key) => {
+        obj[key] = unordered[key];
+        return obj;
+    }, {});

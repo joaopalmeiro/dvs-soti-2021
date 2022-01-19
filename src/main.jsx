@@ -16,6 +16,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './main.css';
 import metadata from './tools_metadata.json';
+import { naturalSortObject } from './utils';
 
 // Source:
 // - https://github.com/timc1/kbar/blob/v0.1.0-beta.26/example/src/index.scss
@@ -49,7 +50,7 @@ const groupNameStyle = {
     opacity: 0.5
 };
 
-const metadataActions = toPairs(metadata)
+const metadataActions = toPairs(naturalSortObject(metadata))
     .filter((d) => d[1].website)
     .map((d) => ({
         id: `${camelCase(d[0])}Action`,
