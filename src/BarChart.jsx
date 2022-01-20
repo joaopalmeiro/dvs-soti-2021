@@ -59,7 +59,7 @@ const getTooltipContent = (d, labels) => {
     return `${prefix}${value} (#${ranking})`;
 };
 
-function BarChart({ form }) {
+function BarChart({ form, width }) {
     // Tooltip
     const svgEl = useRef(null);
     const [visible, setVisible] = useState(false);
@@ -119,7 +119,8 @@ function BarChart({ form }) {
     const numBars = data.length;
     const height = numBars * defaultBarHeight;
     const dimensions = combineChartDimensions({
-        width: 500,
+        // width: 500,
+        width,
         height,
         marginLeft: 100,
         marginTop,
@@ -406,7 +407,8 @@ BarChart.propTypes = {
             secondToolPercentage: PropTypes.number,
             thirdToolPercentage: PropTypes.number
         }).isRequired
-    })
+    }),
+    width: PropTypes.number.isRequired
 };
 
 export default BarChart;
