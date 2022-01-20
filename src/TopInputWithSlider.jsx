@@ -16,7 +16,7 @@ const sliderCustomStyle = {
     markLabel: { userSelect: 'none' }
 };
 
-function TopInputWithSlider({ form }) {
+function TopInputWithSlider({ form, handleSubmit }) {
     const allTools = map(data, (datum) => ({
         value: datum.tool,
         label: datum.tool,
@@ -24,7 +24,7 @@ function TopInputWithSlider({ form }) {
     }));
 
     return (
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form onSubmit={form.onSubmit(handleSubmit)}>
             <GridTopInputWithSlider>
                 <Group direction="column" spacing="xs" grow style={{ gridArea: 'first' }}>
                     <Select
@@ -103,7 +103,8 @@ TopInputWithSlider.propTypes = {
             secondToolPercentage: PropTypes.number,
             thirdToolPercentage: PropTypes.number
         }).isRequired
-    })
+    }),
+    handleSubmit: PropTypes.func.isRequired
 };
 
 export default TopInputWithSlider;
