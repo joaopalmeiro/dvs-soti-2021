@@ -344,7 +344,12 @@ function BarChart({ form, width }) {
                                         x={dimensions.marginLeft}
                                         // x={0}
                                         // y={yAccessorScaled(d)}
-                                        fill={theme.black}
+                                        // https://mantine.dev/theming/extend-theme/
+                                        fill={
+                                            includes(highlightTools, yAccessor(d))
+                                                ? theme.black
+                                                : theme.colors.gray[8]
+                                        }
                                         // transform={getBarTransform(
                                         //     isDragging,
                                         //     dx,

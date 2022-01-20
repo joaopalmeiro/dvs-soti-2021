@@ -1,4 +1,5 @@
 import { Button, Group, Select, Slider } from '@mantine/core';
+import { ascending } from 'd3-array';
 import { includes, map, values } from 'lodash';
 import { NumberCircleOne, NumberCircleThree, NumberCircleTwo } from 'phosphor-react';
 import PropTypes from 'prop-types';
@@ -17,11 +18,16 @@ const sliderCustomStyle = {
 };
 
 function TopInputWithSlider({ form, handleSubmit }) {
-    const allTools = map(data, (datum) => ({
-        value: datum.tool,
-        label: datum.tool,
-        disabled: includes(values(form.values), datum.tool)
-    }));
+    // https://observablehq.com/@d3/d3-ascending
+    const allTools = map(
+        data.sort((a, b) => ascending(a.tool.toLowerCase(), b.tool.toLowerCase())),
+        (datum) => ({
+            value: datum.tool,
+            label: datum.tool,
+            disabled: includes(values(form.values), datum.tool)
+        })
+    );
+    // console.log(allTools);
 
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
