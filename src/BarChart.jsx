@@ -338,7 +338,7 @@ function BarChart({ form, width }) {
                                     {/* Bars */}
                                     <rect
                                         key={`bar-${yAccessor(d)}`}
-                                        width={xAccessorScaled(d)}
+                                        // width={xAccessorScaled(d)}
                                         // https://www.d3-graph-gallery.com/graph/barplot_horizontal.html
                                         height={yScale.bandwidth()}
                                         x={dimensions.marginLeft}
@@ -359,7 +359,22 @@ function BarChart({ form, width }) {
                                         // onTouchMove={dragMove}
                                         // onTouchEnd={dragEnd}
                                         // cursor={isDragging ? 'grabbing' : 'grab'}
-                                    />
+                                    >
+                                        {/* https://www.d3-graph-gallery.com/graph/barplot_animation_start.html */}
+                                        {/* https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate */}
+                                        {/* https://github.com/d3/d3-transition */}
+                                        <animate
+                                            id={`rect${i}`}
+                                            attributeName="width"
+                                            from="0"
+                                            to={xAccessorScaled(d)}
+                                            dur="0.8s"
+                                            // dur="20s"
+                                            // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill
+                                            fill="freeze"
+                                            begin={i > 0 ? `rect${i - 1}.begin + 0.1s` : '0s'}
+                                        />
+                                    </rect>
                                 </g>
                             )}
                         </Drag>
