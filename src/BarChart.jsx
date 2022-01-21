@@ -331,8 +331,18 @@ function BarChart({ form, width }) {
                                                 ? 'underline'
                                                 : 'unset'
                                         }
+                                        opacity={0}
                                     >
                                         {yAxisLabels[yAccessor(d)]}
+                                        <animate
+                                            id={`text${i}`}
+                                            attributeName="opacity"
+                                            from="0"
+                                            to="1"
+                                            dur="0.8s"
+                                            fill="freeze"
+                                            begin={i > 0 ? `text${i - 1}.begin + 0.1s` : '0s'}
+                                        />
                                     </text>
 
                                     {/* Bars */}
