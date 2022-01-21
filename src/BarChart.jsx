@@ -332,6 +332,7 @@ function BarChart({ form, width }) {
                                                 : 'unset'
                                         }
                                         opacity={0}
+                                        // opacity={1}
                                     >
                                         {yAxisLabels[yAccessor(d)]}
                                         <animate
