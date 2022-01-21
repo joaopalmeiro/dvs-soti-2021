@@ -18,6 +18,7 @@ const sliderCustomStyle = {
 };
 const nothingFoundMessage = 'No tools';
 const placeholderMessage = 'Pick one';
+const sliderLabelFormatter = (value) => `${value}%`;
 
 function TopInputWithSlider({ form, handleSubmit }) {
     // https://observablehq.com/@d3/d3-ascending
@@ -30,6 +31,7 @@ function TopInputWithSlider({ form, handleSubmit }) {
         })
     );
     // console.log(allTools);
+    // console.log(form.getInputProps('firstToolPercentage'));
 
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -51,6 +53,8 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         value={form.getInputProps('firstToolPercentage').value}
                         onChange={form.getInputProps('firstToolPercentage').onChange}
                         styles={sliderCustomStyle}
+                        label={sliderLabelFormatter}
+                        thumbLabel="Slider thumb for your first choice"
                     />
                 </Group>
 
@@ -71,6 +75,8 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         value={form.getInputProps('secondToolPercentage').value}
                         onChange={form.getInputProps('secondToolPercentage').onChange}
                         styles={sliderCustomStyle}
+                        label={sliderLabelFormatter}
+                        thumbLabel="Slider thumb for your second choice"
                     />
                 </Group>
 
@@ -91,6 +97,8 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         value={form.getInputProps('thirdToolPercentage').value}
                         onChange={form.getInputProps('thirdToolPercentage').onChange}
                         styles={sliderCustomStyle}
+                        label={sliderLabelFormatter}
+                        thumbLabel="Slider thumb for your third choice"
                     />
                 </Group>
 
