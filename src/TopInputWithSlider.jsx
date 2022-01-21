@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import GridTopInputWithSlider from './GridTopInputWithSlider';
 import data from './tools_counts.json';
+import { COLORS } from './utils';
 
 const sliderMarks = [
     { value: 25, label: '25%' },
@@ -36,14 +37,14 @@ function TopInputWithSlider({ form, handleSubmit }) {
     // console.log(form.getInputProps('firstToolPercentage'));
 
     const firstSliderColor = isUndefined(form.getInputProps('firstToolPercentage').error)
-        ? theme.primaryColor
-        : 'red';
+        ? COLORS.dvsTurquoise // theme.primaryColor
+        : theme.colors.red[6]; // 'red'
     const secondSliderColor = isUndefined(form.getInputProps('secondToolPercentage').error)
-        ? theme.primaryColor
-        : 'red';
+        ? COLORS.dvsMustard
+        : theme.colors.red[6];
     const thirdSliderColor = isUndefined(form.getInputProps('thirdToolPercentage').error)
-        ? theme.primaryColor
-        : 'red';
+        ? COLORS.dvsPlum
+        : theme.colors.red[6];
 
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -64,10 +65,15 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         marks={sliderMarks}
                         value={form.getInputProps('firstToolPercentage').value}
                         onChange={form.getInputProps('firstToolPercentage').onChange}
-                        styles={sliderCustomStyle}
+                        styles={{
+                            ...sliderCustomStyle,
+                            bar: { backgroundColor: firstSliderColor },
+                            thumb: { borderColor: firstSliderColor },
+                            markFilled: { borderColor: firstSliderColor }
+                        }}
                         label={sliderLabelFormatter}
                         thumbLabel="Slider thumb for your first choice"
-                        color={firstSliderColor}
+                        // color={firstSliderColor}
                     />
                 </Group>
 
@@ -87,10 +93,14 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         marks={sliderMarks}
                         value={form.getInputProps('secondToolPercentage').value}
                         onChange={form.getInputProps('secondToolPercentage').onChange}
-                        styles={sliderCustomStyle}
+                        styles={{
+                            ...sliderCustomStyle,
+                            bar: { backgroundColor: secondSliderColor },
+                            thumb: { borderColor: secondSliderColor },
+                            markFilled: { borderColor: secondSliderColor }
+                        }}
                         label={sliderLabelFormatter}
                         thumbLabel="Slider thumb for your second choice"
-                        color={secondSliderColor}
                     />
                 </Group>
 
@@ -110,10 +120,14 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         marks={sliderMarks}
                         value={form.getInputProps('thirdToolPercentage').value}
                         onChange={form.getInputProps('thirdToolPercentage').onChange}
-                        styles={sliderCustomStyle}
+                        styles={{
+                            ...sliderCustomStyle,
+                            bar: { backgroundColor: thirdSliderColor },
+                            thumb: { borderColor: thirdSliderColor },
+                            markFilled: { borderColor: thirdSliderColor }
+                        }}
                         label={sliderLabelFormatter}
                         thumbLabel="Slider thumb for your third choice"
-                        color={thirdSliderColor}
                     />
                 </Group>
 

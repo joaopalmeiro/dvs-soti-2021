@@ -37,6 +37,7 @@ function App() {
     // https://mantine.dev/hooks/use-resize-observer/
     // https://wattenberger.com/blog/react-hooks
     // Alternative: https://www.npmjs.com/package/@react-hook/size
+    // Alternative: https://mantine.dev/hooks/use-element-size/
     // https://www.npmjs.com/package/@react-hook/resize-observer
     const [ref, rect] = useResizeObserver();
 
