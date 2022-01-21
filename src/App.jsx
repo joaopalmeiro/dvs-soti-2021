@@ -1,6 +1,7 @@
 import { Container } from '@mantine/core';
 import { useForm, useResizeObserver } from '@mantine/hooks';
-import { isEmpty } from 'lodash';
+import { isEmpty, isNull } from 'lodash';
+import { useState } from 'react';
 
 import BarChart from './BarChart';
 import Footer from './Footer';
@@ -13,6 +14,8 @@ const initialPercentageValue = 0;
 function App() {
     // https://tzi.fr/js/convert-em-in-px/
     // console.log(parseFloat(getComputedStyle(document.documentElement).fontSize));
+
+    const [userOptions, setUserOptions] = useState(null);
 
     const form = useForm({
         initialValues: {
@@ -44,7 +47,8 @@ function App() {
     // https://mantine.dev/hooks/use-form/#get-form-values-type
     // https://mantine.dev/hooks/use-form/#authentication-form
     const handleSubmit = (values) => {
-        console.log(values);
+        // console.log(values);
+        setUserOptions(values);
     };
 
     return (
@@ -60,11 +64,17 @@ function App() {
             })}
             // ref={ref}
         >
-            <TopInputWithSlider form={form} handleSubmit={handleSubmit} />
-            {/* https://css-tricks.com/tale-width-max-width/ */}
-            <Container size="sm" ref={ref} padding={0} style={{ width: '100%' }}>
-                <BarChart form={form} width={rect.width} />
-            </Container>
+            <main>
+                <TopInputWithSlider form={form} handleSubmit={handleSubmit} />
+                {/* https://css-tricks.com/tale-width-max-width/ */}
+
+                <Container size="sm" ref={ref} padding={0} style={{ width: '100%' }}>
+                    {!isNull(userOptions) && (
+                        <BarChart userOptions={userOptions} width={rect.width} />
+                    )}
+                </Container>
+            </main>
+
             <Footer />
         </Container>
     );

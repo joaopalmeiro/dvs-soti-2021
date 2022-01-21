@@ -59,7 +59,7 @@ const getTooltipContent = (d, labels) => {
     return `${prefix}${value} (#${ranking})`;
 };
 
-function BarChart({ form, width }) {
+function BarChart({ userOptions, width }) {
     // Tooltip
     const svgEl = useRef(null);
     const [visible, setVisible] = useState(false);
@@ -77,7 +77,7 @@ function BarChart({ form, width }) {
     };
     // console.log({ theme, tickLabelSharedProps });
 
-    const highlightTools = values(pick(form.values, ['firstTool', 'secondTool', 'thirdTool']));
+    const highlightTools = values(pick(userOptions, ['firstTool', 'secondTool', 'thirdTool']));
     // console.log(highlightTools);
 
     const tickLabelTopProps = {
@@ -429,16 +429,14 @@ function BarChart({ form, width }) {
 }
 
 BarChart.propTypes = {
-    form: PropTypes.shape({
-        values: PropTypes.exact({
-            firstTool: PropTypes.string,
-            secondTool: PropTypes.string,
-            thirdTool: PropTypes.string,
-            firstToolPercentage: PropTypes.number,
-            secondToolPercentage: PropTypes.number,
-            thirdToolPercentage: PropTypes.number
-        }).isRequired
-    }),
+    userOptions: PropTypes.exact({
+        firstTool: PropTypes.string,
+        secondTool: PropTypes.string,
+        thirdTool: PropTypes.string,
+        firstToolPercentage: PropTypes.number,
+        secondToolPercentage: PropTypes.number,
+        thirdToolPercentage: PropTypes.number
+    }).isRequired,
     width: PropTypes.number.isRequired
 };
 
