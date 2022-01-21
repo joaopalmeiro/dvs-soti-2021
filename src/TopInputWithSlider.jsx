@@ -17,6 +17,7 @@ const sliderCustomStyle = {
     markLabel: { userSelect: 'none' }
 };
 const nothingFoundMessage = 'No tools';
+const placeholderMessage = 'Pick one';
 
 function TopInputWithSlider({ form, handleSubmit }) {
     // https://observablehq.com/@d3/d3-ascending
@@ -36,7 +37,8 @@ function TopInputWithSlider({ form, handleSubmit }) {
                 <Group direction="column" spacing="xs" grow style={{ gridArea: 'first' }}>
                     <Select
                         aria-label="Your guess for the most used tool"
-                        placeholder="Pick one"
+                        clearButtonLabel="Clear your first choice"
+                        placeholder={placeholderMessage}
                         nothingFound={nothingFoundMessage}
                         searchable
                         clearable
@@ -55,7 +57,8 @@ function TopInputWithSlider({ form, handleSubmit }) {
                 <Group direction="column" spacing="xs" grow style={{ gridArea: 'second' }}>
                     <Select
                         aria-label="Your guess for the second most used tool"
-                        placeholder="Pick one"
+                        clearButtonLabel="Clear your second choice"
+                        placeholder={placeholderMessage}
                         nothingFound={nothingFoundMessage}
                         searchable
                         clearable
@@ -74,7 +77,8 @@ function TopInputWithSlider({ form, handleSubmit }) {
                 <Group direction="column" spacing="xs" grow style={{ gridArea: 'third' }}>
                     <Select
                         aria-label="Your guess for the third most used tool"
-                        placeholder="Pick one"
+                        clearButtonLabel="Clear your third choice"
+                        placeholder={placeholderMessage}
                         nothingFound={nothingFoundMessage}
                         searchable
                         clearable

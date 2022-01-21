@@ -1,10 +1,12 @@
 import { Container } from '@mantine/core';
 import { useForm, useResizeObserver } from '@mantine/hooks';
+import { isEmpty } from 'lodash';
 
 import BarChart from './BarChart';
 import Footer from './Footer';
 import TopInputWithSlider from './TopInputWithSlider';
 
+// https://lodash.com/docs/4.17.15#stubString
 const initialToolValue = '';
 const initialPercentageValue = 0;
 
@@ -20,6 +22,14 @@ function App() {
             firstToolPercentage: initialPercentageValue,
             secondToolPercentage: initialPercentageValue,
             thirdToolPercentage: initialPercentageValue
+        },
+        validationRules: {
+            firstTool: (value) => !isEmpty(value),
+            secondTool: (value) => !isEmpty(value),
+            thirdTool: (value) => !isEmpty(value),
+            firstToolPercentage: (value) => value > 0,
+            secondToolPercentage: (value) => value > 0,
+            thirdToolPercentage: (value) => value > 0
         }
     });
     // console.log(form);
