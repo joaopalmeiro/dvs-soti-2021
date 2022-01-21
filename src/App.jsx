@@ -30,9 +30,9 @@ function App() {
             firstTool: (value) => !isEmpty(value),
             secondTool: (value) => !isEmpty(value),
             thirdTool: (value) => !isEmpty(value),
-            firstToolPercentage: (value) => value > 0,
-            secondToolPercentage: (value) => value > 0,
-            thirdToolPercentage: (value) => value > 0
+            firstToolPercentage: (value) => value > initialPercentageValue,
+            secondToolPercentage: (value) => value > initialPercentageValue,
+            thirdToolPercentage: (value) => value > initialPercentageValue
         }
     });
     // console.log(form);
