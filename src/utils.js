@@ -126,3 +126,5 @@ export const naturalSortObject = (unordered) =>
         obj[key] = unordered[key];
         return obj;
     }, {});
+
+export const isDescending = (arr) => arr.every((x, i) => i === 0 || x <= arr[i - 1]);

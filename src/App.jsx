@@ -1,11 +1,12 @@
 import { Container } from '@mantine/core';
 import { useForm, useResizeObserver } from '@mantine/hooks';
-import { isEmpty, isNull } from 'lodash';
+import { isEmpty, isNull, pick, values } from 'lodash';
 import { useState } from 'react';
 
 import BarChart from './BarChart';
 import Footer from './Footer';
 import TopInputWithSlider from './TopInputWithSlider';
+import { isDescending } from './utils';
 
 // https://lodash.com/docs/4.17.15#stubString
 const initialToolValue = '';
@@ -46,9 +47,22 @@ function App() {
 
     // https://mantine.dev/hooks/use-form/#get-form-values-type
     // https://mantine.dev/hooks/use-form/#authentication-form
-    const handleSubmit = (values) => {
-        // console.log(values);
-        setUserOptions(values);
+    const handleSubmit = (userValues) => {
+        // console.log(userValues);
+        const percentageTools = values(
+            pick(userValues, ['firstToolPercentage', 'secondToolPercentage', 'thirdToolPercentage'])
+        );
+        // console.log(percentageTools, isDescending(percentageTools));
+
+        // https://mantine.dev/hooks/use-form/#external-field-validation
+        // https://mantine.dev/others/notifications/
+        if (isDescending(percentageTools)) {
+            setUserOptions(userValues);
+        } else {
+            form.setFieldError('firstToolPercentage', true);
+            form.setFieldError('secondToolPercentage', true);
+            form.setFieldError('thirdToolPercentage', true);
+        }
     };
 
     return (
