@@ -96,6 +96,7 @@ const actions = [
 function RenderResults() {
     const { results } = useMatches();
     const theme = useMantineTheme();
+    // console.log(theme);
 
     // Workaround (part I)
     // When searching with a certain letter, for example `t` or `a` (vs. `v` or `s`), the number
