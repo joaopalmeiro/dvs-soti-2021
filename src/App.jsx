@@ -26,12 +26,18 @@ function App() {
             secondToolPercentage: initialPercentageValue,
             thirdToolPercentage: initialPercentageValue
         },
+        // https://mantine.dev/hooks/use-form/#definition
+        // https://mantine.dev/hooks/use-form/#authentication-form
         validationRules: {
             firstTool: (value) => !isEmpty(value),
             secondTool: (value) => !isEmpty(value),
             thirdTool: (value) => !isEmpty(value),
-            firstToolPercentage: (value) => value > initialPercentageValue,
-            secondToolPercentage: (value) => value > initialPercentageValue,
+            firstToolPercentage: (val, values) =>
+                val > initialPercentageValue &&
+                val >= values.secondToolPercentage &&
+                val >= values.thirdToolPercentage,
+            secondToolPercentage: (val, values) =>
+                val > initialPercentageValue && val >= values.thirdToolPercentage,
             thirdToolPercentage: (value) => value > initialPercentageValue
         }
     });
@@ -54,6 +60,7 @@ function App() {
         // console.log(percentageTools, isDescending(percentageTools));
 
         setUserOptions(userValues);
+
         // https://mantine.dev/hooks/use-form/#external-field-validation
         // https://mantine.dev/others/notifications/
         // if (isDescending(percentageTools)) {
