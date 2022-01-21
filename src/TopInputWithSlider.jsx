@@ -1,6 +1,6 @@
-import { Button, Group, Select, Slider } from '@mantine/core';
+import { Button, Group, Select, Slider, useMantineTheme } from '@mantine/core';
 import { ascending } from 'd3-array';
-import { includes, map, values } from 'lodash';
+import { includes, isUndefined, map, values } from 'lodash';
 import { NumberCircleOne, NumberCircleThree, NumberCircleTwo } from 'phosphor-react';
 import PropTypes from 'prop-types';
 
@@ -21,6 +21,8 @@ const placeholderMessage = 'Pick one';
 const sliderLabelFormatter = (value) => `${value}%`;
 
 function TopInputWithSlider({ form, handleSubmit }) {
+    const theme = useMantineTheme();
+
     // https://observablehq.com/@d3/d3-ascending
     const allTools = map(
         data.sort((a, b) => ascending(a.tool.toLowerCase(), b.tool.toLowerCase())),
@@ -32,6 +34,16 @@ function TopInputWithSlider({ form, handleSubmit }) {
     );
     // console.log(allTools);
     // console.log(form.getInputProps('firstToolPercentage'));
+
+    const firstSliderColor = isUndefined(form.getInputProps('firstToolPercentage').error)
+        ? theme.primaryColor
+        : 'red';
+    const secondSliderColor = isUndefined(form.getInputProps('secondToolPercentage').error)
+        ? theme.primaryColor
+        : 'red';
+    const thirdSliderColor = isUndefined(form.getInputProps('thirdToolPercentage').error)
+        ? theme.primaryColor
+        : 'red';
 
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -55,6 +67,7 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         styles={sliderCustomStyle}
                         label={sliderLabelFormatter}
                         thumbLabel="Slider thumb for your first choice"
+                        color={firstSliderColor}
                     />
                 </Group>
 
@@ -77,6 +90,7 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         styles={sliderCustomStyle}
                         label={sliderLabelFormatter}
                         thumbLabel="Slider thumb for your second choice"
+                        color={secondSliderColor}
                     />
                 </Group>
 
@@ -99,6 +113,7 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         styles={sliderCustomStyle}
                         label={sliderLabelFormatter}
                         thumbLabel="Slider thumb for your third choice"
+                        color={thirdSliderColor}
                     />
                 </Group>
 
