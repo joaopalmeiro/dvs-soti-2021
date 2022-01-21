@@ -20,6 +20,11 @@ const sliderCustomStyle = {
 const nothingFoundMessage = 'No tools';
 const placeholderMessage = 'Pick one';
 const sliderLabelFormatter = (value) => `${value}%`;
+// const resetErrors = {
+//     firstToolPercentage: false,
+//     secondToolPercentage: false,
+//     thirdToolPercentage: false
+// };
 
 function TopInputWithSlider({ form, handleSubmit }) {
     const theme = useMantineTheme();
@@ -64,7 +69,12 @@ function TopInputWithSlider({ form, handleSubmit }) {
                     <Slider
                         marks={sliderMarks}
                         value={form.getInputProps('firstToolPercentage').value}
+                        // https://mantine.dev/core/slider/#controlled
                         onChange={form.getInputProps('firstToolPercentage').onChange}
+                        // onChange={(value) => {
+                        //     form.setErrors(resetErrors);
+                        //     form.getInputProps('firstToolPercentage').onChange(value);
+                        // }}
                         styles={{
                             ...sliderCustomStyle,
                             bar: { backgroundColor: firstSliderColor },
@@ -93,6 +103,10 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         marks={sliderMarks}
                         value={form.getInputProps('secondToolPercentage').value}
                         onChange={form.getInputProps('secondToolPercentage').onChange}
+                        // onChange={(value) => {
+                        //     form.setErrors(resetErrors);
+                        //     form.getInputProps('secondToolPercentage').onChange(value);
+                        // }}
                         styles={{
                             ...sliderCustomStyle,
                             bar: { backgroundColor: secondSliderColor },
@@ -120,6 +134,10 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         marks={sliderMarks}
                         value={form.getInputProps('thirdToolPercentage').value}
                         onChange={form.getInputProps('thirdToolPercentage').onChange}
+                        // onChange={(value) => {
+                        //     form.setErrors(resetErrors);
+                        //     form.getInputProps('thirdToolPercentage').onChange(value);
+                        // }}
                         styles={{
                             ...sliderCustomStyle,
                             bar: { backgroundColor: thirdSliderColor },
@@ -150,7 +168,8 @@ TopInputWithSlider.propTypes = {
             firstToolPercentage: PropTypes.number,
             secondToolPercentage: PropTypes.number,
             thirdToolPercentage: PropTypes.number
-        }).isRequired
+        }).isRequired,
+        setErrors: PropTypes.func.isRequired
     }),
     handleSubmit: PropTypes.func.isRequired
 };
