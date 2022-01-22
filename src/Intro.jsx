@@ -1,9 +1,12 @@
-import { Divider, Kbd, Text } from '@mantine/core';
+import { Kbd, Text } from '@mantine/core';
 import { useOs } from '@mantine/hooks';
 import { includes } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Heading from './Heading';
+import data from './tools_counts.json';
+
+const totalCount = data[0].total_count;
 
 function Highlight({ children }) {
     return (
@@ -52,8 +55,8 @@ function Intro() {
                 <Highlight>
                     For you, what are the three most used tools for visualizing data?
                 </Highlight>{' '}
-                Fill in the fields below, also estimating what percentage of users (out of all
-                respondents) use each of your choices.
+                Fill in the fields below, also estimating what percentage of users (out of all{' '}
+                {totalCount} respondents) use each of your choices.
             </Text>
             <Text size="lg">
                 After submitting your answers, you{"'"}ll see a comparative{' '}
