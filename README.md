@@ -53,5 +53,6 @@
   - [Floating UI](https://github.com/floating-ui/floating-ui) (ex-Popper).
   - [Tippy.js for React](https://github.com/atomiks/tippyjs-react).
   - [kbar](https://github.com/timc1/kbar). [Documentation](https://kbar.vercel.app/docs/getting-started). [Blog post](https://css-tricks.com/kbar/).
+  - [dragscroll](https://github.com/asvd/dragscroll).
 - `pnpm up kbar`.
 - [`pnpm.overrides` documentation](https://pnpm.io/package_json#pnpmoverrides).

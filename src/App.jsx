@@ -108,7 +108,7 @@ function App() {
                     />
 
                     {/* https://css-tricks.com/tale-width-max-width/ */}
-                    {!isNull(userOptions) && <Results />}
+                    {!isNull(userOptions) && <Results userOptions={userOptions} />}
                     <Container size="sm" ref={ref} padding={0} style={{ width: '100%' }}>
                         {!isNull(userOptions) && (
                             <BarChart userOptions={userOptions} width={rect.width} />

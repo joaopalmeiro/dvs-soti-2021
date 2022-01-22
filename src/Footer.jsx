@@ -12,7 +12,7 @@ function Footer() {
         <footer style={{ marginTop: 'auto' }}>
             <Text align="center" size="sm">
                 <Text
-                    variant="link"
+                    variant="link" // or Loki
                     component="a"
                     href="https://www.datavisualizationsociety.org/soti-challenge-2021"
                     target="_blank"
