@@ -67,7 +67,8 @@ const actions = [
     {
         id: 'dataVisualizationSocietyAction',
         name: 'Data Visualization Society',
-        shortcut: ['d'],
+        // shortcut: ['d'],
+        shortcut: ['D'],
         section: sections[0],
         perform: () => window.open('https://www.datavisualizationsociety.org/', '_blank'),
         icon: <CircleWavy size={24} />
@@ -76,7 +77,7 @@ const actions = [
         id: 'gitHubAction',
         name: 'GitHub',
         subtitle: 'Repo',
-        shortcut: ['g'],
+        shortcut: ['G'],
         section: sections[0],
         perform: () => window.open('https://github.com/joaopalmeiro/dvs-soti-2021', '_blank'),
         icon: <GithubLogo size={24} />
@@ -84,7 +85,7 @@ const actions = [
     {
         id: 'twitterAction',
         name: 'Twitter',
-        shortcut: ['t'],
+        shortcut: ['T'],
         section: sections[0],
         perform: () => window.open('https://twitter.com/joaompalmeiro', '_blank'),
         // https://github.com/timc1/kbar/blob/v0.1.0-beta.26/example/src/App.tsx#L275

@@ -16,6 +16,7 @@
 - [Vite + React + Typescript + Eslint + Prettier](https://github.com/TheSwordBreaker/vite-reactts-eslint-prettier) boilerplate by The Sword Breaker.
 - [Drag Behavior: drag bars in a bar chart](http://bl.ocks.org/AlessandraSozzi/e588d03fb7a7bb07c250) Block by Alessandra Sozzi.
 - [A Visual Guide to React Rendering - It Always Re-renders](https://alexsidorenko.com/blog/react-render-always-rerenders/) blog post by Alex Sidorenko.
+- [Percentage point](https://en.wikipedia.org/wiki/Percentage_point) and [Percentage](https://en.wikipedia.org/wiki/Percentage) Wikipedia pages.
 
 ## Notes
 
@@ -51,6 +52,6 @@
   - [Capsize](https://seek-oss.github.io/capsize/).
   - [Floating UI](https://github.com/floating-ui/floating-ui) (ex-Popper).
   - [Tippy.js for React](https://github.com/atomiks/tippyjs-react).
-  - [kbar](https://github.com/timc1/kbar). [Documentation](https://kbar.vercel.app/docs/getting-started).
+  - [kbar](https://github.com/timc1/kbar). [Documentation](https://kbar.vercel.app/docs/getting-started). [Blog post](https://css-tricks.com/kbar/).
 - `pnpm up kbar`.
 - [`pnpm.overrides` documentation](https://pnpm.io/package_json#pnpmoverrides).
