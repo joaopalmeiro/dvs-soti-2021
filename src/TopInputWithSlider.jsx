@@ -181,8 +181,15 @@ function TopInputWithSlider({ form, handleSubmit, toDisable }) {
 
                 <Button
                     type="submit"
-                    style={{ gridArea: 'submit', justifySelf: 'center' }}
                     disabled={toDisable}
+                    sx={(theme) => ({
+                        gridArea: 'submit',
+                        justifySelf: 'center',
+                        backgroundColor: theme.colors.gray[8],
+                        '&:hover': {
+                            backgroundColor: theme.colors.gray[9]
+                        }
+                    })}
                 >
                     Submit
                 </Button>

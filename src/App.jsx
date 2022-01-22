@@ -126,6 +126,12 @@ function App() {
                             style={transitionStyles}
                             onClick={() => scrollTo({ y: 0 })}
                             // variant="outline"
+                            sx={(theme) => ({
+                                backgroundColor: theme.colors.gray[8],
+                                '&:hover': {
+                                    backgroundColor: theme.colors.gray[9]
+                                }
+                            })}
                         >
                             <ArrowUp />
                         </Button>
