@@ -12,7 +12,7 @@ function Results({ userOptions }) {
     return (
         <article>
             <Heading>the Results</Heading>
-            <List size="lg" center spacing="xs">
+            <List size="lg" spacing="xs" center>
                 <List.Item
                     icon={
                         <ThemeIcon
