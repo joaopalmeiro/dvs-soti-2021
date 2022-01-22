@@ -68,11 +68,7 @@ function Intro() {
             <Text size="lg">
                 <Highlight>Enjoy</Highlight> the experience!
             </Text>
-            <Divider
-                sx={(theme) => ({
-                    borderColor: theme.black
-                })}
-            />
+            {/* <Divider sx={(theme) => ({ borderColor: theme.black })} /> */}
         </article>
     );
 }
