@@ -10,7 +10,7 @@ function Footer() {
     // https://htmlrecipes.dev/#site-footer
     return (
         <footer>
-            <Text align="center">
+            <Text align="center" size="sm">
                 <Text
                     variant="link"
                     component="a"
@@ -22,6 +22,7 @@ function Footer() {
                             color: COLORS.dvsTurquoise
                         }
                     })}
+                    size="sm"
                 >
                     SOTI Challenge 2021
                 </Text>{' '}
@@ -37,6 +38,7 @@ function Footer() {
                             color: COLORS.dvsMustard
                         }
                     })}
+                    size="sm"
                 >
                     Data Visualization Society
                 </Text>{' '}
@@ -52,6 +54,7 @@ function Footer() {
                             color: COLORS.dvsPlum
                         }
                     })}
+                    size="sm"
                 >
                     João Palmeiro
                 </Text>{' '}
@@ -64,6 +67,7 @@ function Footer() {
                     sx={(theme) => ({
                         color: theme.black
                     })}
+                    size="sm"
                 >
                     Any feedback?
                 </Text>
