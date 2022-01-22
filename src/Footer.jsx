@@ -9,7 +9,7 @@ function Footer() {
     // https://www.datavisualizationsociety.org/brand-guidelines
     // https://htmlrecipes.dev/#site-footer
     return (
-        <footer>
+        <footer style={{ marginTop: 'auto' }}>
             <Text align="center" size="sm">
                 <Text
                     variant="link"
