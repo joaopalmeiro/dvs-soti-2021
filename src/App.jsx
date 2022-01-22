@@ -7,6 +7,7 @@ import { useState } from 'react';
 import BarChart from './BarChart';
 import Footer from './Footer';
 import Intro from './Intro';
+import Results from './Results';
 import ToolsTitle from './ToolsTitle';
 import TopInputWithSlider from './TopInputWithSlider';
 
@@ -100,6 +101,7 @@ function App() {
                     <TopInputWithSlider form={form} handleSubmit={handleSubmit} />
                     {/* https://css-tricks.com/tale-width-max-width/ */}
 
+                    {!isNull(userOptions) && <Results />}
                     <Container size="sm" ref={ref} padding={0} style={{ width: '100%' }}>
                         {!isNull(userOptions) && (
                             <BarChart userOptions={userOptions} width={rect.width} />
