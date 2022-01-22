@@ -1,5 +1,6 @@
 import { Center, Group, Title } from '@mantine/core';
 import { sample } from 'lodash';
+import React from 'react';
 
 import { COLORS } from './utils';
 
@@ -44,4 +45,4 @@ function ToolsTitle() {
     );
 }
 
-export default ToolsTitle;
+export default React.memo(ToolsTitle);

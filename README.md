@@ -15,6 +15,7 @@
 - [Building a Vue3 Typescript Environment with Vite](https://miyauchi.dev/posts/vite-vue3-typescript/) blog post by Tomoki Miyauci.
 - [Vite + React + Typescript + Eslint + Prettier](https://github.com/TheSwordBreaker/vite-reactts-eslint-prettier) boilerplate by The Sword Breaker.
 - [Drag Behavior: drag bars in a bar chart](http://bl.ocks.org/AlessandraSozzi/e588d03fb7a7bb07c250) Block by Alessandra Sozzi.
+- [A Visual Guide to React Rendering - It Always Re-renders](https://alexsidorenko.com/blog/react-render-always-rerenders/) blog post by Alex Sidorenko.
 
 ## Notes
 
