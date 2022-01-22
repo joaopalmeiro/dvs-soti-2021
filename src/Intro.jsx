@@ -1,17 +1,28 @@
 import { Text } from '@mantine/core';
+import PropTypes from 'prop-types';
 
 import Heading from './Heading';
+
+function Highlight({ children }) {
+    return (
+        <Text component="span" weight="bold" size="lg">
+            {children}
+        </Text>
+    );
+}
+
+Highlight.propTypes = {
+    children: PropTypes.node
+};
 
 function Intro() {
     return (
         <article>
             <Heading>the Survey</Heading>
             <Text size="lg">
-                The{' '}
-                <Text component="span" weight="bold" size="lg">
-                    2021 Data Visualization State of the Industry Survey
-                </Text>{' '}
-                results are out!
+                The <Highlight>2021 Data Visualization State of the Industry Survey</Highlight>{' '}
+                results are out! Of all the possible insights, what can we expect from the{' '}
+                <Highlight>Tools</Highlight> used by Data Visualization practitioners?
             </Text>
         </article>
     );
