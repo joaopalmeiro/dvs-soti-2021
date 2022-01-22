@@ -26,7 +26,7 @@ const sliderLabelFormatter = (value) => `${value}%`;
 //     thirdToolPercentage: false
 // };
 
-function TopInputWithSlider({ form, handleSubmit }) {
+function TopInputWithSlider({ form, handleSubmit, toDisable }) {
     const theme = useMantineTheme();
 
     // https://observablehq.com/@d3/d3-ascending
@@ -51,20 +51,35 @@ function TopInputWithSlider({ form, handleSubmit }) {
         ? COLORS.dvsPlum
         : theme.colors.red[6];
 
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+    const disableSlider = {
+        root: {
+            pointerEvents: toDisable ? 'none' : 'unset'
+        }
+    };
+    const groupCursor = toDisable ? 'not-allowed' : 'unset';
+
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
             <GridTopInputWithSlider>
-                <Group direction="column" spacing="xs" grow style={{ gridArea: 'first' }}>
+                <Group
+                    direction="column"
+                    spacing="xs"
+                    grow
+                    style={{ gridArea: 'first', cursor: groupCursor }}
+                >
                     <Select
                         aria-label="Your guess for the most used tool"
                         clearButtonLabel="Clear your first choice"
                         placeholder={placeholderMessage}
                         nothingFound={nothingFoundMessage}
                         searchable
-                        clearable
+                        clearable={!toDisable}
                         data={allTools}
                         icon={<NumberCircleOne weight="bold" />}
                         {...form.getInputProps('firstTool')}
+                        disabled={toDisable}
                     />
                     <Slider
                         marks={sliderMarks}
@@ -77,6 +92,7 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         // }}
                         styles={{
                             ...sliderCustomStyle,
+                            ...disableSlider,
                             bar: { backgroundColor: firstSliderColor },
                             thumb: { borderColor: firstSliderColor },
                             markFilled: { borderColor: firstSliderColor }
@@ -87,17 +103,23 @@ function TopInputWithSlider({ form, handleSubmit }) {
                     />
                 </Group>
 
-                <Group direction="column" spacing="xs" grow style={{ gridArea: 'second' }}>
+                <Group
+                    direction="column"
+                    spacing="xs"
+                    grow
+                    style={{ gridArea: 'second', cursor: groupCursor }}
+                >
                     <Select
                         aria-label="Your guess for the second most used tool"
                         clearButtonLabel="Clear your second choice"
                         placeholder={placeholderMessage}
                         nothingFound={nothingFoundMessage}
                         searchable
-                        clearable
+                        clearable={!toDisable}
                         data={allTools}
                         icon={<NumberCircleTwo weight="regular" />}
                         {...form.getInputProps('secondTool')}
+                        disabled={toDisable}
                     />
                     <Slider
                         marks={sliderMarks}
@@ -109,6 +131,7 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         // }}
                         styles={{
                             ...sliderCustomStyle,
+                            ...disableSlider,
                             bar: { backgroundColor: secondSliderColor },
                             thumb: { borderColor: secondSliderColor },
                             markFilled: { borderColor: secondSliderColor }
@@ -118,17 +141,23 @@ function TopInputWithSlider({ form, handleSubmit }) {
                     />
                 </Group>
 
-                <Group direction="column" spacing="xs" grow style={{ gridArea: 'third' }}>
+                <Group
+                    direction="column"
+                    spacing="xs"
+                    grow
+                    style={{ gridArea: 'third', cursor: groupCursor }}
+                >
                     <Select
                         aria-label="Your guess for the third most used tool"
                         clearButtonLabel="Clear your third choice"
                         placeholder={placeholderMessage}
                         nothingFound={nothingFoundMessage}
                         searchable
-                        clearable
+                        clearable={!toDisable}
                         data={allTools}
                         icon={<NumberCircleThree weight="light" />}
                         {...form.getInputProps('thirdTool')}
+                        disabled={toDisable}
                     />
                     <Slider
                         marks={sliderMarks}
@@ -140,6 +169,7 @@ function TopInputWithSlider({ form, handleSubmit }) {
                         // }}
                         styles={{
                             ...sliderCustomStyle,
+                            ...disableSlider,
                             bar: { backgroundColor: thirdSliderColor },
                             thumb: { borderColor: thirdSliderColor },
                             markFilled: { borderColor: thirdSliderColor }
@@ -149,7 +179,11 @@ function TopInputWithSlider({ form, handleSubmit }) {
                     />
                 </Group>
 
-                <Button type="submit" style={{ gridArea: 'submit', justifySelf: 'center' }}>
+                <Button
+                    type="submit"
+                    style={{ gridArea: 'submit', justifySelf: 'center' }}
+                    disabled={toDisable}
+                >
                     Submit
                 </Button>
             </GridTopInputWithSlider>
@@ -171,7 +205,8 @@ TopInputWithSlider.propTypes = {
         }).isRequired,
         setErrors: PropTypes.func.isRequired
     }),
-    handleSubmit: PropTypes.func.isRequired
+    handleSubmit: PropTypes.func.isRequired,
+    toDisable: PropTypes.bool.isRequired
 };
 
 export default TopInputWithSlider;

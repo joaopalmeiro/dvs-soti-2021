@@ -99,7 +99,11 @@ function App() {
                     </Group>
                 </header>
                 <main>
-                    <TopInputWithSlider form={form} handleSubmit={handleSubmit} />
+                    <TopInputWithSlider
+                        form={form}
+                        handleSubmit={handleSubmit}
+                        toDisable={!isNull(userOptions)}
+                    />
                     {/* https://css-tricks.com/tale-width-max-width/ */}
 
                     {!isNull(userOptions) && <Results />}
