@@ -1,4 +1,4 @@
-import { Container, Affix, Button, Transition } from '@mantine/core';
+import { Affix, Button, Container, Group, Transition } from '@mantine/core';
 import { useForm, useResizeObserver, useWindowScroll } from '@mantine/hooks';
 import { isEmpty, isNull } from 'lodash';
 import { ArrowUp } from 'phosphor-react';
@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 import BarChart from './BarChart';
 import Footer from './Footer';
+import Intro from './Intro';
 import ToolsTitle from './ToolsTitle';
 import TopInputWithSlider from './TopInputWithSlider';
 
@@ -90,7 +91,10 @@ function App() {
                 // ref={ref}
             >
                 <header>
-                    <ToolsTitle />
+                    <Group direction="column" position="left" spacing="xs">
+                        <ToolsTitle />
+                        <Intro />
+                    </Group>
                 </header>
                 <main>
                     <TopInputWithSlider form={form} handleSubmit={handleSubmit} />
@@ -114,7 +118,7 @@ function App() {
                             compact
                             style={transitionStyles}
                             onClick={() => scrollTo({ y: 0 })}
-                            variant="outline"
+                            // variant="outline"
                         >
                             <ArrowUp />
                         </Button>

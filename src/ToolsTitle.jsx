@@ -11,7 +11,11 @@ const borderSides = ['Bottom', 'Left', 'Right', 'Top'];
 
 function ToolsTitle() {
     return (
-        <Group position="center" spacing="xs">
+        <Group
+            // position="center"
+            spacing="xs"
+            style={{ alignSelf: 'center' }}
+        >
             {Array.from(titleText).map((c, i) => (
                 <Center
                     key={`${c}-${i}`}
@@ -32,9 +36,9 @@ function ToolsTitle() {
                     <Title
                         order={1}
                         // align="center"
-                        style={{ fontSize: size }}
                         sx={(theme) => ({
-                            fontFamily: theme.fontFamilyMonospace
+                            fontFamily: theme.fontFamilyMonospace,
+                            fontSize: size
                         })}
                     >
                         {c}

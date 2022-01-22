@@ -7,6 +7,7 @@ function Footer() {
     // https://mantine.dev/core/text/
     // Colors: https://mantine.dev/theming/extend-theme/
     // https://www.datavisualizationsociety.org/brand-guidelines
+    // https://htmlrecipes.dev/#site-footer
     return (
         <footer>
             <Text align="center">
@@ -53,6 +54,18 @@ function Footer() {
                     })}
                 >
                     João Palmeiro
+                </Text>{' '}
+                •{' '}
+                <Text
+                    variant="link"
+                    component="a"
+                    href="https://github.com/joaopalmeiro/dvs-soti-2021/issues"
+                    target="_blank"
+                    sx={(theme) => ({
+                        color: theme.black
+                    })}
+                >
+                    Any feedback?
                 </Text>
             </Text>
         </footer>
