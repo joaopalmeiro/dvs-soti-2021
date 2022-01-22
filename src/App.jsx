@@ -91,7 +91,7 @@ function App() {
                 // ref={ref}
             >
                 <header>
-                    <Group direction="column" position="left" spacing="xs">
+                    <Group direction="column" position="left" spacing="xs" grow>
                         <ToolsTitle />
                         <Intro />
                     </Group>
