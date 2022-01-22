@@ -65,8 +65,9 @@ function Intro() {
                 <CommandMenu />
             </Text>
             <Text size="lg">
-                Keep in mind that only tools with predefined options in the survey are considered
-                here. Responses to the related open-answer question are not counted.
+                Keep in mind that only tools with <Highlight>predefined options</Highlight> in the
+                survey are considered here. Responses to the related open-answer question are not
+                counted.
             </Text>
             <Text size="lg">
                 <Highlight>Enjoy</Highlight> the experience!
