@@ -1,4 +1,4 @@
-import { Text } from '@mantine/core';
+import { Divider, Text } from '@mantine/core';
 import PropTypes from 'prop-types';
 
 import Heading from './Heading';
@@ -29,6 +29,11 @@ function Intro() {
                 Keep in mind that only tools with predefined options in the survey are considered
                 here. Responses to the related open-answer question are not counted.
             </Text>
+            <Divider
+                sx={(theme) => ({
+                    borderColor: theme.black
+                })}
+            />
         </article>
     );
 }
