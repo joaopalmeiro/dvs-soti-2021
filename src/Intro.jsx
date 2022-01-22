@@ -24,6 +24,11 @@ function Intro() {
                 results are out! Of all the possible insights, what can we expect from the{' '}
                 <Highlight>Tools</Highlight> used by Data Visualization practitioners?
             </Text>
+            <Text size="lg">HERE</Text>
+            <Text size="lg">
+                Keep in mind that only tools with predefined options in the survey are considered
+                here. Responses to the related open-answer question are not counted.
+            </Text>
         </article>
     );
 }
