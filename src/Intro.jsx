@@ -48,21 +48,26 @@ function Intro() {
             </Text>
             {/* https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unescaped-entities.md */}
             <Text size="lg">
-                Before we get to the results, here{"'"}s a brief and interesting challenge for you.
-                For you, what are the three most used tools for visualizing data? Fill in the fields
-                below, also estimating what percentage of users (out of all respondents) use each of
-                your choices.
+                Before we get to the results, here{"'"}s a brief and interesting challenge for you.{' '}
+                <Highlight>
+                    For you, what are the three most used tools for visualizing data?
+                </Highlight>{' '}
+                Fill in the fields below, also estimating what percentage of users (out of all
+                respondents) use each of your choices.
             </Text>
             <Text size="lg">
-                After submitting your answers, you{"'"}ll see a comparative summary and a chart —
-                and draw your conclusions!
+                After submitting your answers, you{"'"}ll see a comparative{' '}
+                <Highlight>summary</Highlight> and a <Highlight>chart</Highlight> — and draw your
+                conclusions!
                 <CommandMenu />
             </Text>
             <Text size="lg">
                 Keep in mind that only tools with predefined options in the survey are considered
                 here. Responses to the related open-answer question are not counted.
             </Text>
-            <Text size="lg">Enjoy!</Text>
+            <Text size="lg">
+                <Highlight>Enjoy</Highlight> the experience!
+            </Text>
             <Divider
                 sx={(theme) => ({
                     borderColor: theme.black
