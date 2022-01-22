@@ -6,7 +6,7 @@ function Intro() {
     return (
         <article>
             <Heading>the Survey</Heading>
-            <Text>HERE</Text>
+            <Text>The 2021 Data Visualization State of the Industry Survey results are out!</Text>
         </article>
     );
 }
