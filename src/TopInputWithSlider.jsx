@@ -3,6 +3,7 @@ import { ascending } from 'd3-array';
 import { includes, isUndefined, map, values } from 'lodash';
 import { NumberCircleOne, NumberCircleThree, NumberCircleTwo } from 'phosphor-react';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 
 import GridTopInputWithSlider from './GridTopInputWithSlider';
 import data from './tools_counts.json';
@@ -29,6 +30,17 @@ const sliderLabelFormatter = (value) => `${value}%`;
 function TopInputWithSlider({ form, handleSubmit, toDisable }) {
     const theme = useMantineTheme();
 
+    // https://kentcdodds.com/blog/useeffect-vs-uselayouteffect
+    // https://dmitripavlutin.com/react-useeffect-explanation/#1-useeffect-is-for-side-effects
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+    useEffect(() => {
+        if (toDisable) {
+            document.querySelectorAll('.mantine-Slider-thumb').forEach((element) => {
+                element.setAttribute('tabindex', '-1');
+            });
+        }
+    }, [toDisable]);
+
     // https://observablehq.com/@d3/d3-ascending
     const allTools = map(
         data.sort((a, b) => ascending(a.tool.toLowerCase(), b.tool.toLowerCase())),
@@ -53,6 +65,7 @@ function TopInputWithSlider({ form, handleSubmit, toDisable }) {
 
     // https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
     // https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events#description
     const disableSlider = {
         root: {
             pointerEvents: toDisable ? 'none' : 'unset'
