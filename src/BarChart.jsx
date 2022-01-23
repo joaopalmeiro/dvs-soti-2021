@@ -431,6 +431,7 @@ function BarChart({ userOptions, width }) {
                         ? 'mantine-black'
                         : 'mantine-gray'
                 }
+                maxWidth="none"
             />
         </>
     );
