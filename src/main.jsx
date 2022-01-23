@@ -24,8 +24,6 @@ import { naturalSortObject } from './utils';
 // - https://kbar.vercel.app/
 const searchStyle = {
     // padding: '12px 16px',
-    padding: '16px 16px',
-    fontSize: '16px',
     width: '100%',
     outline: 'none',
     border: 'none',
@@ -38,13 +36,11 @@ const animatorStyle = {
     width: '100%',
     background: 'var(--background)',
     color: 'var(--foreground)',
-    borderRadius: '8px',
     overflow: 'hidden',
     boxShadow: 'var(--shadow)'
 };
 
 const groupNameStyle = {
-    padding: '8px 16px',
     fontSize: '10px',
     textTransform: 'uppercase',
     opacity: 0.5
@@ -128,6 +124,7 @@ function RenderResults() {
                     <div
                         style={{
                             ...groupNameStyle,
+                            padding: `${theme.spacing.md / 2}px ${theme.spacing.md}px`,
                             fontFamily: theme.fontFamily,
                             lineHeight: theme.lineHeight
                         }}
@@ -137,7 +134,7 @@ function RenderResults() {
                 ) : (
                     <div
                         style={{
-                            padding: '12px 16px',
+                            padding: `${theme.spacing.sm}px ${theme.spacing.md}px`,
                             background: active ? 'var(--a1)' : 'transparent',
                             borderLeft: `2px solid ${active ? 'var(--foreground)' : 'transparent'}`,
                             display: 'flex',
@@ -151,23 +148,29 @@ function RenderResults() {
                         <div
                             style={{
                                 display: 'flex',
-                                gap: '8px',
+                                gap: `${theme.spacing.md / 2}px`,
                                 alignItems: 'center',
-                                fontSize: 14
+                                fontSize: theme.fontSizes.sm
                             }}
                         >
                             {item.icon && item.icon}
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 <span>{item.name}</span>
                                 {item.subtitle && (
-                                    <span style={{ fontSize: 12 }}>{item.subtitle}</span>
+                                    <span style={{ fontSize: theme.fontSizes.xs }}>
+                                        {item.subtitle}
+                                    </span>
                                 )}
                             </div>
                         </div>
                         {item.shortcut && (
                             <div
                                 aria-hidden
-                                style={{ display: 'grid', gridAutoFlow: 'column', gap: '4px' }}
+                                style={{
+                                    display: 'grid',
+                                    gridAutoFlow: 'column',
+                                    gap: `${theme.spacing.md / 4}px`
+                                }}
                             >
                                 {item.shortcut.map((sc) => (
                                     <Kbd key={sc}>{sc}</Kbd>
@@ -199,13 +202,17 @@ function MainApp() {
                         zIndex: 9999 // "It's Over 9000!"
                     }}
                 >
-                    <KBarAnimator style={animatorStyle}>
+                    <KBarAnimator
+                        style={{ ...animatorStyle, borderRadius: `${theme.radius.md}px` }}
+                    >
                         {/* https://github.com/timc1/kbar/blob/v0.1.0-beta.26/src/KBarSearch.tsx */}
                         {/* https://github.com/timc1/kbar/blob/v0.1.0-beta.26/src/useMatches.tsx */}
                         {/* https://www.npmjs.com/package/match-sorter */}
                         <KBarSearch
                             style={{
                                 ...searchStyle,
+                                padding: `${theme.spacing.md}px`,
+                                fontSize: `${theme.fontSizes.md}px`,
                                 fontFamily: theme.fontFamily,
                                 lineHeight: theme.lineHeight
                             }}
