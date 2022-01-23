@@ -23,6 +23,7 @@ specifiers:
   eslint-plugin-react-hooks: ^4.3.0
   kbar: ^0.1.0-beta.27
   lodash: ^4.17.21
+  number-to-words: ^1.2.4
   phosphor-react: ^1.4.0
   prettier: ^2.5.1
   react: ^17.0.0
@@ -44,6 +45,7 @@ dependencies:
   d3-scale: 4.0.2
   kbar: 0.1.0-beta.27_react-dom@17.0.2+react@17.0.2
   lodash: 4.17.21
+  number-to-words: 1.2.4
   phosphor-react: 1.4.0_react@17.0.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -2127,6 +2129,10 @@ packages:
   /node-releases/2.0.1:
     resolution: {integrity: sha512-CqyzN6z7Q6aMeF/ktcMVTzhAHCEpf8SOarwpzpf8pNBY2k5/oM34UHldUwp8VKI7uxct2HxSRdJjBaZeESzcxA==}
     dev: true
+
+  /number-to-words/1.2.4:
+    resolution: {integrity: sha512-/fYevVkXRcyBiZDg6yzZbm0RuaD6i0qRfn8yr+6D0KgBMOndFPxuW10qCHpzs50nN8qKuv78k8MuotZhcVX6Pw==}
+    dev: false
 
   /object-assign/4.1.1:
     resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}

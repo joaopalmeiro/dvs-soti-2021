@@ -100,6 +100,7 @@ function TopInputWithSlider({ form, handleSubmit, toDisable }) {
                         label={sliderLabelFormatter}
                         thumbLabel="Slider thumb for your first choice"
                         // color={firstSliderColor}
+                        labelAlwaysOn={toDisable}
                     />
                 </Group>
 
@@ -138,6 +139,7 @@ function TopInputWithSlider({ form, handleSubmit, toDisable }) {
                         }}
                         label={sliderLabelFormatter}
                         thumbLabel="Slider thumb for your second choice"
+                        labelAlwaysOn={toDisable}
                     />
                 </Group>
 
@@ -176,6 +178,7 @@ function TopInputWithSlider({ form, handleSubmit, toDisable }) {
                         }}
                         label={sliderLabelFormatter}
                         thumbLabel="Slider thumb for your third choice"
+                        labelAlwaysOn={toDisable}
                     />
                 </Group>
 

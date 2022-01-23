@@ -1,4 +1,5 @@
 import { Text } from '@mantine/core';
+import React from 'react';
 
 import { COLORS } from './utils';
 
@@ -76,4 +77,4 @@ function Footer() {
     );
 }
 
-export default Footer;
+export default React.memo(Footer);

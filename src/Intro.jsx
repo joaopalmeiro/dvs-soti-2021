@@ -55,8 +55,9 @@ function Intro() {
                 <Highlight>
                     For you, what are the three most used tools for visualizing data?
                 </Highlight>{' '}
-                Fill in the fields below, also estimating what percentage of users (out of all{' '}
-                {totalCount} respondents) use each of your choices.
+                Fill in the fields below, also estimating what percentage of practitioners (out of
+                all {totalCount} respondents) use each of your choices. Don{"'"}t forget that each
+                practitioner can use one or more tools.
             </Text>
             <Text size="lg">
                 After submitting your answers, you{"'"}ll see a comparative{' '}
