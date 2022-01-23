@@ -4,6 +4,7 @@ import { find, trimEnd } from 'lodash';
 import { toOrdinal } from 'number-to-words';
 import { NumberOne, NumberThree, NumberTwo } from 'phosphor-react';
 import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
 import Heading from './Heading';
 import data from './tools_counts.json';
@@ -60,14 +61,15 @@ const getHighlightStyles = (theme, mainColor) => ({
     }
 });
 
-function Results({ userOptions }) {
+// https://felixgerschau.com/react-forwardref-explained/
+const Results = forwardRef(function Results({ userOptions }, ref) {
     // console.log({ data, userOptions });
     const firstReference = find(data, (o) => o.ranking === 1);
     const secondReference = find(data, (o) => o.ranking === 2);
     const thirdReference = find(data, (o) => o.ranking === 3);
 
     return (
-        <article>
+        <article ref={ref}>
             <Group
                 direction="column"
                 grow
@@ -207,7 +209,7 @@ function Results({ userOptions }) {
             </Group>
         </article>
     );
-}
+});
 
 Results.propTypes = {
     userOptions: PropTypes.exact({

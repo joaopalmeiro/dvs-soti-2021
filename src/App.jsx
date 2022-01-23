@@ -1,8 +1,8 @@
 import { Affix, Button, Container, Group, Transition } from '@mantine/core';
-import { useForm, useResizeObserver, useWindowScroll } from '@mantine/hooks';
+import { useForm, useResizeObserver, useScrollIntoView, useWindowScroll } from '@mantine/hooks';
 import { isEmpty, isNull } from 'lodash';
 import { ArrowUp } from 'phosphor-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import BarChart from './BarChart';
 import Footer from './Footer';
@@ -22,6 +22,7 @@ function App() {
 
     const [userOptions, setUserOptions] = useState(null);
     const [scroll, scrollTo] = useWindowScroll();
+    const { scrollIntoView, targetRef } = useScrollIntoView();
 
     const form = useForm({
         initialValues: {
@@ -55,6 +56,17 @@ function App() {
     // Alternative: https://mantine.dev/hooks/use-element-size/
     // https://www.npmjs.com/package/@react-hook/resize-observer
     const [ref, rect] = useResizeObserver();
+    // const resultsRef = useRef();
+
+    // https://mantine.dev/hooks/use-scroll-into-view/
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+    // https://robinvdvleuten.nl/blog/scroll-a-react-component-into-view/
+    // https://www.carlrippon.com/scrolling-a-react-element-into-view/
+    useEffect(() => {
+        !isNull(userOptions) &&
+            // resultsRef.current?.scrollIntoView({ block: 'start', behavior: 'auto' });
+            scrollIntoView({ alignment: 'start' });
+    }, [scrollIntoView, userOptions]);
 
     // https://mantine.dev/hooks/use-form/#get-form-values-type
     // https://mantine.dev/hooks/use-form/#authentication-form
@@ -128,7 +140,9 @@ function App() {
                         </Group>
 
                         {/* https://css-tricks.com/tale-width-max-width/ */}
-                        {!isNull(userOptions) && <Results userOptions={userOptions} />}
+                        {!isNull(userOptions) && (
+                            <Results userOptions={userOptions} ref={targetRef} />
+                        )}
                         <Container size="sm" ref={ref} padding={0} style={{ width: '100%' }}>
                             {!isNull(userOptions) && (
                                 <BarChart userOptions={userOptions} width={rect.width} />
