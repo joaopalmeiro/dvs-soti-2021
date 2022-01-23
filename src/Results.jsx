@@ -1,4 +1,4 @@
-import { List, Text, ThemeIcon } from '@mantine/core';
+import { Highlight, List, Text, ThemeIcon } from '@mantine/core';
 import { format } from 'd3-format';
 import { find, trimEnd } from 'lodash';
 import { toOrdinal } from 'number-to-words';
@@ -47,6 +47,19 @@ const getTemplate = (referenceDatum, tool, estimate) =>
         ? matchTemplate(referenceDatum, tool, estimate)
         : mismatchTemplate(referenceDatum, tool);
 
+const getHighlightStyles = (theme, mainColor) => ({
+    backgroundColor: theme.fn.lighten(mainColor, 0.9),
+    textDecoration: `underline ${mainColor}`,
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/text-underline-offset
+    textUnderlineOffset: '0.1em',
+    // '&:nth-child(4)': {
+    '&:nth-of-type(2)': {
+        backgroundColor: 'unset',
+        textDecoration: `underline ${theme.black}`
+        // textUnderlineOffset: 'unset'
+    }
+});
+
 function Results({ userOptions }) {
     // console.log({ data, userOptions });
     const firstReference = find(data, (o) => o.ranking === 1);
@@ -56,7 +69,13 @@ function Results({ userOptions }) {
     return (
         <article>
             <Heading>the Results</Heading>
-            <List size="lg" spacing="lg" center type="ol">
+            <List
+                // size="lg"
+                // spacing="lg"
+                spacing="xl"
+                center
+                type="ol"
+            >
                 <List.Item
                     icon={
                         <ThemeIcon
@@ -82,11 +101,18 @@ function Results({ userOptions }) {
                         </ThemeIcon>
                     }
                 >
-                    {getTemplate(
-                        firstReference,
-                        userOptions.firstTool,
-                        userOptions.firstToolPercentage
-                    )}
+                    {/* https://mantine.dev/core/highlight/ */}
+                    <Highlight
+                        highlight={[firstReference.tool, userOptions.firstTool]}
+                        size="lg"
+                        highlightStyles={(theme) => getHighlightStyles(theme, COLORS.dvsTurquoise)}
+                    >
+                        {getTemplate(
+                            firstReference,
+                            userOptions.firstTool,
+                            userOptions.firstToolPercentage
+                        )}
+                    </Highlight>
                 </List.Item>
                 <List.Item
                     // https://mantine.dev/theming/functions/#lighten-and-darken
@@ -113,11 +139,17 @@ function Results({ userOptions }) {
                         </ThemeIcon>
                     }
                 >
-                    {getTemplate(
-                        secondReference,
-                        userOptions.secondTool,
-                        userOptions.secondToolPercentage
-                    )}
+                    <Highlight
+                        highlight={[secondReference.tool, userOptions.secondTool]}
+                        size="lg"
+                        highlightStyles={(theme) => getHighlightStyles(theme, COLORS.dvsMustard)}
+                    >
+                        {getTemplate(
+                            secondReference,
+                            userOptions.secondTool,
+                            userOptions.secondToolPercentage
+                        )}
+                    </Highlight>
                 </List.Item>
                 <List.Item
                     icon={
@@ -143,11 +175,17 @@ function Results({ userOptions }) {
                         </ThemeIcon>
                     }
                 >
-                    {getTemplate(
-                        thirdReference,
-                        userOptions.thirdTool,
-                        userOptions.thirdToolPercentage
-                    )}
+                    <Highlight
+                        highlight={[thirdReference.tool, userOptions.thirdTool]}
+                        size="lg"
+                        highlightStyles={(theme) => getHighlightStyles(theme, COLORS.dvsPlum)}
+                    >
+                        {getTemplate(
+                            thirdReference,
+                            userOptions.thirdTool,
+                            userOptions.thirdToolPercentage
+                        )}
+                    </Highlight>
                 </List.Item>
             </List>
             <Text size="lg">
