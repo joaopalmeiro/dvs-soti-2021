@@ -95,7 +95,16 @@ function App() {
                 // ref={ref}
             >
                 <header>
-                    <Group direction="column" position="left" spacing="xs" grow>
+                    <Group
+                        direction="column"
+                        position="left"
+                        // spacing="xs"
+                        grow
+                        sx={(theme) => ({
+                            gap: `${theme.spacing.xl * 2}px`,
+                            paddingTop: `${theme.spacing.xl * 2}px`
+                        })}
+                    >
                         <ToolsTitle />
                         <Intro />
                     </Group>
