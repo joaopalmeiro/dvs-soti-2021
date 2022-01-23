@@ -89,7 +89,8 @@ function App() {
                     flexDirection: 'column',
                     alignItems: 'stretch',
                     gap: theme.spacing.xl,
-                    minHeight: '100vh'
+                    minHeight: '100vh',
+                    padding: theme.spacing.lg
                 })}
                 // ref={ref}
             >
