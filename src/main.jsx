@@ -199,6 +199,7 @@ function MainApp() {
                     style={{
                         // https://css-tricks.com/handling-z-index
                         // https://css-tricks.com/systems-for-z-index/
+                        // https://atomiks.github.io/tippyjs/v6/all-props/#zindex
                         zIndex: 9999 // "It's Over 9000!"
                     }}
                 >

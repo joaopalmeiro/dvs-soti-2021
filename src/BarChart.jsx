@@ -398,16 +398,19 @@ function BarChart({ userOptions, width }) {
                 </Group>
             </svg>
 
+            {/* Tooltip */}
             <Tippy
                 content={currentTool && getTooltipContent(currentTool, yAxisLabels)}
                 visible={visible}
+                // visible={true}
                 reference={svgEl}
                 placement="right-start"
                 // https://popper.js.org/docs/v2/modifiers/offset/
                 offset={[
                     yScale.bandwidth() / 2 +
                         dimensions.marginTop / 2 +
-                        (currentTool ? yAccessorScaled(currentTool) : 0),
+                        (currentTool ? yAccessorScaled(currentTool) : 0) -
+                        1 / 2,
                     -dimensions.boundedWidth + (currentTool ? xAccessorScaled(currentTool) : 0)
                 ]}
                 arrow={true}
@@ -418,11 +421,16 @@ function BarChart({ userOptions, width }) {
                         {
                             name: 'arrow',
                             options: {
-                                padding: ({ popper }) => popper.height / 4
+                                padding: ({ popper }) => popper.height / 4 - 1 / 2
                             }
                         }
                     ]
                 }}
+                theme={
+                    currentTool && includes(highlightTools, yAccessor(currentTool))
+                        ? 'mantine-black'
+                        : 'mantine-gray'
+                }
             />
         </>
     );
