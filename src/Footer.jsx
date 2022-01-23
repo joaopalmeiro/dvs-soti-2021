@@ -1,16 +1,18 @@
-import { Text } from '@mantine/core';
+import { Text, useMantineTheme } from '@mantine/core';
 import React from 'react';
 
 import { COLORS } from './utils';
 
 function Footer() {
+    const theme = useMantineTheme();
+
     // https://daisyui.com/components/footer/
     // https://mantine.dev/core/text/
     // Colors: https://mantine.dev/theming/extend-theme/
     // https://www.datavisualizationsociety.org/brand-guidelines
     // https://htmlrecipes.dev/#site-footer
     return (
-        <footer style={{ marginTop: 'auto' }}>
+        <footer style={{ marginTop: 'auto', paddingTop: theme.spacing.lg }}>
             <Text align="center" size="sm">
                 <Text
                     variant="link" // or Loki
