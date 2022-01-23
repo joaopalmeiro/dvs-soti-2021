@@ -1,4 +1,4 @@
-import { Highlight, List, Text, ThemeIcon } from '@mantine/core';
+import { Group, Highlight, List, Text, ThemeIcon } from '@mantine/core';
 import { format } from 'd3-format';
 import { find, trimEnd } from 'lodash';
 import { toOrdinal } from 'number-to-words';
@@ -68,130 +68,143 @@ function Results({ userOptions }) {
 
     return (
         <article>
-            <Heading>the Results</Heading>
-            <List
-                // size="lg"
-                // spacing="lg"
+            <Group
+                direction="column"
+                grow
+                // spacing="md"
                 spacing="xl"
-                center
-                type="ol"
             >
-                <List.Item
-                    icon={
-                        <ThemeIcon
-                            size={24}
-                            radius="xl"
-                            // variant="light"
-                            sx={(theme) => ({
-                                backgroundColor:
-                                    firstReference.tool === userOptions.firstTool
-                                        ? COLORS.dvsTurquoise
-                                        : theme.fn.lighten(COLORS.dvsTurquoise, 0.9),
-                                color:
-                                    firstReference.tool === userOptions.firstTool
-                                        ? theme.white
-                                        : COLORS.dvsTurquoise,
-                                border:
-                                    firstReference.tool === userOptions.firstTool
-                                        ? 'unset'
-                                        : `1px solid ${COLORS.dvsTurquoise}`
-                            })}
-                        >
-                            <NumberOne size={12} weight="bold" />
-                        </ThemeIcon>
-                    }
+                <Heading>the Results</Heading>
+
+                <List
+                    // size="lg"
+                    // spacing="lg"
+                    // spacing="xl"
+                    spacing="md"
+                    center
+                    type="ol"
                 >
-                    {/* https://mantine.dev/core/highlight/ */}
-                    <Highlight
-                        highlight={[firstReference.tool, userOptions.firstTool]}
-                        size="lg"
-                        highlightStyles={(theme) => getHighlightStyles(theme, COLORS.dvsTurquoise)}
+                    <List.Item
+                        icon={
+                            <ThemeIcon
+                                size={24}
+                                radius="xl"
+                                // variant="light"
+                                sx={(theme) => ({
+                                    backgroundColor:
+                                        firstReference.tool === userOptions.firstTool
+                                            ? COLORS.dvsTurquoise
+                                            : theme.fn.lighten(COLORS.dvsTurquoise, 0.9),
+                                    color:
+                                        firstReference.tool === userOptions.firstTool
+                                            ? theme.white
+                                            : COLORS.dvsTurquoise,
+                                    border:
+                                        firstReference.tool === userOptions.firstTool
+                                            ? 'unset'
+                                            : `1px solid ${COLORS.dvsTurquoise}`
+                                })}
+                            >
+                                <NumberOne size={12} weight="bold" />
+                            </ThemeIcon>
+                        }
                     >
-                        {getTemplate(
-                            firstReference,
-                            userOptions.firstTool,
-                            userOptions.firstToolPercentage
-                        )}
-                    </Highlight>
-                </List.Item>
-                <List.Item
-                    // https://mantine.dev/theming/functions/#lighten-and-darken
-                    icon={
-                        <ThemeIcon
-                            size={24}
-                            radius="xl"
-                            sx={(theme) => ({
-                                backgroundColor:
-                                    secondReference.tool === userOptions.secondTool
-                                        ? COLORS.dvsMustard
-                                        : theme.fn.lighten(COLORS.dvsMustard, 0.9),
-                                color:
-                                    secondReference.tool === userOptions.secondTool
-                                        ? theme.white
-                                        : COLORS.dvsMustard,
-                                border:
-                                    secondReference.tool === userOptions.secondTool
-                                        ? 'unset'
-                                        : `1px solid ${COLORS.dvsMustard}`
-                            })}
+                        {/* https://mantine.dev/core/highlight/ */}
+                        <Highlight
+                            highlight={[firstReference.tool, userOptions.firstTool]}
+                            size="lg"
+                            highlightStyles={(theme) =>
+                                getHighlightStyles(theme, COLORS.dvsTurquoise)
+                            }
                         >
-                            <NumberTwo size={12} weight="bold" />
-                        </ThemeIcon>
-                    }
-                >
-                    <Highlight
-                        highlight={[secondReference.tool, userOptions.secondTool]}
-                        size="lg"
-                        highlightStyles={(theme) => getHighlightStyles(theme, COLORS.dvsMustard)}
+                            {getTemplate(
+                                firstReference,
+                                userOptions.firstTool,
+                                userOptions.firstToolPercentage
+                            )}
+                        </Highlight>
+                    </List.Item>
+                    <List.Item
+                        // https://mantine.dev/theming/functions/#lighten-and-darken
+                        icon={
+                            <ThemeIcon
+                                size={24}
+                                radius="xl"
+                                sx={(theme) => ({
+                                    backgroundColor:
+                                        secondReference.tool === userOptions.secondTool
+                                            ? COLORS.dvsMustard
+                                            : theme.fn.lighten(COLORS.dvsMustard, 0.9),
+                                    color:
+                                        secondReference.tool === userOptions.secondTool
+                                            ? theme.white
+                                            : COLORS.dvsMustard,
+                                    border:
+                                        secondReference.tool === userOptions.secondTool
+                                            ? 'unset'
+                                            : `1px solid ${COLORS.dvsMustard}`
+                                })}
+                            >
+                                <NumberTwo size={12} weight="bold" />
+                            </ThemeIcon>
+                        }
                     >
-                        {getTemplate(
-                            secondReference,
-                            userOptions.secondTool,
-                            userOptions.secondToolPercentage
-                        )}
-                    </Highlight>
-                </List.Item>
-                <List.Item
-                    icon={
-                        <ThemeIcon
-                            size={24}
-                            radius="xl"
-                            sx={(theme) => ({
-                                backgroundColor:
-                                    thirdReference.tool === userOptions.thirdTool
-                                        ? COLORS.dvsPlum
-                                        : theme.fn.lighten(COLORS.dvsPlum, 0.9),
-                                color:
-                                    thirdReference.tool === userOptions.thirdTool
-                                        ? theme.white
-                                        : COLORS.dvsPlum,
-                                border:
-                                    thirdReference.tool === userOptions.thirdTool
-                                        ? 'unset'
-                                        : `1px solid ${COLORS.dvsPlum}`
-                            })}
+                        <Highlight
+                            highlight={[secondReference.tool, userOptions.secondTool]}
+                            size="lg"
+                            highlightStyles={(theme) =>
+                                getHighlightStyles(theme, COLORS.dvsMustard)
+                            }
                         >
-                            <NumberThree size={12} weight="bold" />
-                        </ThemeIcon>
-                    }
-                >
-                    <Highlight
-                        highlight={[thirdReference.tool, userOptions.thirdTool]}
-                        size="lg"
-                        highlightStyles={(theme) => getHighlightStyles(theme, COLORS.dvsPlum)}
+                            {getTemplate(
+                                secondReference,
+                                userOptions.secondTool,
+                                userOptions.secondToolPercentage
+                            )}
+                        </Highlight>
+                    </List.Item>
+                    <List.Item
+                        icon={
+                            <ThemeIcon
+                                size={24}
+                                radius="xl"
+                                sx={(theme) => ({
+                                    backgroundColor:
+                                        thirdReference.tool === userOptions.thirdTool
+                                            ? COLORS.dvsPlum
+                                            : theme.fn.lighten(COLORS.dvsPlum, 0.9),
+                                    color:
+                                        thirdReference.tool === userOptions.thirdTool
+                                            ? theme.white
+                                            : COLORS.dvsPlum,
+                                    border:
+                                        thirdReference.tool === userOptions.thirdTool
+                                            ? 'unset'
+                                            : `1px solid ${COLORS.dvsPlum}`
+                                })}
+                            >
+                                <NumberThree size={12} weight="bold" />
+                            </ThemeIcon>
+                        }
                     >
-                        {getTemplate(
-                            thirdReference,
-                            userOptions.thirdTool,
-                            userOptions.thirdToolPercentage
-                        )}
-                    </Highlight>
-                </List.Item>
-            </List>
-            <Text size="lg">
-                By the way, feel free to drag and drop the bars. Reorder the chart and compare the
-                tools that interest you most closely.
-            </Text>
+                        <Highlight
+                            highlight={[thirdReference.tool, userOptions.thirdTool]}
+                            size="lg"
+                            highlightStyles={(theme) => getHighlightStyles(theme, COLORS.dvsPlum)}
+                        >
+                            {getTemplate(
+                                thirdReference,
+                                userOptions.thirdTool,
+                                userOptions.thirdToolPercentage
+                            )}
+                        </Highlight>
+                    </List.Item>
+                </List>
+                <Text size="lg">
+                    By the way, feel free to drag and drop the bars. Reorder the chart and compare
+                    the tools that interest you most closely.
+                </Text>
+            </Group>
         </article>
     );
 }

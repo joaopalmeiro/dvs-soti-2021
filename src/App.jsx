@@ -88,9 +88,10 @@ function App() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'stretch',
-                    gap: theme.spacing.xl,
+                    // gap: theme.spacing.xl,
+                    gap: `${theme.spacing.xl * 2}px`,
                     minHeight: '100vh',
-                    padding: theme.spacing.lg
+                    padding: `${theme.spacing.lg}px`
                 })}
                 // ref={ref}
             >
@@ -101,8 +102,8 @@ function App() {
                         // spacing="xs"
                         grow
                         sx={(theme) => ({
-                            gap: `${theme.spacing.xl * 2}px`,
-                            paddingTop: `${theme.spacing.xl * 2}px`
+                            gap: `${theme.spacing.xl * 3}px`,
+                            paddingTop: `${theme.spacing.xl * 3 - theme.spacing.lg}px`
                         })}
                     >
                         <ToolsTitle />
@@ -110,20 +111,30 @@ function App() {
                     </Group>
                 </header>
                 <main>
-                    <Heading>your Guess</Heading>
-                    <TopInputWithSlider
-                        form={form}
-                        handleSubmit={handleSubmit}
-                        toDisable={!isNull(userOptions)}
-                    />
+                    <Group
+                        direction="column"
+                        sx={(theme) => ({
+                            gap: !isNull(userOptions) ? `${theme.spacing.xl * 2}px` : `0px`
+                        })}
+                        grow
+                    >
+                        <Group direction="column" grow spacing="xl">
+                            <Heading>your Guess</Heading>
+                            <TopInputWithSlider
+                                form={form}
+                                handleSubmit={handleSubmit}
+                                toDisable={!isNull(userOptions)}
+                            />
+                        </Group>
 
-                    {/* https://css-tricks.com/tale-width-max-width/ */}
-                    {!isNull(userOptions) && <Results userOptions={userOptions} />}
-                    <Container size="sm" ref={ref} padding={0} style={{ width: '100%' }}>
-                        {!isNull(userOptions) && (
-                            <BarChart userOptions={userOptions} width={rect.width} />
-                        )}
-                    </Container>
+                        {/* https://css-tricks.com/tale-width-max-width/ */}
+                        {!isNull(userOptions) && <Results userOptions={userOptions} />}
+                        <Container size="sm" ref={ref} padding={0} style={{ width: '100%' }}>
+                            {!isNull(userOptions) && (
+                                <BarChart userOptions={userOptions} width={rect.width} />
+                            )}
+                        </Container>
+                    </Group>
                 </main>
 
                 <Footer />
