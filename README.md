@@ -2,6 +2,8 @@
 
 > [Challenge](https://www.datavisualizationsociety.org/soti-challenge-2021) (Data Visualization Society)
 
+![Demo](assets/demo.gif)
+
 ## Development
 
 - Install [pnpm](https://pnpm.io/installation) (if necessary).
@@ -56,3 +58,6 @@
   - [dragscroll](https://github.com/asvd/dragscroll).
 - `pnpm up kbar`.
 - [`pnpm.overrides` documentation](https://pnpm.io/package_json#pnpmoverrides).
+- Demo (macOS):
+  - [Kap](https://getkap.co/).
+  - [Gifski](https://sindresorhus.com/gifski).
